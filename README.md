@@ -5,6 +5,7 @@ git clone https://github.com/nilsonlinux/CliPDVs.git && chmod -R 777 ./CliPDVs &
 
 ![](https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/outros/ 
 #Atualização
- rm -rf CliPDVs-V1.sh && wget https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/CliPDVs-V1.sh && chmod +x ./CliPDVs-V1.sh
+ sleep 3
+rm -rf CliPDVs && git clone https://github.com/nilsonlinux/CliPDVs.git && chmod -R 777 ./CliPDVs && clear && ./CliPDVs/CliPDVs.sh
 
-![](https://raw.githubusercontent.com/sistemaclipdvs/CliPDVs/master/outros/Screenshot%20from%202020-04-17%2018%3A06%3A17.png)
+![](https://raw.githubusercontent.com/sistemaclipdvs/CliPDVs/master/outros/Screenshot%20from%202020-04-17%2018%3A06%3A17.png)]
