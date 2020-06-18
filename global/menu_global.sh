@@ -16,7 +16,7 @@ c='\E[36m'
 w='\E[37m'
 endc='\E[0m'
 enda='\033[0m'
-version='20200612'
+version='20200617'
 ##########
   clear
   echo -e "${g} 
@@ -24,9 +24,9 @@ version='20200612'
       / ___| (_)  _ \|  _ \ \   / /__
      | |   | | | |_) | | | \ \ / / __|  
      | |___| | |  __/| |_| |\ V /\__ \    
-      \____|_|_|_|   |____/  \_/ |___/ ADM © 2020
+      \____|_|_|_|   |____/  \_/ |___/ © 2020
               ${c}Versão :${enda} ${y}${version}  ${enda}
----------[ ${y}COMANDOS LOJAS POR FAIXAS  (CliPDVs)${enda} ]---------
+---------[ ${y}COMANDOS LOJAS POR FAIXAS (CliPDVs)${enda} ]---------
  [ ${y}1${enda} ] ${bu}Reiniciar PDVs${enda}
  [ ${y}2${enda} ] ${bu}Atualizar Terminais${enda}
  [ ${y}3${enda} ] ${bu}Reiniciar o MaxiPOS${enda}
@@ -49,8 +49,8 @@ case $opcao in
 6) ./CliPDVs/global/vncpdvs.sh;;
 7) ./CliPDVs/global/ssh_pdvs.sh;;
 16) ./CliPDVs/AtualizadorCliPDVs.sh;;
-0) echo -e "\033[1;32m Você fechou o script. Até a próxima!!!\033[0m" 
-exit;;
+0)
+./CliPDVs/CliPDVs.sh;;
 *) echo -e "${r}Opção inexistente. Verifique se você digitou corretamente${enda}."
 sleep 1
 ./CliPDVs/global/menu_global.sh;
