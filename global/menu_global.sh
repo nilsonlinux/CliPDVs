@@ -34,6 +34,8 @@ version='20200617'
  [ ${y}5${enda} ] ${bu}Desligar PDVs${enda}
  [ ${y}6${enda} ] ${bu}VNC PDVs${enda} (${v}Para PCs${enda})
  [ ${y}7${enda} ] ${bu}SSH PDVs${enda}
+ [ ${y}8${enda} ] ${bu}Testar conexão (Faixa) ${enda}
+ [ ${y}9${enda} ] ${bu}Testar conexão (Link ou Faixa)${enda}
 ----------------------------------------------
  [ ${y}16${enda} ] ${g}Atualizar CliPDVs${enda}
 -----------------------------------------------
@@ -48,6 +50,8 @@ case $opcao in
 5) ./CliPDVs/global/desligar_pdvs.sh;;
 6) ./CliPDVs/global/vncpdvs.sh;;
 7) ./CliPDVs/global/ssh_pdvs.sh;;
+8) ./CliPDVs/global/test_ping.sh;;
+9) ./CliPDVs/global/test_ping1.sh;;
 16) ./CliPDVs/AtualizadorCliPDVs.sh;;
 0)
 ./CliPDVs/CliPDVs.sh;;

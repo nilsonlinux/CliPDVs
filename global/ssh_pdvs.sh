@@ -14,7 +14,8 @@ br="\033[0;37m"       #Branco
 ec="\033[0m"
 a='\033[1;33m'                 
 end='\E[0m'
-t=Terminal      		
+t=Terminal
+clear   		
 echo -e "DIGITE A ${a}FAIXA${end} REFERÊNTE A SUA FILIAL: "
 read fx
 echo -e "DIGITE O ${a}FINAL DO IP${end} QUE DESEJA ACESO SSH: "
