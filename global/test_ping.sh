@@ -6,7 +6,7 @@
 # Colabore com o projeto
 #
 #Veriaveis
-IPSERV=8.8
+IPSERV=192.168
 TIME=3
 LOG="/CliPDVs/outros/log/logs"
 v="\033[0;31m"        #vermelho
