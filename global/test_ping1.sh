@@ -32,7 +32,7 @@ echo -e "$v     |_____|_| \_\_| \_\\____/  (_)					       $ec"
 echo -e "$v --------[ $br Status da requisição $ec $v]---------              $ec"
 echo -e "$br         $ip $ec $v (( Sem conexão ))                            $ec"	
 echo -e "$v -------------------------------------------                      $ec"			
-echo -e "$v Digite ENTER para voltar pro menu principal.                     $ec"
+echo -e "$v Digite${ec} ${br}ENTER${ec} ${v}para voltar pro menu principal   $ec"
 read -p " ⇢ " opcao
 case $opcao in
 *)

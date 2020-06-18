@@ -8,7 +8,7 @@
 #Veriaveis
 IPSERV=8.8
 TIME=3
-LOG=""
+LOG="/CliPDVs/outros/log/logs"
 v="\033[0;31m"        #vermelho
 vr="\033[0;32m"       #Verde
 br="\033[0;37m"       #Branco
@@ -35,7 +35,7 @@ echo -e "$v     |_____|_| \_\_| \_\\____/  (_)					       $ec"
 echo -e "$v --------[ $br Status da requisição $ec $v]---------              $ec"
 echo -e "$br         $IPSERV.$fx.$ip $ec $v (( Sem conexão ))                $ec"	
 echo -e "$v -------------------------------------------                      $ec"			
-echo -e "$v Digite\033[0;32m ENTER\033[0;33m para voltar pro menu principal. $ec"
+echo -e "$v Digite ${br}ENTER ${ec} para voltar pro menu principal. $ec"
 read -p " ⇢ " opcao
 case $opcao in
 *)
@@ -56,7 +56,7 @@ echo -e "$br          $IPSERV.$fx.$ip $ec $vr (( Conectado ))                $ec
 echo -e "$vr -------------------------------------------                     $ec"	
 ping -c 2 $IPSERV.$fx.$ip
 echo "============================================"
-echo -e "$v Digite\033[0;32m ENTER\033[0;33m para voltar pro menu principal. $ec"
+echo -e "$vr Digite ${br}ENTER ${ec} para voltar para o menu principal.      $ec"
 fi
 echo "============================================"
 read -p " ⇢ " opcao
