@@ -16,7 +16,7 @@ c='\E[36m'
 w='\E[37m'
 endc='\E[0m'
 enda='\033[0m'
-version='20200408'
+version='20200617'
 ##########
   clear
   echo -e "${g} 
@@ -34,12 +34,13 @@ version='20200408'
  [ ${y}5${enda} ] ${bu}Desligar PDVs${enda}
  [ ${y}6${enda} ] ${bu}VNC PDVs${enda} (${v}Para PCs${enda})
  [ ${y}7${enda} ] ${bu}SSH PDVs${enda}
- [ ${y}8${enda} ] ${bu}MaxiPOS e Email${enda} (${v}Para PCs${enda})
- [ ${y}09${enda} ] ${bu}Ramais T.I${enda}
- [ ${y}10${enda} ] ${bu}IDs Balanças${enda}
- [ ${y}11${enda} ] ${bu}Sobre${enda}
+ [ ${y}8${enda} ] ${p}Comandos Lojas${enda}
+ [ ${y}9${enda} ] ${bu}MaxiPOS e Email${enda} (${v}Para PCs${enda})
+ [ ${y}10${enda} ] ${bu}Ramais T.I${enda}
+ [ ${y}11${enda} ] ${bu}IDs Balanças${enda}
+ [ ${y}12${enda} ] ${bu}Sobre${enda}
 ----------------------------------------------
- [ ${y}12${enda} ] ${g}Atualizar CliPDVs${enda}
+ [ ${y}13${enda} ] ${g}Atualizar CliPDVs${enda}
 -----------------------------------------------
  [ ${y}0${enda} ] ${r}Fechar o Script${enda}
 ----------------------------------------------- ${enda}"
@@ -52,11 +53,12 @@ case $opcao in
 5) ./CliPDVs/desligar_pdvs.sh;;
 6) ./CliPDVs/vncpdvs.sh;;
 7) ./CliPDVs/ssh_pdvs.sh;;
-8) ./CliPDVs/outros/paginas.sh;;
-9) ./CliPDVs/outros/ramais_ti.sh;;
-10) ./CliPDVs/outros/ids_balanca.sh;;
-11) ./CliPDVs/outros/sobre.sh;;
-12) ./CliPDVs/AtualizadorCliPDVs.sh;;
+8) ./CliPDVs/global/menu_global.sh;;
+9) ./CliPDVs/outros/paginas.sh;;
+10) ./CliPDVs/outros/ramais_ti.sh;;
+11) ./CliPDVs/outros/ids_balanca.sh;;
+12) ./CliPDVs/outros/sobre.sh;;
+13) ./CliPDVs/AtualizadorCliPDVs.sh;;
 0) echo -e "\033[1;32m Você fechou o script. Até a próxima!!!\033[0m" 
 exit;;
 *) echo -e "${r}Opção inexistente. Verifique se você digitou corretamente${enda}."
