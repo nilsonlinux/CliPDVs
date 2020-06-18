@@ -26,7 +26,7 @@ version='20200612'
      | |___| | |  __/| |_| |\ V /\__ \    
       \____|_|_|_|   |____/  \_/ |___/ ADM © 2020
               ${c}Versão :${enda} ${y}${version}  ${enda}
----------[ ${y}MENU PRINCIPAL  (CliPDVs) Suporte regional${enda} ]---------
+---------[ ${y}COMANDOS LOJAS POR FAIXAS  (CliPDVs)${enda} ]---------
  [ ${y}1${enda} ] ${bu}Reiniciar PDVs${enda}
  [ ${y}2${enda} ] ${bu}Atualizar Terminais${enda}
  [ ${y}3${enda} ] ${bu}Reiniciar o MaxiPOS${enda}
