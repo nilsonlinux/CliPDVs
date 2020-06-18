@@ -17,12 +17,13 @@ a='\033[1;33m'
 end='\E[0m'
 t=Terminal
 clear    		
-echo -e "DIGITE A ${a}FAIXA${end} REFERÊNTE A SUA FILIAL: "
-read fx
-echo -e "DIGITE O ${a}FINAL DO IP${end} QUE DESEJA TESTAR CONEXÃO: "
+echo -e "DIGITE O ${br}SITE${ec} OU ${br}IP${ec} QUE DESEJA TESTAR: "
 read ip
-echo "Aguarde enquanto testamos se o ip de destino encontra-se acessível"
+clear
+echo -e "$br============================================$ec"
+echo -e "$br                CONECTANDO...               $ec"
 if ! ping -c 4 $IPSERV.$fx.$ip >> /dev/null ; then
+clear
 echo -e "$v============================================$ec"
 echo -e "$v          TERMINAL DESCONECTADO.            $ec"
 echo -e "$v============================================$ec"
@@ -32,7 +33,7 @@ echo -e "$v     |  _| | |_) | |_) | | | | | |				         	  $ec"
 echo -e "$v     | |___|  _ <|  _ <| |_| | |_|					       $ec"
 echo -e "$v     |_____|_| \_\_| \_\\____/  (_)					       $ec"
 echo -e "$v --------[ $br Status da requisição $ec $v]---------              $ec"
-echo -e "$v $a IP $end - $v $IPSERV.$fx.$ip $ec $a Sem conexão               $ec"	
+echo -e "$br         $IPSERV.$fx.$ip $ec $v (( Sem conexão ))                $ec"	
 echo -e "$v -------------------------------------------                      $ec"			
 echo -e "$v Digite\033[0;32m ENTER\033[0;33m para voltar pro menu principal. $ec"
 read -p " ⇢ " opcao
@@ -41,16 +42,17 @@ case $opcao in
 ./CliPDVs/CliPDVs.sh;
 esac
 else
-echo "============================================"
-echo -e "$vr             TERMINAL CONECTADO.  $ec "
-echo "============================================"
-echo -e "$vr 	  ___        _ _             $ec"
-echo -e "$vr	 / _ \ _ __ | (_)_ __   ___  $ec"
-echo -e "$vr	| | | | '_ \| | | '_ \ / _ \ $ec"
-echo -e "$vr	| |_| | | | | | | | | |  __/ $ec"
-echo -e "$vr	 \___/|_| |_|_|_|_| |_|\___| $ec"
+clear
+echo -e "$vr============================================$ec"
+echo -e "$vr             TERMINAL CONECTADO.            $ec "
+echo -e "$vr============================================$ec"
+echo -e "$vr 	  ___        _ _                      $ec"
+echo -e "$vr	 / _ \ _ __ | (_)_ __   ___           $ec"
+echo -e "$vr	| | | | '_ \| | | '_ \ / _ \          $ec"
+echo -e "$vr	| |_| | | | | | | | | |  __/          $ec"
+echo -e "$vr	 \___/|_| |_|_|_|_| |_|\___|          $ec"
 echo -e "$vr --------[ $br Status da requisição $ec $vr]---------  		  $ec"
-echo -e "$v $a IP $end - $vr $IPSERV.$fx.$ip $ec $vr Conectado               $ec"			
+echo -e "$br          $IPSERV.$fx.$ip $ec $vr (( Conectado ))                $ec"			
 echo -e "$vr -------------------------------------------                     $ec"	
 ping -c 2 $IPSERV.$fx.$ip
 echo "============================================"
