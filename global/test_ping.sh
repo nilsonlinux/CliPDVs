@@ -17,7 +17,9 @@ a='\033[1;33m'
 end='\E[0m'
 t=Terminal
 clear    		
-echo -e "DIGITE O ${br}SITE${ec} OU ${br}IP${ec} QUE DESEJA TESTAR: "
+echo -e "DIGITE A${br} FAIXA${ec} DE SUA FILIAL : "
+read fx
+echo -e "DIGITE O${br} IP FINAL${ec} DE SUA FILIAL : "
 read ip
 clear
 echo -e "$br============================================$ec"
