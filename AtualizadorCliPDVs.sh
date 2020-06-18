@@ -1,22 +1,22 @@
 #!/bin/bash
-# Variáveis
-a='\033[1;33m' # Amarelo
-p='\033[0;35m' # Purple
-v='\033[0;32m' #Verde
-b='\033[1m'
-u='\033[4m'
-bl='\E[30m'
-r='\E[31m'
-g='\E[32m'
-y='\E[33m'
-bu='\E[34m'
-m='\E[35m'
-c='\E[36m'
-w='\E[37m'
-endc='\E[0m'
-enda='\033[0m'
-version='20200408'
-##########
+#
+# CliPDVs.sh
+# Automatização sobre demanda
+# Nilsonlinux 15/06/2020
+# Colabore com o projeto
+#
+#Veriaveis
+IPSERV=8.8.8.8
+TIME=3
+LOG="/CliPDVs/outros/log/logs"
+v="\033[0;31m"        #vermelho
+vr="\033[0;32m"       #Verde
+br="\033[0;37m"       #Branco
+ec="\033[0m"
+a='\033[1;33m'                 
+end='\E[0m'
+t=Terminal
+clear    		
   clear
   echo -e "${g} 
        ____ _ _ ____  ______     __
@@ -26,46 +26,43 @@ version='20200408'
       \____|_|_|_|   |____/  \_/ |___/ © 2020
               ${c}Versão :${enda} ${y}${version}  ${enda}"
 ###########################################################
-#!/bin/bash
-#
-# CliPDVs.sh
-# Automatização sobre demanda
-# Nilsonlinux 15/06/2020
-# Colabore com o projeto
-#
-#Veriaveis
-IPSERV=8.8.8.8
-a='\033[1;33m'                 # Amarelo
-end='\E[0m'
-echo "====================================================="
-echo "Aguarde enquanto testamos sua conexão com servidor de atualizações..."
-if ! ping -c 5 $IPSERV >> /dev/null ; then
-echo "=========================="
-echo " Você está sem conexão com a internet. "
-echo "=========================="
-exit
-else
-echo "========================="
-echo " Você está conectado !!! "
-echo "========================="
-fi
-echo "====================================================="
-################## PROGRESSO STATUS ##############################
-BAR='Conexão bem sucedida ... Por favor aguarde... '   # MÁXIMO 100 CARACTERES
-sleep 1
-for i in {1..100}; do
-    echo -ne "\r${BAR:0:$i}"
-    sleep .1
-done
-sleep 1
-echo
-echo "====================================================="
-echo -e "$t Conectado...-$a Atualizando CliPDVs $end.";
-echo -e "${y}Atualizando (CliPDVs). Por favor aguarde . . .${enda}"
-sleep 3
-echo -e "${y}(CliPDVs) está sendo atualizado e será executado logo após . . .${enda}"
-sleep 3
-rm -rf CliPDVs && git clone https://github.com/nilsonlinux/CliPDVs.git && chmod -R 777 ./CliPDVs && clear && ./CliPDVs/CliPDVs.sh
-sleep 2
+echo -e "$br============================================$ec"
+echo -e "$br                CONECTANDO...               $ec"
+if ! ping -c 4 $IPSERV >> /dev/null ; then
 clear
-# © 2020 Nilsonlinux
+echo -e "$v============================================$ec"
+echo -e "$v          VOCÊ ESTÁ DESCONECTADO.            $ec"
+echo -e "$v============================================$ec"
+echo -e "$v      _____ ____  ____   ___    _ 					       $ec"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |					       $ec"
+echo -e "$v     |  _| | |_) | |_) | | | | | |				         	  $ec"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|					       $ec"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)					       $ec"
+echo -e "$v----[ $br Não é possível prosseguir $ec $v]------                 $ec"
+echo -e "$br           (( ${v}Sem conexão${ec} ${br}))                       $ec"	
+echo -e "$v -------------------------------------------                      $ec"			
+echo -e "$v Digite ${br}ENTER ${ec} para voltar pro menu principal. $ec"
+read -p " ⇢ " opcao
+case $opcao in
+*)
+./CliPDVs/CliPDVs.sh;
+esac
+else
+clear
+echo -e "$vr============================================$ec"
+echo -e "$vr                ATUALIZANDO.                $ec "
+echo -e "$vr============================================$ec"
+echo -e "$vr 	  ___        _ _                      $ec"
+echo -e "$vr	 / _ \ _ __ | (_)_ __   ___           $ec"
+echo -e "$vr	| | | | '_ \| | | '_ \ / _ \          $ec"
+echo -e "$vr	| |_| | | | | | | | | |  __/          $ec"
+echo -e "$vr	 \___/|_| |_|_|_|_| |_|\___|          $ec"
+echo -e "$vr --------[ $br   Aguarde... $ec $vr]---------  	           	  $ec"
+echo -e "$vr             (( Conectado ))                                     $ec"			
+echo -e "$vr -------------------------------------------                     $ec"	
+rm -rf CliPDVs && git clone https://github.com/nilsonlinux/CliPDVs.git && chmod -R 777 ./CliPDVs && clear && ./CliPDVs/CliPDVs.sh
+echo "============================================"
+fi
+echo "============================================"
+./CliPDVs/CliPDVs.sh;
+esac
