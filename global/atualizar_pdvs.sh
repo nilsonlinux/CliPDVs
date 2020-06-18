@@ -15,9 +15,9 @@ ec="\033[0m"
 a='\033[1;33m'                 
 end='\E[0m'
 t=Terminal      		
-echo -e "DIGITE A $a FAIXA $end REFERÊNTE A SUA FILIAL: "
+echo -e "DIGITE A ${a}FAIXA${end} REFERÊNTE A SUA FILIAL: "
 read fx
-echo -e "DIGITE O $a FINAL DO IP $end QUE DESEJA ATUALIZAR: "
+echo -e "DIGITE O ${a}FINAL DO IP{$end} QUE DESEJA ATUALIZAR: "
 read ip
 echo "============================================"
 echo "Aguarde enquanto testamos conexão com o terminal"
@@ -54,9 +54,9 @@ echo -e "$vr======[ $br Status da requisição $ec $vr]====== 		       $ec"
 echo -e "$v $a IP $end - $vr $IPSERV.$fx.$ip $ec $vr Conectado               $ec"			
 echo -e "$vr=======================================                          $ec"	
 echo -e "IP - ${a}192.168.${fx}.${ip}                                        $ec"
-sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "reboot";
+sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "it-update-pdv.sh";
 ################## PROGRESSO STATUS ##############################
-BAR='Atualizando ...'   # MÁXIMO 20 CARACTERES
+BAR='Atualizando terminal...'   # MÁXIMO 20 CARACTERES
 sleep 1
 for i in {1..20}; do
     echo -ne "\r${BAR:0:$i}"

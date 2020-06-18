@@ -9,9 +9,9 @@
 a='\033[1;33m'                 # Amarelo
 end='\E[0m'
 t=TERMINAL      		
-echo -e "DIGITE A $a FAIXA $end REFERÊNTE A SUA FILIAL: "
+echo -e "DIGITE A ${a}FAIXA${end} REFERÊNTE A SUA FILIAL: "
 read fx
-echo -e "DIGITE O $a FINAL DO IP $end DO TERMINAL QUE DESEJA ACESSO VNC: "
+echo -e "DIGITE O ${a}FINAL DO IP{$end} QUE DESEJA ACESSO VNC: "
 read ip
 echo "====================================================="
 echo -e "IP - ${a}192.168.${fx}.${ip} ${end}"
