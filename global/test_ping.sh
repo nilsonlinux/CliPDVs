@@ -18,7 +18,7 @@ end='\E[0m'
 t=Terminal      		
 echo -e "DIGITE A ${a}FAIXA${end} REFERÊNTE A SUA FILIAL: "
 read fx
-echo -e "DIGITE O ${a}FINAL DO IP{$end} QUE DESEJA TESTAR CONEXÃO: "
+echo -e "DIGITE O ${a}FINAL DO IP${end} QUE DESEJA TESTAR CONEXÃO: "
 read ip
 echo "====================================================="
 echo "Aguarde enquanto testamos se o ip de destino encontra-se acessível"

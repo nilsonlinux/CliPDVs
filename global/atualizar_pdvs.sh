@@ -17,7 +17,7 @@ end='\E[0m'
 t=Terminal      		
 echo -e "DIGITE A ${a}FAIXA${end} REFERÊNTE A SUA FILIAL: "
 read fx
-echo -e "DIGITE O ${a}FINAL DO IP{$end} QUE DESEJA ATUALIZAR: "
+echo -e "DIGITE O ${a}FINAL DO IP${end} QUE DESEJA ATUALIZAR: "
 read ip
 echo "============================================"
 echo "Aguarde enquanto testamos conexão com o terminal"
