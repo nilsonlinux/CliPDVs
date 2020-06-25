@@ -2,36 +2,88 @@
 #
 # CliPDVs.sh
 # Automatização sobre demanda
-# Nilsonlinux 15/06/2020
+# Nilsonlinux 25/06/2020
 # Colabore com o projeto
 #
 #Veriaveis
+clear
+a='\033[1;33m'       # Amarelo
+p='\033[0;35m'       # Purple
+v="\033[0;31m"       #vermelho
+vr="\033[0;32m"      #Verde
+br="\033[0;37m"      #Branco
+ec="\033[0m"              
+end='\E[0m'
+b='\033[1m'
+u='\033[4m'
+bl='\E[30m'
+r='\E[31m'
+g='\E[32m'
+y='\E[33m'
+bu='\E[34m'
+m='\E[35m'
+c='\E[36m'
+w='\E[37m'
+endc='\E[0m'
+enda='\033[0m'
+version='20200617'
 IPSERV=192.168.6.36
-a='\033[1;33m'                 # Amarelo
-end='\E[0m' 		
-echo "====================================================="
-echo "Aguarde enquanto testamos se o servidor de destino encontra-se acessível"
-if ! ping -c 5 $IPSERV >> /dev/null ; then
-echo "=========================="
-echo " IMPORTA DESCONECTADO. "
-echo "=========================="
-exit
+LOG=""
+t=Terminal  
+##########
+# CliPDVs Logo
+logoCliPDVs () {
+  clear
+  echo -e "${vr} 
+       ____ _ _ ____  ______     __
+      / ___| (_)  _ \|  _ \ \   / /__
+     | |   | | | |_) | | | \ \ / / __|  
+     | |___| | |  __/| |_| |\ V /\__ \    
+      \____|_|_|_|   |____/  \_/ |___/ © 2020
+              ${v}Versão :${end} ${v}${version}  ${end}"
+    echo
+}
+# CliPDVs
+##########
+  clear
+logoCliPDVs
+echo -e "----[ ${p}SCRIPT IMPORTA (CliPDVs)${end} ]-----
+---------------------------------------------------
+ [ ${y}0${enda} ] ${r}Fechar o Script${end}
+--------------------------------------------------- ${end}" 		
+echo "Aguarde enquanto testamos conexão com o servidor..."
+if ! ping -c 2 $IPSERV >> /dev/null ; then
+clear
+echo -e "$v======================================= $end"
+echo -e "$v       IMPORTA DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo -e "$v======[ $br Status da requisição $ec $v]=======              $end"
+echo -e "$v Você está Sem conexão ou desconectado da rede interna.      $end"	
+echo -e "$v=======================================                      $end"	
+echo -e "$v=======================================                      $end"		
+echo -e "$a Pressione qualquer tecla para retornar ao menu principal    $end"      
+read -n1
+./CliPDVs/global/menu_global.sh;
 else
-echo "========================="
-echo " IMPORTA CONECTADO!!! "
-echo "========================="
-fi
-echo "====================================================="
-################## PROGRESSO STATUS ##############################
-BAR='Conexão bem sucedida ...'   # MÁXIMO 20 CARACTERES
-sleep 1
-for i in {1..20}; do
-    echo -ne "\r${BAR:0:$i}"
-    sleep .1
-done
-sleep 1
-echo
-echo "====================================================="
-sleep 1
+clear
+echo "======================================"
+echo -e "$vr         IMPORTA CONECTADO.  $end "
+echo "======================================"
+echo -e "$vr       ___        _ _              $end"
+echo -e "$vr      / _ \ _ __ | (_)_ __   ___   $end"
+echo -e "$vr     | | | | '_ \| | | '_ \ / _ \  $end"
+echo -e "$vr     | |_| | | | | | | | | |  __/  $end"
+echo -e "$vr      \___/|_| |_|_|_|_| |_|\___|  $end"
+echo -e "$vr======[ $br Status da requisição $ec $vr]======                  $end"	
+echo -e "$vr=======================================                          $end"	
 sshpass -p importa ssh -o "StrictHostKeyChecking no" importa@pdvmaxipos.mateus "";
+fi
+echo -e "$vr=======================================                          $end"
+echo -e "$a Pressione qualquer tecla para retornar ao menu principal.        $end"      
+read -n1
 ./CliPDVs/global/menu_global.sh;

@@ -78,11 +78,9 @@ echo -e "$v======[ $br Status da requisição $ec $v]=======              $end"
 echo -e "$v $a IP $end - $v $IPSERV.$fx.$ip $ec - $v Sem conexão        $end"	
 echo -e "$v=======================================                      $end"	
 echo -e "$v=======================================                      $end"		
-read -p "DIGITE ENTER PARA VOLTAR PARA O MENU PRINCIPAL." opcao
-case $opcao in
-*)
+echo -e "$a Pressione qualquer tecla para retornar ao menu principal.   $end"      
+read -n1
 ./CliPDVs/global/menu_global.sh;
-esac
 else
 clear
 echo "======================================"
@@ -101,8 +99,6 @@ sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "it-update-i
 fi
 echo "======================================"
 echo -e "$vr=======================================                          $end"
-read -p "DIGITE ENTER PARA VOLTAR PARA O MENU PRINCIPAL." opcao
-case $opcao in
-*)
+echo -e "$a Pressione qualquer tecla para retornar ao menu principal.        $end"      
+read -n1
 ./CliPDVs/global/menu_global.sh;
-esac
