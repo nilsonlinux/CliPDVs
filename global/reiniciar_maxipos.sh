@@ -2,41 +2,83 @@
 #
 # CliPDVs.sh
 # Automatização sobre demanda
-# Nilsonlinux 15/06/2020
+# Nilsonlinux 25/06/2020
 # Colabore com o projeto
 #
 #Veriaveis
-IPSERV=192.168
-LOG=""
+clear
+a='\033[1;33m' # Amarelo
+p='\033[0;35m' # Purple
 v="\033[0;31m"        #vermelho
 vr="\033[0;32m"       #Verde
 br="\033[0;37m"       #Branco
-ec="\033[0m"
-a='\033[1;33m'                 
+ec="\033[0m"               
 end='\E[0m'
-t=Terminal
-clear     		
+b='\033[1m'
+u='\033[4m'
+bl='\E[30m'
+r='\E[31m'
+g='\E[32m'
+y='\E[33m'
+bu='\E[34m'
+m='\E[35m'
+c='\E[36m'
+w='\E[37m'
+endc='\E[0m'
+enda='\033[0m'
+version='20200625'
+IPSERV=192.168
+LOG=""
+t=Terminal  
+##########
+# CliPDVs Logo
+logoCliPDVs () {
+  clear
+  echo -e "${vr} 
+       ____ _ _ ____  ______     __
+      / ___| (_)  _ \|  _ \ \   / /__
+     | |   | | | |_) | | | \ \ / / __|  
+     | |___| | |  __/| |_| |\ V /\__ \    
+      \____|_|_|_|   |____/  \_/ |___/ © 2020
+              ${v}Versão :${end} ${v}${version}  ${end}"
+    echo
+}
+# CliPDVs
+  clear
+  logoCliPDVs
+echo -e "----[ ${p}REINICIALIZAÇÂO DO MAXIPOS (CliPDVs)${end} ]-----
+---------------------------------------------------
+ [ ${y}0${enda} ] ${r}Fechar o Script${end}
+--------------------------------------------------- ${end}" 		
 echo -e "DIGITE A ${a}FAIXA${end} REFERÊNTE A SUA FILIAL: "
-read fx
-echo -e "DIGITE O ${a}FINAL DO IP${end} QUE DESEJA REINICIAR O MAXIPOS: "
-read ip
-echo "============================================"
-echo "Aguarde enquanto testamos conexão com o terminal"
+read -p "$IPSERV." $read fx
+clear
+##########
+  clear
+logoCliPDVs
+echo -e "----[ ${p}REINICIALIZAÇÂO DO MAXIPOS (CliPDVs)${end} ]-----
+---------------------------------------------------
+ [ ${y}0${enda} ] ${r}Fechar o Script${end}
+--------------------------------------------------- ${end}" 		
+echo -e "DIGITE O ${a}FINAL DO IP${end} QUE DESEJA REINICIAR: "
+read -p "$IPSERV.$fx." $read ip
+echo "==================================================="
+echo "Aguarde enquanto testamos conexão com o terminal..."
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
 clear
-echo -e "$v======================================= $ec"
-echo -e "$v       TERMINAL DESCONECTADO.           $ec"
-echo -e "$v======================================= $ec"
-echo -e "$v      _____ ____  ____   ___    _ 					       $ec"
-echo -e "$v     | ____|  _ \|  _ \ / _ \  | |					       $ec"
-echo -e "$v     |  _| | |_) | |_) | | | | | |				         	  $ec"
-echo -e "$v     | |___|  _ <|  _ <| |_| | |_|					       $ec"
-echo -e "$v     |_____|_| \_\_| \_\\____/  (_)					       $ec"
-echo -e "$v======[ $br Status da requisição $ec $v]=======                   $ec"
-echo -e "$v $a IP $end - $v $IPSERV.$fx.$ip $ec $v Sem conexão               $ec"	
-echo -e "$v=======================================                           $ec"			
-echo -e "$v Digite\033[0;32m ENTER\033[0;33m para voltar pro menu principal. $ec"
-read -p " ⇢ " opcao
+echo -e "$v======================================= $end"
+echo -e "$v       TERMINAL DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo -e "$v======[ $br Status da requisição $ec $v]=======              $end"
+echo -e "$v $a IP $end - $v $IPSERV.$fx.$ip $ec - $v Sem conexão        $end"	
+echo -e "$v=======================================                      $end"	
+echo -e "$v=======================================                      $end"		
+read -p "DIGITE ENTER PARA VOLTAR PARA O MENU PRINCIPAL." opcao
 case $opcao in
 *)
 ./CliPDVs/global/menu_global.sh;
@@ -44,34 +86,22 @@ esac
 else
 clear
 echo "======================================"
-echo -e "$vr       TERMINAL CONECTADO.  $ec "
+echo -e "$vr         TERMINAL CONECTADO.  $end "
 echo "======================================"
-echo -e "$vr       ___        _ _              $ec"
-echo -e "$vr      / _ \ _ __ | (_)_ __   ___   $ec"
-echo -e "$vr     | | | | '_ \| | | '_ \ / _ \  $ec"
-echo -e "$vr     | |_| | | | | | | | | |  __/  $ec"
-echo -e "$vr      \___/|_| |_|_|_|_| |_|\___|  $ec"
-echo -e "$vr======[ $br Status da requisição $ec $vr]====== 		       $ec"
-echo -e "$v $a IP $end - $vr $IPSERV.$fx.$ip $ec $vr Conectado               $ec"			
-echo -e "$vr=======================================                          $ec"	
-echo -e "IP - ${a}192.168.${fx}.${ip}                                        $ec"
+echo -e "$vr       ___        _ _              $end"
+echo -e "$vr      / _ \ _ __ | (_)_ __   ___   $end"
+echo -e "$vr     | | | | '_ \| | | '_ \ / _ \  $end"
+echo -e "$vr     | |_| | | | | | | | | |  __/  $end"
+echo -e "$vr      \___/|_| |_|_|_|_| |_|\___|  $end"
+echo -e "$vr======[ $br Status da requisição $ec $vr]======                  $end"
+echo -e "$vr $a IP $end - $vr $IPSERV.$fx.$ip $ec - $vr Conectado            $end"			
+echo -e "$vr=======================================                          $end"	
+echo -e "IP - ${a}192.168.${fx}.${ip}                                        $end"
 sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "it-restart-application.sh";
-################## PROGRESSO STATUS ##############################
-BAR='Reiniciando ...'   # MÁXIMO 20 CARACTERES
-sleep 1
-for i in {1..20}; do
-    echo -ne "\r${BAR:0:$i}"
-    sleep .1
-done
-sleep 1
-echo
-echo "====================================================="
-echo -e "$t MaxiPOS Reiniciado... IP -$a 192.168.$fx.$ip $end. Por favor verifique.";
-sleep 1
-echo -e "$v Digite\033[0;32m ENTER\033[0;33m para voltar pro menu principal. $ec"
 fi
 echo "======================================"
-read -p " ⇢ " opcao
+echo -e "$vr=======================================                          $end"
+read -p "DIGITE ENTER PARA VOLTAR PARA O MENU PRINCIPAL." opcao
 case $opcao in
 *)
 ./CliPDVs/global/menu_global.sh;

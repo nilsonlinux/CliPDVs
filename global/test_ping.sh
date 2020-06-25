@@ -2,67 +2,107 @@
 #
 # CliPDVs.sh
 # Automatização sobre demanda
-# Nilsonlinux 15/06/2020
+# Nilsonlinux 25/06/2020
 # Colabore com o projeto
 #
 #Veriaveis
-IPSERV=192.168
-TIME=3
-LOG="/CliPDVs/outros/log/logs"
-v="\033[0;31m"        #vermelho
-vr="\033[0;32m"       #Verde
-br="\033[0;37m"       #Branco
-ec="\033[0m"
-a='\033[1;33m'                 
+clear
+a='\033[1;33m'       # Amarelo
+p='\033[0;35m'       # Purple
+v="\033[0;31m"       #vermelho
+vr="\033[0;32m"      #Verde
+br="\033[0;37m"      #Branco
+ec="\033[0m"              
 end='\E[0m'
-t=Terminal
-clear    		
-echo -e "DIGITE A${br} FAIXA${ec} DE SUA FILIAL : "
-read fx
-echo -e "DIGITE O${br} IP FINAL${ec} DE SUA FILIAL : "
-read ip
+b='\033[1m'
+u='\033[4m'
+bl='\E[30m'
+r='\E[31m'
+g='\E[32m'
+y='\E[33m'
+bu='\E[34m'
+m='\E[35m'
+c='\E[36m'
+w='\E[37m'
+endc='\E[0m'
+enda='\033[0m'
+version='20200617'
+IPSERV=192.168
+LOG=""
+t=Terminal  
+##########
+# CliPDVs Logo
+logoCliPDVs () {
+  clear
+  echo -e "${vr} 
+       ____ _ _ ____  ______     __
+      / ___| (_)  _ \|  _ \ \   / /__
+     | |   | | | |_) | | | \ \ / / __|  
+     | |___| | |  __/| |_| |\ V /\__ \    
+      \____|_|_|_|   |____/  \_/ |___/ © 2020
+              ${v}Versão :${end} ${v}${version}  ${end}"
+    echo
+}
+# CliPDVs
+  clear
+  logoCliPDVs
+echo -e "----[ ${p}TESTE DE PING (CliPDVs)${end} ]-----
+---------------------------------------------------
+ [ ${y}0${enda} ] ${r}Fechar o Script${end}
+--------------------------------------------------- ${end}" 		
+echo -e "DIGITE A ${a}FAIXA${end} REFERÊNTE A SUA FILIAL: "
+read -p "$IPSERV." $read fx
 clear
-echo -e "$br============================================$ec"
-echo -e "$br                CONECTANDO...               $ec"
-if ! ping -c 4 $IPSERV.$fx.$ip >> /dev/null ; then
+##########
+  clear
+logoCliPDVs
+echo -e "----[ ${p}TESTE DE PING (CliPDVs)${end} ]-----
+---------------------------------------------------
+ [ ${y}0${enda} ] ${r}Fechar o Script${end}
+--------------------------------------------------- ${end}" 		
+echo -e "DIGITE O ${a}FINAL DO IP${end} QUE DESEJA TESTAR: "
+read -p "$IPSERV.$fx." $read ip
+echo "==================================================="
+echo "Aguarde enquanto testamos conexão com o terminal..."
+if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
 clear
-echo -e "$v============================================$ec"
-echo -e "$v          TERMINAL DESCONECTADO.            $ec"
-echo -e "$v============================================$ec"
-echo -e "$v      _____ ____  ____   ___    _ 					       $ec"
-echo -e "$v     | ____|  _ \|  _ \ / _ \  | |					       $ec"
-echo -e "$v     |  _| | |_) | |_) | | | | | |				         	  $ec"
-echo -e "$v     | |___|  _ <|  _ <| |_| | |_|					       $ec"
-echo -e "$v     |_____|_| \_\_| \_\\____/  (_)					       $ec"
-echo -e "$v --------[ $br Status da requisição $ec $v]---------              $ec"
-echo -e "$br         $IPSERV.$fx.$ip $ec $v (( Sem conexão ))                $ec"	
-echo -e "$v -------------------------------------------                      $ec"			
-echo -e "$v Digite ${br}ENTER ${ec} para voltar pro menu principal. $ec"
-read -p " ⇢ " opcao
+echo -e "$v======================================= $end"
+echo -e "$v       TERMINAL DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo -e "$v======[ $br Status da requisição $ec $v]=======              $end"
+echo -e "$v $a IP $end - $v $IPSERV.$fx.$ip $ec - $v Sem conexão        $end"	
+echo -e "$v=======================================                      $end"	
+echo -e "$v=======================================                      $end"		
+read -p "DIGITE ENTER PARA VOLTAR PARA O MENU PRINCIPAL." opcao
 case $opcao in
 *)
-./CliPDVs/CliPDVs.sh;
+./CliPDVs/global/menu_global.sh;
 esac
 else
 clear
-echo -e "$vr============================================$ec"
-echo -e "$vr             TERMINAL CONECTADO.            $ec "
-echo -e "$vr============================================$ec"
-echo -e "$vr 	  ___        _ _                      $ec"
-echo -e "$vr	 / _ \ _ __ | (_)_ __   ___           $ec"
-echo -e "$vr	| | | | '_ \| | | '_ \ / _ \          $ec"
-echo -e "$vr	| |_| | | | | | | | | |  __/          $ec"
-echo -e "$vr	 \___/|_| |_|_|_|_| |_|\___|          $ec"
-echo -e "$vr --------[ $br Status da requisição $ec $vr]---------  		  $ec"
-echo -e "$br          $IPSERV.$fx.$ip $ec $vr (( Conectado ))                $ec"			
-echo -e "$vr -------------------------------------------                     $ec"	
+echo "======================================"
+echo -e "$vr         TERMINAL CONECTADO.  $end "
+echo "======================================"
+echo -e "$vr       ___        _ _              $end"
+echo -e "$vr      / _ \ _ __ | (_)_ __   ___   $end"
+echo -e "$vr     | | | | '_ \| | | '_ \ / _ \  $end"
+echo -e "$vr     | |_| | | | | | | | | |  __/  $end"
+echo -e "$vr      \___/|_| |_|_|_|_| |_|\___|  $end"
+echo -e "$vr======[ $br Status da requisição $ec $vr]======                  $end"
+echo -e "$vr $a IP $end - $vr $IPSERV.$fx.$ip $ec - $vr Conectado            $end"			
+echo -e "$vr=======================================                          $end"	
+echo -e "IP - ${a}$IPSERV.$fx.$ip                                        $end"
 ping -c 2 $IPSERV.$fx.$ip
-echo "============================================"
-echo -e "$vr Digite ${br}ENTER ${ec} para voltar para o menu principal.      $ec"
 fi
-echo "============================================"
-read -p " ⇢ " opcao
+echo "======================================"
+echo -e "$vr=======================================                          $end"
+read -p "DIGITE ENTER PARA VOLTAR PARA O MENU PRINCIPAL." opcao
 case $opcao in
 *)
-./CliPDVs/CliPDVs.sh;
+./CliPDVs/global/menu_global.sh;
 esac
