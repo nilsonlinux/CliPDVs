@@ -48,7 +48,7 @@ logoCliPDVs () {
   logoCliPDVs
 echo -e "----[ ${p}SSH PDVS (CliPDVs)${end} ]-----
 ---------------------------------------------------
- [ ${y}0${enda} ] ${r}Fechar o Script${end}
+ ${y}Acesse o terminal via SSH facilmente. ${end}
 --------------------------------------------------- ${end}" 		
 echo -e "DIGITE A ${a}FAIXA${end} REFERÊNTE A SUA FILIAL: "
 read -p "$IPSERV." $read fx
@@ -58,7 +58,7 @@ clear
 logoCliPDVs
 echo -e "----[ ${p}SSH PDVS (CliPDVs)${end} ]-----
 ---------------------------------------------------
- [ ${y}0${enda} ] ${r}Fechar o Script${end}
+ ${y}Acesse o terminal via SSH facilmente. ${end}
 --------------------------------------------------- ${end}" 		
 echo -e "DIGITE O ${a}FINAL DO IP${end} QUE DESEJA ACESSO SSH: "
 read -p "$IPSERV.$fx." $read ip

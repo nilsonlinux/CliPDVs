@@ -47,7 +47,7 @@ logoCliPDVs () {
   logoCliPDVs
 echo -e "-----------[ ${p}TESTE DE PING (CliPDVs)${end} ]-------------
 ---------------------------------------------------
- [ ${y}0${enda} ] ${r}Fechar o Script${end}
+ ${y}Faça um teste de conexão por SITE ou IP onde você estiver. ${end}
 --------------------------------------------------- ${end}" 		
 echo -e "DIGITE O ${br}SITE${ec} OU ${br}IP${ec} QUE DESEJA FAZER O TESTE: 
 ---------------------------------------------------"
@@ -58,7 +58,7 @@ clear
 logoCliPDVs
 echo -e "------------[ ${p}TESTE DE PING (CliPDVs)${end} ]------------
 ---------------------------------------------------
- [ ${y}0${enda} ] ${r}Fechar o Script${end}
+ ${y}Faça um teste de conexão por SITE ou IP onde você estiver. ${end}
 --------------------------------------------------- ${end}"
 echo "==================================================="
 echo "Aguarde enquanto testamos conexão com o servidor..."

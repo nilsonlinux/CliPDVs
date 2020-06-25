@@ -48,7 +48,7 @@ logoCliPDVs () {
   logoCliPDVs
 echo -e "------[ ${p}DESLIGAMENTO DE TERMINAIS (CliPDVs)${end} ]-------
 ---------------------------------------------------
- [ ${y}0${enda} ] ${r}Fechar o Script${end}
+  ${y}Desligue um terminal que você deseja${end}
 --------------------------------------------------- ${end}" 		
 echo -e "DIGITE A ${a}FAIXA${end} REFERÊNTE A SUA FILIAL: "
 read -p "$IPSERV." $read fx
@@ -58,7 +58,7 @@ clear
 logoCliPDVs
 echo -e "------[ ${p}DESLIGAMENTO DE TERMINAIS (CliPDVs)${end} ]-------
 ---------------------------------------------------
- [ ${y}0${enda} ] ${r}Fechar o Script${end}
+  ${y}Desligue um terminal que você deseja${end}
 --------------------------------------------------- ${end}" 		
 echo -e "DIGITE O ${a}FINAL DO IP${end} QUE DESEJA DESLIGAR: "
 read -p "$IPSERV.$fx." $read ip

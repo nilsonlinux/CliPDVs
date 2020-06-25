@@ -49,7 +49,7 @@ logoCliPDVs () {
 logoCliPDVs
 echo -e "----[ ${p}SCRIPT IMPORTA (CliPDVs)${end} ]-----
 ---------------------------------------------------
- [ ${y}0${enda} ] ${r}Fechar o Script${end}
+  ${y}Acesse facilmente o Script IMPORTA através do CliPDVs.${end}
 --------------------------------------------------- ${end}" 		
 echo "Aguarde enquanto testamos conexão com o servidor..."
 if ! ping -c 2 $IPSERV >> /dev/null ; then

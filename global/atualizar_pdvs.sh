@@ -49,7 +49,9 @@ logoCliPDVs () {
   logoCliPDVs
 echo -e "----[ ${p}REINICIALIZAÇÂO DE TERMINAIS (CliPDVs)${end} ]-----
 ---------------------------------------------------
- [ ${y}0${enda} ] ${r}Fechar o Script${end}
+ ${y}Atualize facilmente o PDV que deseja.
+ Se o terminal estiver inacessível, você
+ receberá o retorno...${end}
 --------------------------------------------------- ${end}" 		
 echo -e "DIGITE A ${a}FAIXA${end} REFERÊNTE A SUA FILIAL: "
 read -p "$IPSERV." $read fx
@@ -59,7 +61,9 @@ clear
 logoCliPDVs
 echo -e "----[ ${p}REINICIALIZAÇÂO DE TERMINAIS (CliPDVs)${end} ]-----
 ---------------------------------------------------
- [ ${y}0${enda} ] ${r}Fechar o Script${end}
+ ${y}Atualize facilmente o PDV que deseja.
+ Se o terminal estiver inacessível, você
+ receberá o retorno...${end}
 --------------------------------------------------- ${end}" 		
 echo -e "DIGITE O ${a}FINAL DO IP${end} QUE DESEJA ATUALIZAR: "
 read -p "$IPSERV.$fx." $read ip
@@ -82,7 +86,6 @@ echo -e "$v=======================================                      $end"
 echo -e "$a Pressione qualquer tecla para retornar ao menu principal.   $end"      
 read -n1
 ./CliPDVs/global/menu_global.sh;
-esac
 else
 clear
 echo "======================================"

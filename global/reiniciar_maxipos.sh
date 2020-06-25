@@ -48,7 +48,10 @@ logoCliPDVs () {
   logoCliPDVs
 echo -e "----[ ${p}REINICIALIZAÇÂO DO MAXIPOS (CliPDVs)${end} ]-----
 ---------------------------------------------------
- [ ${y}0${enda} ] ${r}Fechar o Script${end}
+ ${y}Reinicialização do MaxiPOS. 
+ Digite a faixa correspondente e dê ENTER,
+ Logo em seguida, digite o IP final do terminal 
+ que deseja atualizar.${end}
 --------------------------------------------------- ${end}" 		
 echo -e "DIGITE A ${a}FAIXA${end} REFERÊNTE A SUA FILIAL: "
 read -p "$IPSERV." $read fx
@@ -58,7 +61,10 @@ clear
 logoCliPDVs
 echo -e "----[ ${p}REINICIALIZAÇÂO DO MAXIPOS (CliPDVs)${end} ]-----
 ---------------------------------------------------
- [ ${y}0${enda} ] ${r}Fechar o Script${end}
+ ${y}Reinicialização do MaxiPOS. 
+ Digite a faixa correspondente e dê ENTER,
+ Logo em seguida, digite o IP final do terminal 
+ que deseja atualizar.${end}
 --------------------------------------------------- ${end}" 		
 echo -e "DIGITE O ${a}FINAL DO IP${end} QUE DESEJA REINICIAR: "
 read -p "$IPSERV.$fx." $read ip

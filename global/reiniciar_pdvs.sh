@@ -29,7 +29,6 @@ enda='\033[0m'
 version='20200617'
 IPSERV=192.168
 LOG=""
-t=Terminal  
 ##########
 # CliPDVs Logo
 logoCliPDVs () {
@@ -48,7 +47,10 @@ logoCliPDVs () {
   logoCliPDVs
 echo -e "----[ ${p}REINICIALIZAÇÂO DE TERMINAIS (CliPDVs)${end} ]-----
 ---------------------------------------------------
- [ ${y}0${enda} ] ${r}Fechar o Script${end}
+  ${y}Reinicialização dos terminais 
+  por faixa (IP). Digite a faixa de sua filial, 
+  depois dê enter para digitar o IP final 
+  do terminal${end}
 --------------------------------------------------- ${end}" 		
 echo -e "DIGITE A ${a}FAIXA${end} REFERÊNTE A SUA FILIAL: "
 read -p "$IPSERV." $read fx
@@ -58,12 +60,15 @@ clear
 logoCliPDVs
 echo -e "----[ ${p}REINICIALIZAÇÂO DE TERMINAIS (CliPDVs)${end} ]-----
 ---------------------------------------------------
- [ ${y}0${enda} ] ${r}Fechar o Script${end}
+  ${y}Reinicialização dos terminais 
+  por faixa (IP). Digite a faixa de sua filial, 
+  depois dê enter para digitar o IP final 
+  do terminal${end}
 --------------------------------------------------- ${end}" 		
 echo -e "DIGITE O ${a}FINAL DO IP${end} QUE DESEJA REINICIAR: "
 read -p "$IPSERV.$fx." $read ip
 echo "==================================================="
-echo "Aguarde enquanto testamos conexão com o terminal..."
+echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
 clear
 echo -e "$v======================================= $end"
@@ -102,4 +107,3 @@ echo -e "$vr=======================================                          $en
 echo -e "$a Pressione qualquer tecla para retornar ao menu principal.        $end"      
 read -n1
 ./CliPDVs/global/menu_global.sh;
-
