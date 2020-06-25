@@ -81,7 +81,6 @@ echo -e "$v=======================================                      $end"
 echo -e "$a Pressione qualquer tecla para retornar ao menu principal    $end"      
 read -n1
 ./CliPDVs/global/menu_global.sh;
-esac
 else
 clear
 echo "======================================"
@@ -103,4 +102,3 @@ echo -e "$vr=======================================                          $en
 echo -e "$a Pressione qualquer tecla para retornar ao menu principal    $end"      
 read -n1
 ./CliPDVs/global/menu_global.sh;
-esac
