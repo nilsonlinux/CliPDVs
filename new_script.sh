@@ -194,7 +194,9 @@ echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)
   por faixa (IP). Digite a faixa de sua filial, 
   depois dê enter para digitar o IP final 
   do terminal${end}
-${r}--------------------------------------------------- ${end}"     
+${r}--------------------------------------------------- ${end}"
+Terminais-SM03=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/Terminais-SM03.txt)
+echo -e " ${bu}Lista dos PDVs:${endc}\n$Terminais-SM03"
 echo -e "DIGITE A ${y}FAIXA${end} ${r}REFERÊNTE A SUA FILIAL: ${end}"
 read -p "$IPSERV." $read fx
 clear
