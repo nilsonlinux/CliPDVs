@@ -292,12 +292,8 @@ ${r}--------------------------------------------------- ${end}"
 echo -e "${r}===================================================${end}"
 echo -e "${y}Aguarde enquanto testamos conexão com o servidor...${end}"
 if ! ping -c 2 8.8.8.8 >> /dev/null ; then
-clear
-Comando_feito_erro
 echo -e "$v=======================================$end" 
 else
-clear
-Comando_feito_ok   
 echo -e "$vr=======================================$end"  
 sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@$hosts "reboot";
 fi
