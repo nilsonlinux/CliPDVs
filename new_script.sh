@@ -126,6 +126,7 @@ CLiCheck () {
 }
 # RETORNO PARA COMANDO QUE OBTEVE ERRO EM SUA REQUISIÇÃO
 Comando_feito_ok () {
+  clear
 echo "======================================"
 echo -e "$vr         TERMINAL CONECTADO.  $end "
 echo "======================================"
@@ -143,6 +144,7 @@ echo -e "IP - ${a}192.168.${fx}.${ip}                                        $en
 }
 # RETORNO PARA COMANDO QUE OBTEVE SUCESSO EM SUA REQUISIÇÃO
 Comando_erro () {
+  clear
 echo -e "$v======================================= $end"
 echo -e "$v       TERMINAL DESCONECTADO.           $end"
 echo -e "$v======================================= $end"
@@ -178,7 +180,7 @@ installfirefox () {
   echo && echo -en " ${y}Do You Want To Continue? {y/n}${endc} "
   read option
   case $option in
-    y) echo && echo -e " Installing ${b}Firefox${end}"; apt -y install firefox-esr &>/dev/null; Comando_feito "Firefox" ;;
+    y) echo && echo -e " Installing ${b}Firefox${end}"; apt -y install firefox-esr &>/dev/null; Comando_feito_ok "Firefox" ;;
     n) echo -e " ${y}OK. Returning To Menu${endc}"; sleep 1; showwebapps ;;
     *) echo " \"$option\" Is Not A Valid Option"; sleep 1; installfirefox ;;
   esac
@@ -282,22 +284,19 @@ fi
 # (3) Reiniciar todos os PDVs
 reiniciar_todos () {
   logoCliPDVs
-echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)
----------------------------------------------------${end}
-  ${br}Reinicialização dos terminais 
-  por faixa (IP). Digite a faixa de sua filial, 
-  depois dê enter para digitar o IP final 
-  do terminal${end}
-${r}--------------------------------------------------- ${end}"
-echo -e "${r}===================================================${end}"
-echo -e "${y}Aguarde enquanto testamos conexão com o servidor...${end}"
-if ! ping -c 2 8.8.8.8 >> /dev/null ; then
-echo -e "$v=======================================$end" 
-else
-echo -e "$vr=======================================$end"  
-sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@$hosts "reboot";
-fi
+  echo -e " Você está certo em reiniciar todos os terminais da loja?${end}" && echo
+  echo -e " ${bu}Esta opção não pode ser desfeita.
+ Confirme para prosseguir ${end}"
+  echo && echo -e " ${b}${r}FAÇA ESSA OPERAÇÃO COM CONCIÊNCIA... ${end}"
+  echo && echo -en " ${y}Deseja continuar? {s/n}${endc} "
+  read option
+  case $option in
+    s) echo && echo -e " Reiniciando ${b}Todos os Terminais${end}"; sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@$hosts "reboot"; Comando_feito_ok "Reiniciando" ;;
+    n) echo -e " ${y}OK. Retornando para o menu${endc}"; sleep 1;  ;;
+    *) echo " \"$option\" Opção inválida"; sleep 1; reiniciar_todos ;;
+  esac
 }
+
 # (3) Reiniciar todos os PDVs
 
 # Show About
@@ -310,7 +309,7 @@ sobre () {
     ###########################################################
     #    -- Op-System  :   Linux / Termux                     #
     #    -- Codename   :   CliPDVs                            #
-    #    -- Version    :   V build ($version)                      #
+    #    -- Version    :   V-build ($version)                      #
     #    -- Coder      :   GitHub                             #
     ###########################################################
      ${b}Descrição${end}
@@ -346,6 +345,8 @@ echo -e "
       ------------------------
       s)    Sobre CliPDVs
       0)    Sair do CliPDVs"
+echo
+echo -e " ${b} ============================ ${end}"
 echo
 echo -en " Selecione uma opção: "
 read option
