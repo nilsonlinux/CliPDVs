@@ -1,8 +1,1 @@
-Notas das versão
-
-* Novo menu
-* Mais limpo
-* Acesso fácil
-* Opções de teste de ping por ip ou link
-
-By: Nilsonlinux
+202000627
