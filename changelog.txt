@@ -1,1 +1,6 @@
-20210120
+Detalhes de atualização.
+
+* Menu mais simples.
+* Rápido e interativo
+
+By: Nilsonlinux
