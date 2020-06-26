@@ -189,7 +189,7 @@ installfirefox () {
 reiniciar_pdvs () {
   logoCliPDVs
 echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)${end}
----------------------------------------------------
+${r}---------------------------------------------------${end}
   ${br}Reinicialização dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
   depois dê enter para digitar o IP final 
@@ -202,7 +202,7 @@ clear
   clear
 logoCliPDVs
 echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)${end}
----------------------------------------------------
+${r}---------------------------------------------------${end}
   ${br}Reinicialização dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
   depois dê enter para digitar o IP final 
