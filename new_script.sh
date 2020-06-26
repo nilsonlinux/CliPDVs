@@ -97,7 +97,7 @@ cliupdate () {
   echo && echo -en " ${y}Precione ENTER para continuar${endc}"
   read input
   echo && echo -e " Atualizando ${b}CliPDVs${enda}, Por favor aguarde..."
-  wget https://github.com/nilsonlinux/CliPDVs/blob/master/new_script.sh -O $spath/new_script.sh &>/dev/null
+  wget https://github.com/nilsonlinux/CliPDVs/blob/master/new_script.sh
   sleep 1 && echo -e " ${b}CliPDVs${enda} Atualização aplicada com sucesso"
   sleep 1 && echo -e " Restartando ${b}CliPDVs${enda}..."
   sleep 2
