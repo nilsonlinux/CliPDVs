@@ -277,7 +277,7 @@ fi
 }
 # --------------
 # Show About
-showabout () {
+sobre () {
   clear
   echo -e "
     ###########################################################
@@ -325,8 +325,8 @@ read option
 case $option in
 1) reiniciar_pdvs ;;
 2) atualizar_pdvs ;;
-a) showabout ;;
-q) CliExit ;;
+s) sobre ;;
+0) CliExit ;;
 *) echo " \"$option\" Opção inválida"; sleep 1 ;;
 esac
 done
