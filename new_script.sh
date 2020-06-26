@@ -27,7 +27,7 @@ c='\E[36m'
 w='\E[37m'
 endc='\E[0m'
 enda='\033[0m'
-version="20200123"
+version="1.9"
 spath="$( cd "$( dirname $0 )" && pwd )"
 
 # CliPDVs Logo
@@ -55,30 +55,43 @@ CliExit () {
 }
 
 # APT Update
-aptgupd () {
-  echo && echo -e " ${y}Preparing To Perform APT Update${endc}"
-  echo " It Is Recommended To Perform APT Update"
-  echo " Before You Install Any Application."
-  echo -en " ${y}Would You Like To Perform APT Update Now ? {y/n}${endc} "
-  read option
-  case $option in
-    y) ;;
-    n) echo " Skiping APT Update"; sleep 1; return 1 ;;
-    *) echo " \"$option\" Is Not A Valid Option"; sleep 1; aptgupd ;;
-  esac
-  echo && echo -e " Performing ${b}APT Update${enda}"
-  apt -y update &>/dev/null
-  echo -e " ${b}APT Update${enda} Completed"
-  echo && echo -en " ${y}Press Enter To Continue"
-  read input
+#aptgupd () {
+#  echo && echo -e " ${y}Preparing To Perform APT Update${endc}"
+#  echo " It Is Recommended To Perform APT Update"
+#  echo " Before You Install Any Application."
+#  echo -en " ${y}Would You Like To Perform APT Update Now ? {y/n}${endc} "
+#  read option
+#  case $option in
+#    y) ;;
+#    n) echo " Skiping APT Update"; sleep 1; return 1 ;;
+#    *) echo " \"$option\" Is Not A Valid Option"; sleep 1; aptgupd ;;
+#  esac
+#  echo && echo -e " Performing ${b}APT Update${enda}"
+#  apt -y update &>/dev/null
+#  echo -e " ${b}APT Update${enda} Completed"
+#  echo && echo -en " ${y}Press Enter To Continue"
+#  read input
+#}
+# Internet Check
+checkinternet () {
+  if ping -c 1 google.com &>/dev/null; then
+    echo -e " Checando conexão com a internet: ${g}CONECTADO${endc}"
+    CLiCheck
+  else
+    echo -e " Checando conexão com a internet: ${r}DESCONECTADO${endc}
+ ${y}Você precisa está conectado para a utilização do CliPDVs${endc}"
+    echo -e " ${b}O Script está sendo${enda} encerrado..."
+    echo && sleep 5
+    CliExit
+  fi
 }
-
-# New Version Check & Update
-krestart () {
+##################
+clirestart () {
   $spath/CliPDVs.sh
   exit
 }
-kupdate () {
+# New Version Check & Update
+cliupdate () {
   logoCliPDVs
   echo -e " Preparando atualização ${b}CliPDVs${enda}"
   echo && echo -en " ${y}Precione ENTER para continuar${endc}"
@@ -88,62 +101,29 @@ kupdate () {
   sleep 1 && echo -e " ${b}CliPDVs${enda} Atualização aplicada com sucesso"
   sleep 1 && echo -e " Restartando ${b}CliPDVs${enda}..."
   sleep 2
-  krestart
+  clirestart
 }
+# New Version Check & Update
 CLiCheck () {
-  changelog=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/version.txt)
+  changelog=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/changelog.txt)
   uversion=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/version.txt)
   if [[ $uversion > $version ]]; then
     echo -e " Checando atualização: ${r}Nova versão disponível"
     echo && echo -e " Versão em uso: ${y}$version${endc} Nova versão: ${y}$uversion${endc}"
     echo -e " ${bu}Changelog:${endc}\n$changelog"
-    echo && echo -en " ${y}Continuar com a atualização? {y/n}${endc} "
+    echo && echo -en " ${y}Continuar com a atualização? {s/n}${endc} "
     read option
     case $option in
-      y) kupdate ;;
-      n) echo -e " ${y}Ok, Not Updating.${endc}"; sleep 1; aptgupd ;;
-      *) echo " \"$option\" Is Not A Valid Option"; sleep 1; CLiCheck ;;
+      s) cliupdate ;;
+      n) echo -e " ${y}Ok, Iniciando CliPDVs.${endc}"; sleep 1; aptgupd ;;
+      *) echo " \"$option\" Opção inválida, tente outra opção."; sleep 1; CLiCheck ;;
     esac
   else
     echo -e " Checando novas atualizações: ${g}CliPDVs está atualizado${endc}"
     aptgupd
   fi
 }
-
-# Internet Check
-checkinternet () {
-  if ping -c 1 google.com &>/dev/null; then
-    echo -e " Checking For Internet: ${g}PASSED${endc}"
-    CLiCheck
-  else
-    echo -e " Checking For Internet: ${r}FAILED${endc}
- ${y}This Script Needs An Active Internet Connection${endc}"
-    echo -e " ${b}CliPDVs${enda} Will Now Exit"
-    echo && sleep 3
-    CliExit
-  fi
-}
-
-# Check Kali
-checkkali () {
-  forcheck=$(grep -m 1 "ID" /etc/os-release | awk '{print substr($0,4)}')
-  if [ "$forcheck" = "deepin" ]; then
-    echo -e " Checking Kali Distro: ${g}PASSED${endc}"
-    checkinternet
-  else
-    echo -e " Checking Kali Distro: ${r}FAILED${endc}"
-    echo && echo -e " ${y}This Script Is Intended For Kali Linux${endc}"
-    echo -en " ${r}Do You Want To Continue At Your Own Risk? {y/n}${endc} "
-    read option
-    case $option in
-      y) echo && checkinternet ;;
-      n) echo -e " ${y}Ok.${endc}"; sleep 3; CliExit ;;
-      *) echo " \"$option\" Is Not A Valid Option"; sleep 1; checkkali ;;
-    esac
-  fi
-}
-
-# Installation Completed Function
+# RETORNO PARA COMANDO QUE OBTEVE ERRO EM SUA REQUISIÇÃO
 Comando_feito_ok () {
 echo "======================================"
 echo -e "$vr         TERMINAL CONECTADO.  $end "
@@ -157,11 +137,10 @@ echo -e "$vr======[ $br Status da requisição $ec $vr]======                  $
 echo -e "$vr $a IP $end - $vr $IPSERV.$fx.$ip $ec - $vr Conectado            $end"      
 echo -e "$vr=======================================                          $end"  
 echo -e "IP - ${a}192.168.${fx}.${ip}                                        $end"
-  echo && echo -en " ${yellow}Precione enter para retornar para o manu.${endc}"
+  echo && echo -en " ${y}Precione enter para retornar para o manu.${endc}"
   read input
 }
-
-# Installation Completed Function
+# RETORNO PARA COMANDO QUE OBTEVE SUCESSO EM SUA REQUISIÇÃO
 Comando_feito_erro () {
 echo -e "$v======================================= $end"
 echo -e "$v       TERMINAL DESCONECTADO.           $end"
@@ -173,14 +152,13 @@ echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
 echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
 echo -e "$v======[ $br Status da requisição $ec $v]=======              $end"
 echo -e "$v $a IP $end - $v $IPSERV.$fx.$ip $ec - $v Sem conexão        $end" 
-  echo && echo -en " ${yellow}Precione enter para retornar para o manu.${endc}"
+echo -e "$v======================================= $end"
+  echo && echo -en " ${y}Precione enter para retornar para o manu.${endc}"
   read input
 }
 
-# Script Initiation
-logoCliPDVs && echo -e " ${y}Inicializando CliPDVs . . .${endc}" && sleep 1
-sleep 1 && CLiCheck
-
+# INICIALIZAÇÃO DO SCRIPT
+logoCliPDVs && echo -e " ${y}Inicializando CliPDVs . . .${endc}" && checkinternet
 # -------------------------------------------------------
 
 # (7-2) Install Mozilla Firefox
@@ -211,27 +189,27 @@ installfirefox () {
 # (1) Reiniciar PDVs
 reiniciar_pdvs () {
   logoCliPDVs
-echo -e "[ ${p}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)${end} ]
+echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)${end}
 ---------------------------------------------------
-  ${y}Atualização dos terminais 
+  ${br}Reinicialização dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
   depois dê enter para digitar o IP final 
   do terminal${end}
---------------------------------------------------- ${end}"     
-echo -e "DIGITE A ${a}FAIXA${end} REFERÊNTE A SUA FILIAL: "
+${r}--------------------------------------------------- ${end}"     
+echo -e "DIGITE A ${y}FAIXA${end} ${r}REFERÊNTE A SUA FILIAL: ${end}"
 read -p "$IPSERV." $read fx
 clear
 ##########
   clear
 logoCliPDVs
-echo -e "[ ${p}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)${end} ]
+echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)${end}
 ---------------------------------------------------
-  ${y}Atualização dos terminais 
+  ${br}Reinicialização dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
   depois dê enter para digitar o IP final 
   do terminal${end}
---------------------------------------------------- ${end}"     
-echo -e "DIGITE O ${a}FINAL DO IP${end} QUE DESEJA ATUALIZAR: "
+${r}--------------------------------------------------- ${end}"   
+echo -e "DIGITE O ${y}FINAL DO IP${end} ${r}QUE DESEJA REINICIAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo "==================================================="
 echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
@@ -251,27 +229,27 @@ fi
 # (1) Atualizar PDVs
 atualizar_pdvs () {
   logoCliPDVs
-echo -e "[ ${p}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)${end} ]
+echo -e " ${bu}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)${end}
 ---------------------------------------------------
-  ${y}Reinicialização dos terminais 
+  ${br}Atualização dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
   depois dê enter para digitar o IP final 
   do terminal${end}
---------------------------------------------------- ${end}"     
-echo -e "DIGITE A ${a}FAIXA${end} REFERÊNTE A SUA FILIAL: "
+${bu}--------------------------------------------------- ${end}"
+echo -e "DIGITE A ${y}FAIXA${end} ${bu}REFERÊNTE A SUA FILIAL: ${end}"
 read -p "$IPSERV." $read fx
 clear
 ##########
   clear
 logoCliPDVs
-echo -e "[ ${p}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)${end} ]
+echo -e " ${bu}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)${end}
 ---------------------------------------------------
-  ${y}Atualização dos terminais 
+  ${br}Atualização dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
   depois dê enter para digitar o IP final 
   do terminal${end}
---------------------------------------------------- ${end}"     
-echo -e "DIGITE O ${a}FINAL DO IP${end} QUE DESEJA REINICIAR: "
+${bu}--------------------------------------------------- ${end}"  
+echo -e "DIGITE O ${a}FINAL DO IP${end} ${bu}QUE DESEJA ATUALIZAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo "==================================================="
 echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
