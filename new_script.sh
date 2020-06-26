@@ -195,8 +195,9 @@ echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)
   depois dê enter para digitar o IP final 
   do terminal${end}
 ${r}--------------------------------------------------- ${end}"
-Terminais-SM03=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/Terminais-SM03.txt)
-echo -e " ${bu}Lista dos PDVs:${endc}\n$Terminais-SM03"
+sm03=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/sm03.txt)
+echo -e " ${bu}Lista PDVs:${endc}\n$sm03"
+echo -e "${r}--------------------------------------------------- ${end}"
 echo -e "DIGITE A ${y}FAIXA${end} ${r}REFERÊNTE A SUA FILIAL: ${end}"
 read -p "$IPSERV." $read fx
 clear
@@ -209,7 +210,10 @@ echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)
   por faixa (IP). Digite a faixa de sua filial, 
   depois dê enter para digitar o IP final 
   do terminal${end}
-${r}--------------------------------------------------- ${end}"   
+${r}--------------------------------------------------- ${end}"
+sm03=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/sm03.txt)
+echo -e " ${bu}Lista PDVs:${endc}\n$sm03"
+echo -e "${r}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${y}FINAL DO IP${end} ${r}QUE DESEJA REINICIAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo "==================================================="
@@ -237,6 +241,9 @@ echo -e " ${bu}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)
   depois dê enter para digitar o IP final 
   do terminal${end}
 ${bu}--------------------------------------------------- ${end}"
+sm03=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/sm03.txt)
+echo -e " ${bu}Lista PDVs:${endc}\n$sm03"
+echo -e "${bu}--------------------------------------------------- ${end}"
 echo -e "DIGITE A ${y}FAIXA${end} ${bu}REFERÊNTE A SUA FILIAL: ${end}"
 read -p "$IPSERV." $read fx
 clear
@@ -249,7 +256,10 @@ echo -e " ${bu}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)
   por faixa (IP). Digite a faixa de sua filial, 
   depois dê enter para digitar o IP final 
   do terminal${end}
-${bu}--------------------------------------------------- ${end}"  
+${bu}--------------------------------------------------- ${end}"
+sm03=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/sm03.txt)
+echo -e " ${bu}Lista PDVs:${endc}\n$sm03"
+echo -e "${bu}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${a}FINAL DO IP${end} ${bu}QUE DESEJA ATUALIZAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo "==================================================="
