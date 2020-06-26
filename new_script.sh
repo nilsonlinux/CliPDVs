@@ -142,7 +142,7 @@ echo -e "IP - ${a}192.168.${fx}.${ip}                                        $en
   read input
 }
 # RETORNO PARA COMANDO QUE OBTEVE SUCESSO EM SUA REQUISIÇÃO
-Comando_feito_erro () {
+Comando_erro () {
 echo -e "$v======================================= $end"
 echo -e "$v       TERMINAL DESCONECTADO.           $end"
 echo -e "$v======================================= $end"
@@ -222,7 +222,7 @@ echo -e "${r}===================================================${end}"
 echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
 clear
-Comando_feito_erro
+Comando_erro
 echo -e "$v=======================================$end" 
 else
 clear
@@ -268,7 +268,7 @@ echo -e "${bu}===================================================${end}"
 echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
 clear
-Comando_feito_erro
+Comando_erro
 echo -e "$v=======================================$end" 
 else
 clear
