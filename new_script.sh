@@ -216,7 +216,7 @@ echo -e " ${bu}Lista PDVs:${endc}\n$sm03"
 echo -e "${r}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${y}FINAL DO IP${end} ${r}QUE DESEJA REINICIAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
-echo "==================================================="
+echo -e "${r}===================================================${end}"
 echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
 clear
@@ -262,7 +262,7 @@ echo -e " ${bu}Lista PDVs:${endc}\n$sm03"
 echo -e "${bu}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${a}FINAL DO IP${end} ${bu}QUE DESEJA ATUALIZAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
-echo "==================================================="
+echo -e "${bu}===================================================${end}"
 echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
 clear
