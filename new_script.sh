@@ -188,8 +188,8 @@ installfirefox () {
 # (1) Reiniciar PDVs
 reiniciar_pdvs () {
   logoCliPDVs
-echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)${end}
-${r}---------------------------------------------------${end}
+echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)
+---------------------------------------------------${end}
   ${br}Reinicialização dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
   depois dê enter para digitar o IP final 
@@ -201,8 +201,8 @@ clear
 ##########
   clear
 logoCliPDVs
-echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)${end}
-${r}---------------------------------------------------${end}
+echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)
+---------------------------------------------------${end}
   ${br}Reinicialização dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
   depois dê enter para digitar o IP final 
@@ -228,8 +228,8 @@ fi
 # (1) Atualizar PDVs
 atualizar_pdvs () {
   logoCliPDVs
-echo -e " ${bu}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)${end}
----------------------------------------------------
+echo -e " ${bu}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)
+---------------------------------------------------${end}
   ${br}Atualização dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
   depois dê enter para digitar o IP final 
@@ -241,8 +241,8 @@ clear
 ##########
   clear
 logoCliPDVs
-echo -e " ${bu}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)${end}
----------------------------------------------------
+echo -e " ${bu}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)
+---------------------------------------------------${end}
   ${br}Atualização dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
   depois dê enter para digitar o IP final 
