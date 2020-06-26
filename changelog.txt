@@ -1,6 +1,5 @@
-Detalhes de atualização.
-
-* Menu mais simples.
-* Rápido e interativo
+* Menu simples.
+* Rápido e interativo.
+e outras melhorias menores
 
 By: Nilsonlinux
