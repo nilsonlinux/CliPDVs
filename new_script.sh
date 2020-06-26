@@ -91,10 +91,10 @@ kupdate () {
   krestart
 }
 CLiCheck () {
-  changelog=$(curl --silent -q https://rawstring.com/kaais/changelog.txt)
-  uversion=$(curl --silent -q https://rawstring.com/kaais/version.txt)
+  changelog=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/changelog.txt)
+  uversion=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/version.txt)
   if [[ $uversion > $version ]]; then
-    echo -e " Checando atualização: ${r}Nova versão disponível{endc}"
+    echo -e " Checando atualização: ${r}Nova versão disponível"
     echo && echo -e " Current Version: ${y}$version${endc} Nova versão: ${y}$uversion${endc}"
     echo -e " ${bu}Changelog:${endc}\n$changelog"
     echo && echo -en " ${y}Do You Want To Update? {y/n}${endc} "
