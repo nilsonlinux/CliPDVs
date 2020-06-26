@@ -298,7 +298,22 @@ reiniciar_todos () {
 }
 
 # (3) Reiniciar todos os PDVs
-
+# (4) Atualizar todos os PDVs
+atualizar_todos () {
+  logoCliPDVs
+  echo -e " Você está certo em atualizar todos os terminais da loja?${end}" && echo
+  echo -e " ${bu}Esta opção não pode ser desfeita.
+ Confirme para prosseguir ${end}"
+  echo && echo -e " ${b}${r}VOCÊ CONFIRMA A ATUALIZAÇÃO DE TODOS OS TERMINAIS?.. ${end}"
+  echo && echo -en " ${y}Deseja continuar? {s/n}${endc} "
+  read option
+  case $option in
+    s) echo && echo -e " Atualizando ${b}Todos os Terminais${end}"; sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@$hosts "it-update-pdv.sh"; Comando_feito_ok "Reiniciando" ;;
+    n) echo -e " ${y}OK. Retornando para o menu${endc}"; sleep 1;  ;;
+    *) echo " \"$option\" Opção inválida"; sleep 1; reiniciar_todos ;;
+  esac
+}
+# (4) Atualizar todos os PDVs
 # Show About
 sobre () {
   clear
