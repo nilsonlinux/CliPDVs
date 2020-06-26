@@ -27,7 +27,7 @@ c='\E[36m'
 w='\E[37m'
 endc='\E[0m'
 enda='\033[0m'
-version="2020626"
+version="20200123"
 spath="$( cd "$( dirname $0 )" && pwd )"
 
 # CliPDVs Logo
@@ -80,24 +80,24 @@ krestart () {
 }
 kupdate () {
   logoCliPDVs
-  echo -e " Preparing To Update ${b}CliPDVs${enda}"
-  echo && echo -en " ${y}Press ENTER To Continue${endc}"
+  echo -e " Preparando atualização ${b}CliPDVs${enda}"
+  echo && echo -en " ${y}Precione ENTER para continuar${endc}"
   read input
-  echo && echo -e " Updating ${b}CliPDVs${enda}, Please Wait..."
-  wget wget http://sourceforge.net/projects/kaais/files/CliPDVs.sh -O $spath/CliPDVs.sh &>/dev/null
-  sleep 1 && echo -e " ${b}CliPDVs${enda} Was Successfully Updated"
-  sleep 1 && echo -e " Restarting ${b}CliPDVs${enda}..."
+  echo && echo -e " Atualizando ${b}CliPDVs${enda}, Por favor aguarde..."
+  wget https://github.com/nilsonlinux/CliPDVs/blob/master/new_script.sh -O $spath/new_script.sh &>/dev/null
+  sleep 1 && echo -e " ${b}CliPDVs${enda} Atualização aplicada com sucesso"
+  sleep 1 && echo -e " Restartando ${b}CliPDVs${enda}..."
   sleep 2
   krestart
 }
 CLiCheck () {
-  changelog=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/changelog.txt)
+  changelog=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/version.txt)
   uversion=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/version.txt)
   if [[ $uversion > $version ]]; then
     echo -e " Checando atualização: ${r}Nova versão disponível"
-    echo && echo -e " Current Version: ${y}$version${endc} Nova versão: ${y}$uversion${endc}"
+    echo && echo -e " Versão em uso: ${y}$version${endc} Nova versão: ${y}$uversion${endc}"
     echo -e " ${bu}Changelog:${endc}\n$changelog"
-    echo && echo -en " ${y}Do You Want To Update? {y/n}${endc} "
+    echo && echo -en " ${y}Continuar com a atualização? {y/n}${endc} "
     read option
     case $option in
       y) kupdate ;;
@@ -105,7 +105,7 @@ CLiCheck () {
       *) echo " \"$option\" Is Not A Valid Option"; sleep 1; CLiCheck ;;
     esac
   else
-    echo -e " Checking Update: ${g}CliPDVs Is Up To Date${endc}"
+    echo -e " Checando novas atualizações: ${g}CliPDVs está atualizado${endc}"
     aptgupd
   fi
 }
