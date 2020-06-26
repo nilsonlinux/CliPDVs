@@ -389,7 +389,7 @@ echo -e "
       ${y}2)${end}    ${c}Atualizar PDVs${end}
       ${y}3)${end}    ${r}Reiniciar PDVs${end} ${c}(Todos)${end}
       ${y}4)${end}    ${c}Atualizar ${end} ${bu}(Todos)${end}
-      ${y}5)${end}    ${c}Teste de conexão ${end} ${bu}(PING)${end}
+      ${y}5)${end}    ${vr}Teste de conexão ${end} ${bu}(PING)${end}
       ------------------------
       s)    Sobre CliPDVs
       0)    Sair do CliPDVs"
