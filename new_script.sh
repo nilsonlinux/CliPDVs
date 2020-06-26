@@ -8,7 +8,7 @@
 # Variables
 # b=bold u=underline bl=black r=red g=green
 # y=yellow bu=blue m=magenta c=cyan w=white
-# endc=end-color enda=end-argument
+# endc=end-color end=end-argument
 a='\033[1;33m'       # Amarelo
 p='\033[0;35m'       # Purple
 v="\033[0;31m"       #vermelho
@@ -26,30 +26,29 @@ m='\E[35m'
 c='\E[36m'
 w='\E[37m'
 endc='\E[0m'
-enda='\033[0m'
-version="1.9"
+end='\033[0m'
+version="2.0"
 spath="$( cd "$( dirname $0 )" && pwd )"
 
 # CliPDVs Logo
 logoCliPDVs () {
   clear
   echo -e "${vr} 
-       ____ _ _ ____  ______     __
-      / ___| (_)  _ \|  _ \ \   / /__
-     | |   | | | |_) | | | \ \ / / __|  
-     | |___| | |  __/| |_| |\ V /\__ \    
-      \____|_|_|_|   |____/  \_/ |___/ © 2020
-              ${v}Versão :${end} ${v}${version}  ${end}"
+     ____ _ _ ____  ______     __
+    / ___| (_)  _ \|  _ \ \   / /__
+   | |   | | | |_) | | | \ \ / / __|  
+   | |___| | |  __/| |_| |\ V /\__ \    
+    \____|_|_|_|   |____/  \_/ |___/ © 2020
+          ${v}Versão :${end} ${v}${version}  ${end}"
     echo
 }
 # CliPDVs
 # Exit CliPDVs
 CliExit () {
   logoCliPDVs 
-  echo -e " Obrigado por utilizar o ${b}CliPDVs${enda}
- Para mais informações:
- ${b}==>> ${bu}http://t.me/Nilsonlinux/${enda}
- ${b}==>> ${bu}https://clipdvs.org/${enda}"
+  echo -e " Obrigado por utilizar o ${b}CliPDVs${end}
+ Desenvolvido por: Nilsonlinux
+ ${b}Telegram -➤ ${bu}https://t.me/nilsonlinux${end}"
   echo && sleep 1
   exit
 }
@@ -66,9 +65,9 @@ CliExit () {
 #    n) echo " Skiping APT Update"; sleep 1; return 1 ;;
 #    *) echo " \"$option\" Is Not A Valid Option"; sleep 1; aptgupd ;;
 #  esac
-#  echo && echo -e " Performing ${b}APT Update${enda}"
+#  echo && echo -e " Performing ${b}APT Update${end}"
 #  apt -y update &>/dev/null
-#  echo -e " ${b}APT Update${enda} Completed"
+#  echo -e " ${b}APT Update${end} Completed"
 #  echo && echo -en " ${y}Press Enter To Continue"
 #  read input
 #}
@@ -80,7 +79,7 @@ checkinternet () {
   else
     echo -e " Checando conexão com a internet: ${r}DESCONECTADO${endc}
  ${y}Você precisa está conectado para a utilização do CliPDVs${endc}"
-    echo -e " ${b}O Script está sendo${enda} encerrado..."
+    echo -e " ${b}O Script está sendo${end} encerrado..."
     echo && sleep 5
     CliExit
   fi
@@ -93,13 +92,13 @@ clirestart () {
 # New Version Check & Update
 cliupdate () {
   logoCliPDVs
-  echo -e " Preparando atualização ${b}CliPDVs${enda}"
+  echo -e " Preparando atualização ${b}CliPDVs${end}"
   echo && echo -en " ${y}Precione ENTER para continuar${endc}"
   read input
-  echo && echo -e " Atualizando ${b}CliPDVs${enda}, Por favor aguarde..."
+  echo && echo -e " Atualizando ${b}CliPDVs${end}, Por favor aguarde..."
   wget https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/new_script.sh -O $spath/new_script.sh &>/dev/null
-  sleep 1 && echo -e " ${b}CliPDVs${enda} Atualização aplicada com sucesso"
-  sleep 1 && echo -e " Restartando ${b}CliPDVs${enda}..."
+  sleep 1 && echo -e " ${b}CliPDVs${end} Atualização aplicada com sucesso"
+  sleep 1 && echo -e " Restartando ${b}CliPDVs${end}..."
   sleep 2
   clirestart
 }
@@ -164,7 +163,7 @@ logoCliPDVs && echo -e " ${y}Inicializando CliPDVs . . .${endc}" && checkinterne
 # (7-2) Install Mozilla Firefox
 installfirefox () {
   logoCliPDVs
-  echo -e " Preparing To Install ${b}Mozilla Firefox${enda}" && echo
+  echo -e " Preparing To Install ${b}Mozilla Firefox${end}" && echo
   echo -e " ${bu}From Mozilla: Mozilla Firefox is a fast, full-featured Web browser.
  Firefox includes pop-up blocking, tab-browsing,
  integrated Google search, simplified privacy controls,
@@ -172,12 +171,12 @@ installfirefox () {
  the page than any other browser and a number of additional
  features that work with you to help you get the most out of
  your time online.
- Read more about it here: ${b}https://www.mozilla.org/${enda}"
-  echo && echo -e " ${b}${r}CLOSE ALL YOUR FIREFOX WINDOWS BEFORE UPDATING ${enda}"
+ Read more about it here: ${b}https://www.mozilla.org/${end}"
+  echo && echo -e " ${b}${r}CLOSE ALL YOUR FIREFOX WINDOWS BEFORE UPDATING ${end}"
   echo && echo -en " ${y}Do You Want To Continue? {y/n}${endc} "
   read option
   case $option in
-    y) echo && echo -e " Installing ${b}Firefox${enda}"; apt -y install firefox-esr &>/dev/null; Comando_feito "Firefox" ;;
+    y) echo && echo -e " Installing ${b}Firefox${end}"; apt -y install firefox-esr &>/dev/null; Comando_feito "Firefox" ;;
     n) echo -e " ${y}OK. Returning To Menu${endc}"; sleep 1; showwebapps ;;
     *) echo " \"$option\" Is Not A Valid Option"; sleep 1; installfirefox ;;
   esac
@@ -278,19 +277,19 @@ showabout () {
     #    -- Version    :   v4 build($version)                 #
     #    -- Coder      :   rawstring                          #
     ###########################################################
-     ${b}Description${enda}
+     ${b}Description${end}
     This Script Is Meant To Help Users Install
     Their Favourite Applications On A Fresh Install
     Or Live Kali System, Saving Time To Use It.
-     ${b}Notes${enda}
+     ${b}Notes${end}
     You Need To Be In An Active Internet Connection
     And Be Running As ROOT In Order For This Script
     To Function. Any Other Use Given To It Resulting
     In A Script Mal-Functioning Is Not Our Responsibility.
-     ${b}Reports${enda}
+     ${b}Reports${end}
     You Can Report Your Findings, Are They Bugs Or
     Suggestions, On KAAIS SourceForge Page:
-    ${u}${blue}https://sourceforge.net/p/kaais/discussion/${enda}.
+    ${u}${blue}https://sourceforge.net/p/kaais/discussion/${end}.
     Bug Reports Will Be Taken In Consideration, And
     Proper Credits Will Be Added To The Script Description."
   echo && echo -en " ${yellow}Press Enter To Return To Main Menu${endc}"
@@ -301,10 +300,10 @@ showabout () {
 while :
 do
 logoCliPDVs
-echo -e " ${b} =========== MENU =========== ${enda}"
+echo -e " ${b} =========== MENU =========== ${end}"
 echo -e " 
-      ${y}1)${enda}    ${r}Reiniciar PDVs${enda}
-      ${y}2)${enda}    ${c}Atualizar PDVs${enda}
+      ${y}1)${end}    ${r}Reiniciar PDVs${end}
+      ${y}2)${end}    ${c}Atualizar PDVs${end}
       ------------------------
       a)    Sobre CliPDVs
       q)    Sair do CliPDVs"
