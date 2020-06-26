@@ -127,18 +127,17 @@ CLiCheck () {
 # RETORNO PARA COMANDO QUE OBTEVE ERRO EM SUA REQUISIÇÃO
 Comando_feito_ok () {
   clear
-echo "======================================"
+echo -e "$vr======================================= $end"  
 echo -e "$vr         TERMINAL CONECTADO.  $end "
-echo "======================================"
+echo -e "$vr======================================= $end"  
 echo -e "$vr       ___        _ _              $end"
 echo -e "$vr      / _ \ _ __ | (_)_ __   ___   $end"
 echo -e "$vr     | | | | '_ \| | | '_ \ / _ \  $end"
 echo -e "$vr     | |_| | | | | | | | | |  __/  $end"
 echo -e "$vr      \___/|_| |_|_|_|_| |_|\___|  $end"
-echo -e "$vr======[ $br Status da requisição $ec $vr]======                  $end"
-echo -e "$vr $a IP $end - $vr $IPSERV.$fx.$ip $ec - $vr Conectado            $end"      
-echo -e "$vr=======================================                          $end"  
-echo -e "IP - ${a}192.168.${fx}.${ip}                                        $end"
+echo -e "$vr======[ $br Status da requisição $ec $vr]======     $end"
+echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $vr Conectado  $end"      
+echo -e "$vr======================================= $end"  
   echo && echo -en " ${y}Precione enter para retornar para o manu.${endc}"
   read input
 }
@@ -153,8 +152,8 @@ echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
 echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
 echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
 echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
-echo -e "$v======[ $br Status da requisição $ec $v]=======              $end"
-echo -e "$v $a IP $end - $v $IPSERV.$fx.$ip $ec - $v Sem conexão        $end" 
+echo -e "$v======[ $br Status da requisição $ec $v]=======    $end"
+echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $v Sem conexão $end" 
 echo -e "$v======================================= $end"
   echo && echo -en " ${y}Precione enter para retornar para o manu.${endc}"
   read input
@@ -314,6 +313,39 @@ atualizar_todos () {
   esac
 }
 # (4) Atualizar todos os PDVs
+# (1) Teste de ping PDVs
+ping_test () {
+  logoCliPDVs
+echo -e " ${bu}TESTE DE CONEXÕES (CliPDVs)
+---------------------------------------------------${end}
+  ${br}Faça o teste de conexão de um determinado IP
+  com faixa + final de seu endereçamento...${end}
+${bu}--------------------------------------------------- ${end}"
+echo -e "DIGITE A ${y}FAIXA${end} ${bu}DO IP QUE DESEJA FAZER O TESTE DE CONEXÃO: ${end}"
+read -p "$IPSERV." $read fx
+clear
+##########
+  clear
+logoCliPDVs
+echo -e " ${bu}TESTE DE CONEXÕES (CliPDVs)
+---------------------------------------------------${end}
+  ${br}Faça o teste de conexão de um determinado IP
+  com faixa + final de seu endereçamento...${end}
+${bu}--------------------------------------------------- ${end}"
+echo -e "DIGITE O ${a}FINAL DO IP${end} ${bu}QUE DESEJA ATUALIZAR: ${end}"
+read -p "$IPSERV.$fx." $read ip
+echo -e "${bu}===================================================${end}"
+echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
+if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
+clear
+Comando_erro
+echo -e "$v=======================================$end" 
+else
+clear
+Comando_feito_ok
+fi
+}
+# --------------
 # Show About
 sobre () {
   clear
@@ -357,6 +389,7 @@ echo -e "
       ${y}2)${end}    ${c}Atualizar PDVs${end}
       ${y}3)${end}    ${r}Reiniciar PDVs${end} ${c}(Todos)${end}
       ${y}4)${end}    ${c}Atualizar ${end} ${bu}(Todos)${end}
+      ${y}5)${end}    ${c}Teste de conexão ${end} ${bu}(PING)${end}
       ------------------------
       s)    Sobre CliPDVs
       0)    Sair do CliPDVs"
@@ -370,6 +403,7 @@ case $option in
 2) atualizar_pdvs ;;
 3) reiniciar_todos ;;
 4) atualizar_todos ;;
+5) ping_test ;;
 s) sobre ;;
 0) CliExit ;;
 *) echo " \"$option\" Opção inválida"; sleep 1 ;;
