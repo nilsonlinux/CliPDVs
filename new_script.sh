@@ -87,7 +87,7 @@ checkinternet () {
 }
 ##################
 clirestart () {
-  $spath/CliPDVs.sh
+  $spath/new_script.sh
   exit
 }
 # New Version Check & Update
@@ -97,7 +97,7 @@ cliupdate () {
   echo && echo -en " ${y}Precione ENTER para continuar${endc}"
   read input
   echo && echo -e " Atualizando ${b}CliPDVs${enda}, Por favor aguarde..."
-  wget https://github.com/nilsonlinux/CliPDVs/blob/master/new_script.sh
+  rm -rf ./new_script.sh && wget https://github.com/nilsonlinux/CliPDVs/blob/master/new_script.sh
   sleep 1 && echo -e " ${b}CliPDVs${enda} Atualização aplicada com sucesso"
   sleep 1 && echo -e " Restartando ${b}CliPDVs${enda}..."
   sleep 2
@@ -278,18 +278,15 @@ showabout () {
     #    -- Version    :   v4 build($version)                 #
     #    -- Coder      :   rawstring                          #
     ###########################################################
-
      ${b}Description${enda}
     This Script Is Meant To Help Users Install
     Their Favourite Applications On A Fresh Install
     Or Live Kali System, Saving Time To Use It.
-
      ${b}Notes${enda}
     You Need To Be In An Active Internet Connection
     And Be Running As ROOT In Order For This Script
     To Function. Any Other Use Given To It Resulting
     In A Script Mal-Functioning Is Not Our Responsibility.
-
      ${b}Reports${enda}
     You Can Report Your Findings, Are They Bugs Or
     Suggestions, On KAAIS SourceForge Page:
@@ -308,7 +305,6 @@ echo -e " ${b} =========== MENU =========== ${enda}"
 echo -e " 
       ${y}1)${enda}    ${r}Reiniciar PDVs${enda}
       ${y}2)${enda}    ${c}Atualizar PDVs${enda}
-
       ------------------------
       a)    Sobre CliPDVs
       q)    Sair do CliPDVs"
