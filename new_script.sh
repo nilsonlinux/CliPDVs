@@ -14,6 +14,8 @@ p='\033[0;35m'       # Purple
 v="\033[0;31m"       #vermelho
 vr="\033[0;32m"      #Verde
 br="\033[0;37m"      #Branco
+# Variável com a lista de máquinas
+hosts='(PDV)'
 IPSERV='192.168'
 b='\033[1m'
 u='\033[4m'
@@ -276,35 +278,62 @@ sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "reboot";
 fi
 }
 # --------------
+
+# (3) Reiniciar todos os PDVs
+reiniciar_todos () {
+  logoCliPDVs
+echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)
+---------------------------------------------------${end}
+  ${br}Reinicialização dos terminais 
+  por faixa (IP). Digite a faixa de sua filial, 
+  depois dê enter para digitar o IP final 
+  do terminal${end}
+${r}--------------------------------------------------- ${end}"
+echo -e "${r}===================================================${end}"
+echo -e "${y}Aguarde enquanto testamos conexão com o servidor...${end}"
+if ! ping -c 2 8.8.8.8 >> /dev/null ; then
+clear
+Comando_feito_erro
+echo -e "$v=======================================$end" 
+else
+clear
+Comando_feito_ok   
+echo -e "$vr=======================================$end"  
+sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@$hosts "reboot";
+fi
+}
+# (3) Reiniciar todos os PDVs
+
 # Show About
 sobre () {
   clear
   echo -e "
     ###########################################################
-    #                  en0xCr3w  CliPDVs                      #
-    #    Kali Applications Automatic Installation Script      #
+    #                  Sobre o CliPDVs                        #
+    #     Script para automatização de tarefas regional.      #
     ###########################################################
-    #    -- Op-System  :   Kali Linux 2                       #
-    #    -- Codename   :   'Sloth Install'                    #
-    #    -- Version    :   v4 build($version)                 #
-    #    -- Coder      :   rawstring                          #
+    #    -- Op-System  :   Linux / Termux                     #
+    #    -- Codename   :   CliPDVs                            #
+    #    -- Version    :   V build ($version)                      #
+    #    -- Coder      :   GitHub                             #
     ###########################################################
-     ${b}Description${end}
-    This Script Is Meant To Help Users Install
-    Their Favourite Applications On A Fresh Install
-    Or Live Kali System, Saving Time To Use It.
-     ${b}Notes${end}
-    You Need To Be In An Active Internet Connection
-    And Be Running As ROOT In Order For This Script
-    To Function. Any Other Use Given To It Resulting
-    In A Script Mal-Functioning Is Not Our Responsibility.
+     ${b}Descrição${end}
+    Este script visa proporcionar um fácil acesso
+    para automatização de tarefas interna
+    dos CPDs da regional.
+     ${b}Notas${end}
+    Você precisa está conectado na rede interna 
+    de sua filial, para o funcionamento.
+    Se tentar utilizar o script sem conexão, você
+    não terá acesso.
      ${b}Reports${end}
-    You Can Report Your Findings, Are They Bugs Or
-    Suggestions, On KAAIS SourceForge Page:
-    ${u}${blue}https://sourceforge.net/p/kaais/discussion/${end}.
-    Bug Reports Will Be Taken In Consideration, And
-    Proper Credits Will Be Added To The Script Description."
-  echo && echo -en " ${yellow}Press Enter To Return To Main Menu${endc}"
+    Você pode está acompanhando o desenvolvimento
+    através de nossa página no GitHub:
+    ${u}${blue}https://github.com/nilsonlinux/CliPDVs${end}.
+    Correção de bugs, implemento de código, e
+    caso você pretenda utilizar e precisar mexer no código,
+    favor manter os créditos."
+  echo && echo -en " ${yellow}Precione enter para retornar ao Menu.${endc}"
   read input
 }
 
@@ -316,15 +345,19 @@ echo -e " ${b} =========== MENU =========== ${end}"
 echo -e " 
       ${y}1)${end}    ${r}Reiniciar PDVs${end}
       ${y}2)${end}    ${c}Atualizar PDVs${end}
+      ${y}3)${end}    ${r}Reiniciar PDVs${end} ${c}(Todos)${end}
+      ${y}4)${end}    ${c}Atualizar ${end} ${bu}(Todos)${end}
       ------------------------
-      a)    Sobre CliPDVs
-      q)    Sair do CliPDVs"
+      s)    Sobre CliPDVs
+      0)    Sair do CliPDVs"
 echo
 echo -en " Selecione uma opção: "
 read option
 case $option in
 1) reiniciar_pdvs ;;
 2) atualizar_pdvs ;;
+3) reiniciar_todos ;;
+4) atualizar_todos ;;
 s) sobre ;;
 0) CliExit ;;
 *) echo " \"$option\" Opção inválida"; sleep 1 ;;
