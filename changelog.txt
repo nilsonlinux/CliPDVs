@@ -1,5 +1,7 @@
-* Menu simples.
-* Rápido e interativo.
+* Receba notificação de atualização na inicialização do script.
+Ao iniciar o script, ele faz a verificação da versão. (NOVO)
+* Faça diversos processos com um só comando.
+* Back-end super simplificado, para implementação de novos códigos.
 e outras melhorias menores
 
 By: Nilsonlinux
