@@ -29,7 +29,7 @@ c='\E[36m'
 w='\E[37m'
 endc='\E[0m'
 end='\033[0m'
-version="2.4"
+version="2.5"
 spath="$( cd "$( dirname $0 )" && pwd )"
 # CliPDVs Logo
 logoCliPDVs () {
@@ -125,7 +125,6 @@ CLiCheck () {
 }
 # RETORNO PARA COMANDO QUE OBTEVE ERRO EM SUA REQUISIÇÃO
 Comando_feito_ok () {
-  clear
 echo -e "$vr======================================= $end"  
 echo -e "$vr         TERMINAL CONECTADO.  $end "
 echo -e "$vr======================================= $end"  
@@ -137,12 +136,9 @@ echo -e "$vr      \___/|_| |_|_|_|_| |_|\___|  $end"
 echo -e "$vr======[ $br Status da requisição $ec $vr]======     $end"
 echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $vr Conectado  $end"      
 echo -e "$vr======================================= $end"  
-  echo && echo -en " ${y}Precione enter para retornar para o manu.${endc}"
-  read input
 }
 # RETORNO PARA COMANDO QUE OBTEVE SUCESSO EM SUA REQUISIÇÃO
 Comando_erro () {
-  clear
 echo -e "$v======================================= $end"
 echo -e "$v       TERMINAL DESCONECTADO.           $end"
 echo -e "$v======================================= $end"
@@ -157,7 +153,20 @@ echo -e "$v======================================= $end"
   echo && echo -en " ${y}Precione enter para retornar para o manu.${endc}"
   read input
 }
-
+# Ping Check
+pingtest_check () {
+  if ping -c 3 $IPSERV.$fx.$ip &>/dev/null; then
+    echo -e " Checando conexão: ${g}CONECTADO${endc}"
+  echo && echo -en " ${y}Precione enter para retornar para o manu.${endc}"
+  read input
+  else
+    echo -e " Checando conexão: ${r}DESCONECTADO${endc}
+ ${y}Servidor desconectado...${endc}"
+   echo && echo -en " ${y}Precione enter para retornar para o manu.${endc}"
+  read input
+  fi
+}
+##################
 # INICIALIZAÇÃO DO SCRIPT
 logoCliPDVs && echo -e " ${y}Inicializando CliPDVs . . .${endc}" && checkinternet
 # -------------------------------------------------------
@@ -213,16 +222,14 @@ ${r}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${y}FINAL DO IP${end} ${r}QUE DESEJA REINICIAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo -e "${r}===================================================${end}"
-echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
-if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
 clear
+echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
+if ! sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "reboot" ; then
 Comando_erro
 echo -e "$v=======================================$end" 
 else
-clear
 Comando_feito_ok   
 echo -e "$vr=======================================$end"  
-sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "it-update-pdv.sh";
 fi
 }
 # --------------
@@ -324,12 +331,10 @@ read -p "$IPSERV.$fx." $read ip
 echo -e "${bu}===================================================${end}"
 echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
-clear
-Comando_erro
+pingtest_check
 echo -e "$v=======================================$end" 
 else
-clear
-Comando_feito_ok
+pingtest_check
 fi
 }
 # --------------
