@@ -29,7 +29,7 @@ c='\E[36m'
 w='\E[37m'
 endc='\E[0m'
 end='\033[0m'
-version="2.6"
+version="2.7"
 spath="$( cd "$( dirname $0 )" && pwd )"
 # CliPDVs Logo
 logoCliPDVs () {
@@ -123,24 +123,22 @@ CLiCheck () {
     aptgupd
   fi
 }
-# RETORNO PARA COMANDO QUE OBTEVE ERRO EM SUA REQUISIÇÃO
-Comando_feito_ok () {
-echo -e "$vr======================================= $end"  
+# Retorno para o comando reboot que obteve sucesso...
+Comando_reboot_ok () {
+echo -e "$vr======================================== $end"
 echo -e "$vr         TERMINAL CONECTADO.  $end "
-echo -e "$vr======================================= $end"  
-echo -e "$vr       ___        _ _              $end"
-echo -e "$vr      / _ \ _ __ | (_)_ __   ___   $end"
-echo -e "$vr     | | | | '_ \| | | '_ \ / _ \  $end"
-echo -e "$vr     | |_| | | | | | | | | |  __/  $end"
-echo -e "$vr      \___/|_| |_|_|_|_| |_|\___|  $end"
-echo -e "$vr======[ $br Status da requisição $ec $vr]======     $end"
-echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $vr Conectado  $end"      
-echo -e "$vr======================================= $end"  
-  echo && echo -en " ${y}Precione enter para retornar para o manu.${endc}"
-  read input
+echo -e "$vr======================================== $end"
+sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "reboot";
+echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
+echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $vr Conectado$end"
+echo -e "$vr======================================== $end"
+echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$vr======================================== $end"
+echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
 }
-# RETORNO PARA COMANDO QUE OBTEVE SUCESSO EM SUA REQUISIÇÃO
-Comando_erro () {
+# Retorno para o comando reboot que obteve erro...
+Comando_reboot_erro () {
 echo -e "$v======================================= $end"
 echo -e "$v       TERMINAL DESCONECTADO.           $end"
 echo -e "$v======================================= $end"
@@ -152,22 +150,38 @@ echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
 echo -e "$v======[ $br Status da requisição $ec $v]=======    $end"
 echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $v Sem conexão $end" 
 echo -e "$v======================================= $end"
-  echo && echo -en " ${y}Precione enter para retornar para o manu.${endc}"
-  read input
+echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+}
+# Ping Check ###########################################################
+pingtest_check_on () {
+echo -e "$vr======================================= $end"  
+echo -e "$vr         TERMINAL CONECTADO.  $end "
+echo -e "$vr======================================= $end"  
+echo -e "$vr======[ $br Status da requisição $ec $vr]======     $end"
+echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $vr Conectado  $end"      
+echo -e "$vr======================================= $end"
+ping -c 5 $IPSERV.$fx.$ip
+echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+}
+# RETORNO PARA COMANDO QUE OBTEVE SUCESSO EM SUA REQUISIÇÃO
+pingtest_check_off () {
+echo -e "$v======================================= $end"
+echo -e "$v       TERMINAL DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo -e "$v======[ $br Status da requisição $ec $v]=======    $end"
+echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $v Sem conexão $end" 
+echo -e "$v======================================= $end"
+echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
 }
 # Ping Check
-pingtest_check () {
-  if ping -c 3 $IPSERV.$fx.$ip &>/dev/null; then
-    echo -e " Checando conexão: ${g}CONECTADO${endc}"
-  echo && echo -en " ${y}Precione enter para retornar para o manu.${endc}"
-  read input
-  else
-    echo -e " Checando conexão: ${r}DESCONECTADO${endc}
- ${y}Servidor desconectado...${endc}"
-   echo && echo -en " ${y}Precione enter para retornar para o manu.${endc}"
-  read input
-  fi
-}
 ##################
 # INICIALIZAÇÃO DO SCRIPT
 logoCliPDVs && echo -e " ${y}Inicializando CliPDVs . . .${endc}" && checkinternet
@@ -226,11 +240,14 @@ read -p "$IPSERV.$fx." $read ip
 echo -e "${r}===================================================${end}"
 clear
 echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
-if ! sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "reboot" ; then
-Comando_erro
+sleep 2
+clear
+if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
+Comando_reboot_erro
 echo -e "$v=======================================$end" 
 else
-Comando_feito_ok   
+clear
+Comando_reboot_ok
 echo -e "$vr=======================================$end"  
 fi
 }
@@ -239,38 +256,44 @@ fi
 # (1) Atualizar PDVs
 atualizar_pdvs () {
   logoCliPDVs
-echo -e " ${bu}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)
+echo -e " ${c}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)
 ---------------------------------------------------${end}
   ${br}Atualização dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
   depois dê enter para digitar o IP final 
   do terminal${end}
-${bu}--------------------------------------------------- ${end}"
-echo -e "DIGITE A ${y}FAIXA${end} ${bu}REFERÊNTE A SUA FILIAL: ${end}"
+${c}--------------------------------------------------- ${end}"
+echo -e "DIGITE A ${c}FAIXA${end} ${br}REFERÊNTE A SUA FILIAL: ${end}"
 read -p "$IPSERV." $read fx
 clear
 ##########
   clear
 logoCliPDVs
-echo -e " ${bu}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)
+echo -e " ${c}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)
 ---------------------------------------------------${end}
   ${br}Atualização dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
   depois dê enter para digitar o IP final 
   do terminal${end}
-${bu}--------------------------------------------------- ${end}"
-echo -e "DIGITE O ${a}FINAL DO IP${end} ${bu}QUE DESEJA ATUALIZAR: ${end}"
+${c}--------------------------------------------------- ${end}"
+echo -e "DIGITE O ${c}FINAL DO IP${end} ${br}QUE DESEJA ATUALIZAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo -e "${bu}===================================================${end}"
-echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
-if ! sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "it-update-pdv.sh" ; then
 clear
+echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
+sleep 2
+if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
 Comando_erro
 echo -e "$v=======================================$end" 
 else
 clear
-Comando_feito_ok   
-echo -e "$vr=======================================$end"
+Comando_feito_ok
+sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "it-update-pdv.sh";
+echo -e "${bu}Terminal atualizado com sucesso.
+Retornando para o menu principal... ${end}
+${vr}Por favor aguarde...${end}"
+sleep 5
+echo -e "$v=======================================$end"  
 fi
 }
 # --------------
@@ -308,7 +331,7 @@ atualizar_todos () {
   esac
 }
 # (4) Atualizar todos os PDVs
-# (1) Teste de ping PDVs
+# (5) Teste de ping PDVs
 ping_test () {
   logoCliPDVs
 echo -e " ${bu}TESTE DE CONEXÕES (CliPDVs)
@@ -331,11 +354,14 @@ echo -e "DIGITE O ${a}FINAL DO IP${end} ${bu}QUE DESEJA ATUALIZAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo -e "${bu}===================================================${end}"
 echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
+sleep 2
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
-pingtest_check
+clear
+pingtest_check_off
 echo -e "$v=======================================$end" 
 else
-pingtest_check
+clear
+pingtest_check_on
 fi
 }
 # --------------
