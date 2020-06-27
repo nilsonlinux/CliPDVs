@@ -29,7 +29,7 @@ c='\E[36m'
 w='\E[37m'
 endc='\E[0m'
 end='\033[0m'
-version="20.0627"
+version="20.06.27"
 spath="$( cd "$( dirname $0 )" && pwd )"
 # CliPDVs Logo
 logoCliPDVs () {
