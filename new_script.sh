@@ -134,8 +134,9 @@ echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $vr Conectado$end"
 echo -e "$vr======================================== $end"
 echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
 echo -e "$vr======================================== $end"
-echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
-read input
+echo -e "${vr}Retornando para o menu principal.
+Por favor aguarde...${endc}"
+sleep 5
 }
 # Retorno para o comando reboot que obteve erro...
 Comando_reboot_erro () {
@@ -147,10 +148,43 @@ echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
 echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
 echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
 echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
-echo -e "$v======[ $br Status da requisição $ec $v]=======    $end"
+echo && echo -e "$v======================================= $end"
+echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
 echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $v Sem conexão $end" 
 echo -e "$v======================================= $end"
-echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
+echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+}
+# Retorno para o comando it-update-pdv.sh que obteve sucesso...
+Comando_updatepdv_ok () {
+echo -e "$vr======================================== $end"
+echo -e "$vr         TERMINAL CONECTADO.  $end "
+echo -e "$vr======================================== $end"
+sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "it-update-pdv.sh";
+echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
+echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $vr Conectado$end"
+echo -e "$vr======================================== $end"
+echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$vr======================================== $end"
+echo -e "${vr}Retornando para o menu principal.
+Por favor aguarde...${endc}"
+sleep 5
+}
+# Retorno para o comando it-update-pdv.sh que obteve erro...
+Comando_updatepdv_erro () {
+echo -e "$v======================================= $end"
+echo -e "$v       TERMINAL DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo && echo -e "$v======================================= $end"
+echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
+echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $v Sem conexão $end" 
+echo -e "$v======================================= $end"
+echo -en "${y}Precione enter para retornar para o manu.${endc}"
 read input
 }
 # Ping Check ###########################################################
@@ -175,10 +209,11 @@ echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
 echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
 echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
 echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
-echo -e "$v======[ $br Status da requisição $ec $v]=======    $end"
+echo && echo -e "$v======================================= $end"
+echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
 echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $v Sem conexão $end" 
 echo -e "$v======================================= $end"
-echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
+echo -en "${y}Precione enter para retornar para o manu.${endc}"
 read input
 }
 # Ping Check
@@ -283,16 +318,11 @@ clear
 echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
 sleep 2
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
-Comando_erro
+Comando_updatepdv_erro
 echo -e "$v=======================================$end" 
 else
 clear
-Comando_feito_ok
-sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "it-update-pdv.sh";
-echo -e "${bu}Terminal atualizado com sucesso.
-Retornando para o menu principal... ${end}
-${vr}Por favor aguarde...${end}"
-sleep 5
+Comando_updatepdv_ok
 echo -e "$v=======================================$end"  
 fi
 }
