@@ -29,7 +29,7 @@ c='\E[36m'
 w='\E[37m'
 endc='\E[0m'
 end='\033[0m'
-version="2.3"
+version="2020.06.27"
 spath="$( cd "$( dirname $0 )" && pwd )"
 
 # CliPDVs Logo
@@ -373,11 +373,11 @@ do
 logoCliPDVs
 echo -e " ${b} =========== MENU =========== ${end}"
 echo -e " 
-      ${y}1)${end}    ${r}Reiniciar PDVs${end}
+      ${y}1)${end}    ${c}Reiniciar PDVs${end}
       ${y}2)${end}    ${c}Atualizar PDVs${end}
-      ${y}3)${end}    ${r}Reiniciar PDVs${end} ${c}(Todos)${end}
+      ${y}3)${end}    ${c}Reiniciar PDVs${end} ${bu}(Todos)${end}
       ${y}4)${end}    ${c}Atualizar ${end} ${bu}(Todos)${end}
-      ${y}5)${end}    ${vr}Teste de conexão ${end} ${bu}(PING)${end}
+      ${y}5)${end}    ${c}Teste de conexão ${end} ${vr}(PING)${end}
       ------------------------
       s)    Sobre CliPDVs
       0)    Sair do CliPDVs"
