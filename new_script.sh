@@ -29,7 +29,7 @@ c='\E[36m'
 w='\E[37m'
 endc='\E[0m'
 end='\033[0m'
-version="2.5"
+version="2.6"
 spath="$( cd "$( dirname $0 )" && pwd )"
 # CliPDVs Logo
 logoCliPDVs () {
@@ -136,6 +136,8 @@ echo -e "$vr      \___/|_| |_|_|_|_| |_|\___|  $end"
 echo -e "$vr======[ $br Status da requisição $ec $vr]======     $end"
 echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $vr Conectado  $end"      
 echo -e "$vr======================================= $end"  
+  echo && echo -en " ${y}Precione enter para retornar para o manu.${endc}"
+  read input
 }
 # RETORNO PARA COMANDO QUE OBTEVE SUCESSO EM SUA REQUISIÇÃO
 Comando_erro () {
@@ -261,15 +263,14 @@ echo -e "DIGITE O ${a}FINAL DO IP${end} ${bu}QUE DESEJA ATUALIZAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo -e "${bu}===================================================${end}"
 echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
-if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
+if ! sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "it-update-pdv.sh" ; then
 clear
 Comando_erro
 echo -e "$v=======================================$end" 
 else
 clear
 Comando_feito_ok   
-echo -e "$vr=======================================$end"  
-sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "reboot";
+echo -e "$vr=======================================$end"
 fi
 }
 # --------------
