@@ -411,7 +411,7 @@ sobre () {
   echo -e "
     ###########################################################
     #                  Sobre o CliPDVs                        #
-    #     Script para automatização de tarefas regional.      #
+    #     Script para automatização de tarefas CPDs Regional. #
     ###########################################################
     #    -- Op-System  :   Linux / Termux                     #
     #    -- Codename   :   CliPDVs                            #
