@@ -273,7 +273,6 @@ ${r}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${y}FINAL DO IP${end} ${r}QUE DESEJA REINICIAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo -e "${r}===================================================${end}"
-clear
 echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
 sleep 2
 clear
@@ -314,7 +313,6 @@ ${c}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${c}FINAL DO IP${end} ${br}QUE DESEJA ATUALIZAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo -e "${bu}===================================================${end}"
-clear
 echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
 sleep 2
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
@@ -436,8 +434,8 @@ echo -e " ${b} =========== MENU =========== ${end}"
 echo -e " 
       ${y}1)${end}    ${c}Reiniciar PDVs${end}
       ${y}2)${end}    ${c}Atualizar PDVs${end}
-      ${y}3)${end}    ${c}Reiniciar PDVs${end} ${bu}(Todos)${end}
-      ${y}4)${end}    ${c}Atualizar ${end} ${bu}(Todos)${end}
+      ${y}3)${end}    ${c}Reiniciar PDVs${end} ${r}(Todos)${end}
+      ${y}4)${end}    ${c}Atualizar PDVs${end} ${r}(Todos)${end}
       ${y}5)${end}    ${c}Teste de conexão ${end} ${vr}(PING)${end}
       ------------------------
       s)    Sobre CliPDVs
