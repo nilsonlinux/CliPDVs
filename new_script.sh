@@ -325,38 +325,27 @@ echo -e "$v=======================================$end"
 fi
 }
 # --------------
-### REINICIAR TODOS
-reinicializar_todos () {
-  secips=${1:-192.168.}
-for ip in `seq 25 26`
-do
-( ping -c 1 ${secips}${faixa}.${ip} )
-done
-echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
-read input
-}
 # (3) Reiniciar todos os PDVs
-# Ping Check
+wait
 reiniciar_todos () {
   logoCliPDVs
-echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)
----------------------------------------------------${end}
+echo -e "---------------------------------------------------${end}
   ${br}Reinicialização dos terminais 
-  por faixa de sua filial e aguarde${end}
+  por faixa de sua filial${end}
 ${r}--------------------------------------------------- ${end}"
 echo -e "DIGITE A${y} FAIXA DA FILIAL${end} ${r}QUE DESEJA REINICIAR: ${end}"
 read -p "$IPSERV." $read faixa
 echo -e "${r}===================================================${end}"
-echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛...${end}"
-sleep 2
-if ! ping -c 2 8.8.8 >> /dev/null ; then
-reinicializar_todos
-echo -e "$v=======================================$end" 
-else
-clear
-reinicializar_todos
-echo -e "$vr=======================================$end"  
-fi
+echo -e "${y}⌛Aguarde enquanto executamos a reinicialização de todos os
+terminais da loja solicitada ⌛...${end}"
+##########
+  IPSERV=${1:-192.168.}
+for ip in `seq 100 105`
+do
+  ( sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@${IPSERV}${faixa}.${ip} "reboot"; )
+done
+echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
 }
 ##########
 # (3) Reiniciar todos os PDVs
@@ -364,15 +353,23 @@ fi
 wait
 atualizar_todos () {
   logoCliPDVs
-echo -e "DIGITE A ${y}FAIXA${end} ${bu}QUE DESEJA FAZER O ATUALIZAR: ${end}"
+echo -e "---------------------------------------------------${end}
+  ${br}Atualização dos terminais 
+  por faixa de sua filial${end}
+${r}--------------------------------------------------- ${end}"
+echo -e "DIGITE A${y} FAIXA DA FILIAL${end} ${r}QUE DESEJA ATUALIZAR: ${end}"
 read -p "$IPSERV." $read faixa
-clear
+echo -e "${r}===================================================${end}"
+echo -e "${y}⌛Aguarde enquanto executamos a atualização de todos os
+terminais da loja solicitada ⌛...${end}"
 ##########
   IPSERV=${1:-192.168.}
-for ip in `seq 100 200`
+for ip in `seq 100 105`
 do
   ( ping -c1 ${IPSERV}${faixa}.${ip} )
 done
+echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
 }
 # (4) Atualizar todos os PDVs
 # (5) Teste de ping PDVs
@@ -385,9 +382,8 @@ echo -e " ${bu}TESTE DE CONEXÕES (CliPDVs)
 ${bu}--------------------------------------------------- ${end}"
 echo -e "DIGITE A ${y}FAIXA${end} ${bu}DO IP QUE DESEJA FAZER O TESTE DE CONEXÃO: ${end}"
 read -p "$IPSERV." $read fx
-clear
 ##########
-  clear
+clear
 logoCliPDVs
 echo -e " ${bu}TESTE DE CONEXÕES (CliPDVs)
 ---------------------------------------------------${end}
@@ -399,13 +395,13 @@ read -p "$IPSERV.$fx." $read ip
 echo -e "${bu}===================================================${end}"
 echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
 sleep 2
-if ! ping -c 2 $IPSERV.$faixa.$ip >> /dev/null ; then
+if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
 clear
-reinicializar_todos_erro
+pingtest_check_off
 echo -e "$v=======================================$end" 
 else
 clear
-reinicializar_todos
+pingtest_check_on
 fi
 }
 # --------------
