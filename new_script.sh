@@ -135,7 +135,7 @@ echo -e "$vr======================================== $end"
 echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
 echo -e "$vr======================================== $end"
 echo -e "${vr}Retornando para o menu principal.
-Por favor aguarde...${endc}"
+⌛Por favor aguarde ⌛${endc}"
 sleep 5
 }
 # Retorno para o comando reboot que obteve erro...
@@ -273,7 +273,7 @@ ${r}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${y}FINAL DO IP${end} ${r}QUE DESEJA REINICIAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo -e "${r}===================================================${end}"
-echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
+echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛...${end}"
 sleep 2
 clear
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
@@ -313,7 +313,7 @@ ${c}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${c}FINAL DO IP${end} ${br}QUE DESEJA ATUALIZAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo -e "${bu}===================================================${end}"
-echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
+echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛...${end}"
 sleep 2
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
 Comando_updatepdv_erro
@@ -432,14 +432,14 @@ do
 logoCliPDVs
 echo -e " ${b} =========== MENU =========== ${end}"
 echo -e " 
-      ${y}1)${end}    ${c}Reiniciar PDVs${end}
-      ${y}2)${end}    ${c}Atualizar PDVs${end}
-      ${y}3)${end}    ${c}Reiniciar PDVs${end} ${r}(Todos)${end}
-      ${y}4)${end}    ${c}Atualizar PDVs${end} ${r}(Todos)${end}
-      ${y}5)${end}    ${c}Teste de conexão ${end} ${vr}(PING)${end}
-      ------------------------
-      s)    Sobre CliPDVs
-      0)    Sair do CliPDVs"
+    ${y}〔1 〕${end} ${c}➤ Reiniciar PDVs${end}
+    ${y}〔3 〕${end} ${c}➤ Atualizar PDVs${end}
+    ${y}〔3 〕${end} ${c}➤ Reiniciar PDVs${end} ${r}(Todos)${end}
+    ${y}〔4 〕${end} ${c}➤ Atualizar PDVs${end} ${r}(Todos)${end}
+    ${y}〔5 〕${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
+    ------------------------
+    ${y}〔s 〕${end} ${c}➤ Sobre${end}
+    ${v}〔0 〕${end} ${c}➤ Sair${end}"
 echo
 echo -e " ${b} ============================ ${end}"
 echo
