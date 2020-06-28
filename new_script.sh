@@ -422,7 +422,7 @@ sobre () {
     Este script visa proporcionar um fácil acesso
     para automatização de tarefas interna
     dos CPDs da regional.
-     ${b}Notas${end}
+     ${b}Nota${end}
     Você precisa está conectado na rede interna 
     de sua filial, para o funcionamento.
     Se tentar utilizar o script sem conexão, você
