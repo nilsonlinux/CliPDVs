@@ -325,38 +325,54 @@ echo -e "$v=======================================$end"
 fi
 }
 # --------------
-
+### REINICIAR TODOS
+reinicializar_todos () {
+  secips=${1:-192.168.}
+for ip in `seq 25 26`
+do
+( ping -c 1 ${secips}${faixa}.${ip} )
+done
+echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+}
 # (3) Reiniciar todos os PDVs
+# Ping Check
 reiniciar_todos () {
   logoCliPDVs
-  echo -e " Você está certo em reiniciar todos os terminais da loja?${end}" && echo
-  echo -e " ${bu}Esta opção não pode ser desfeita.
- Confirme para prosseguir ${end}"
-  echo && echo -e " ${b}${r}FAÇA ESSA OPERAÇÃO COM CONCIÊNCIA... ${end}"
-  echo && echo -en " ${y}Deseja continuar? {s/n}${endc} "
-  read option
-  case $option in
-    s) echo && echo -e " Reiniciando ${b}Todos os Terminais${end}"; sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@$hosts "reboot"; Comando_feito_ok "Reiniciando" ;;
-    n) echo -e " ${y}OK. Retornando para o menu${endc}"; sleep 1;  ;;
-    *) echo " \"$option\" Opção inválida"; sleep 1; reiniciar_todos ;;
-  esac
+echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)
+---------------------------------------------------${end}
+  ${br}Reinicialização dos terminais 
+  por faixa de sua filial e aguarde${end}
+${r}--------------------------------------------------- ${end}"
+echo -e "DIGITE A${y} FAIXA DA FILIAL${end} ${r}QUE DESEJA REINICIAR: ${end}"
+read -p "$IPSERV." $read faixa
+echo -e "${r}===================================================${end}"
+echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛...${end}"
+sleep 2
+if ! ping -c 2 8.8.8 >> /dev/null ; then
+reinicializar_todos
+echo -e "$v=======================================$end" 
+else
+clear
+reinicializar_todos
+echo -e "$vr=======================================$end"  
+fi
 }
-
+##########
 # (3) Reiniciar todos os PDVs
 # (4) Atualizar todos os PDVs
+wait
 atualizar_todos () {
   logoCliPDVs
-  echo -e " Você está certo em atualizar todos os terminais da loja?${end}" && echo
-  echo -e " ${bu}Esta opção não pode ser desfeita.
- Confirme para prosseguir ${end}"
-  echo && echo -e " ${b}${r}VOCÊ CONFIRMA A ATUALIZAÇÃO DE TODOS OS TERMINAIS?.. ${end}"
-  echo && echo -en " ${y}Deseja continuar? {s/n}${endc} "
-  read option
-  case $option in
-    s) echo && echo -e " Atualizando ${b}Todos os Terminais${end}"; sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@$hosts "it-update-pdv.sh"; Comando_feito_ok "Reiniciando" ;;
-    n) echo -e " ${y}OK. Retornando para o menu${endc}"; sleep 1;  ;;
-    *) echo " \"$option\" Opção inválida"; sleep 1; reiniciar_todos ;;
-  esac
+echo -e "DIGITE A ${y}FAIXA${end} ${bu}QUE DESEJA FAZER O ATUALIZAR: ${end}"
+read -p "$IPSERV." $read faixa
+clear
+##########
+  IPSERV=${1:-192.168.}
+for ip in `seq 100 200`
+do
+  ( ping -c1 ${IPSERV}${faixa}.${ip} )
+done
 }
 # (4) Atualizar todos os PDVs
 # (5) Teste de ping PDVs
@@ -383,13 +399,13 @@ read -p "$IPSERV.$fx." $read ip
 echo -e "${bu}===================================================${end}"
 echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
 sleep 2
-if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
+if ! ping -c 2 $IPSERV.$faixa.$ip >> /dev/null ; then
 clear
-pingtest_check_off
+reinicializar_todos_erro
 echo -e "$v=======================================$end" 
 else
 clear
-pingtest_check_on
+reinicializar_todos
 fi
 }
 # --------------
