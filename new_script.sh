@@ -29,7 +29,7 @@ c='\E[36m'
 w='\E[37m'
 endc='\E[0m'
 end='\033[0m'
-version="2.4"
+version="2.3"
 spath="$( cd "$( dirname $0 )" && pwd )"
 # CliPDVs Logo
 logoCliPDVs () {
@@ -109,7 +109,7 @@ CLiCheck () {
   uversion=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/version.txt)
   if [[ $uversion > $version ]]; then
     echo -e " Checando atualização: ${r}Nova versão disponível"
-    echo && echo -e " Versão em uso: ${y}$version${endc} ${g} /  Nova versão${endc}${y}$uversion${endc}"
+    echo && echo -e " Versão em uso: ${y}$version${endc} ${g} ➤  Nova versão: ${endc}${y}$uversion${endc}"
     echo -e " ${bu}Changelog:${endc}\n$changelog"
     echo && echo -en " ${y}Continuar com a atualização? {s/n}${endc} "
     read option
