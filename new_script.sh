@@ -430,20 +430,17 @@ sobre () {
 while :
 do
 logoCliPDVs
-echo -e " ${b} =========== MENU =========== ${end}"
-echo -e " 
-    ${y}〔1 〕${end} ${c}➤ Reiniciar PDVs${end}
-    ${y}〔3 〕${end} ${c}➤ Atualizar PDVs${end}
-    ${y}〔3 〕${end} ${c}➤ Reiniciar PDVs${end} ${r}(Todos)${end}
-    ${y}〔4 〕${end} ${c}➤ Atualizar PDVs${end} ${r}(Todos)${end}
-    ${y}〔5 〕${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
-    ------------------------
-    ${y}〔s 〕${end} ${c}➤ Sobre${end}
-    ${v}〔0 〕${end} ${c}➤ Sair${end}"
-echo
-echo -e " ${b} ============================ ${end}"
-echo
-echo -en " Selecione uma opção: "
+echo -e " ${y} ========== MENU ========== ${end}
+  ${y}〔1 〕${end} ${c}➤ Reiniciar PDVs${end}
+  ${y}〔3 〕${end} ${c}➤ Atualizar PDVs${end}
+  ${y}〔3 〕${end} ${c}➤ Reiniciar PDVs${end} ${r}(Todos)${end}
+  ${y}〔4 〕${end} ${c}➤ Atualizar PDVs${end} ${r}(Todos)${end}
+  ${y}〔5 〕${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
+  ${y}------------------------${end}
+  ${y}〔s 〕${end} ${c}➤ Sobre${end}
+  ${y}〔0 〕${end} ${c}➤ Sair${end}"
+echo -e " ${y} ========================== ${end}"
+  echo -en "  Selecione uma opção: "
 read option
 case $option in
 1) reiniciar_pdvs ;;
