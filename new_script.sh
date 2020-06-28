@@ -339,10 +339,10 @@ echo -e "${r}===================================================${end}"
 echo -e "${y}⌛Aguarde enquanto executamos a reinicialização de todos os
 terminais da loja solicitada ⌛...${end}"
 ##########
-  IPSERV=${1:-192.168.}
+  IPSERVr=${1:-192.168.}
 for ip in `seq 100 105`
 do
-  ( sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@${IPSERV}${faixa}.${ip} "reboot"; )
+  ( sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@${IPSERVr}${faixa}.${ip} "reboot"; )
 done
 echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
 read input
@@ -363,10 +363,10 @@ echo -e "${r}===================================================${end}"
 echo -e "${y}⌛Aguarde enquanto executamos a atualização de todos os
 terminais da loja solicitada ⌛...${end}"
 ##########
-  IPSERV=${1:-192.168.}
+  IPSERVr=${1:-192.168.}
 for ip in `seq 100 105`
 do
-  ( ping -c1 ${IPSERV}${faixa}.${ip} )
+  ( ping -c1 ${IPSERVr}${faixa}.${ip} )
 done
 echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
 read input
