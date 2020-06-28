@@ -15,7 +15,7 @@ v="\033[0;31m"       #vermelho
 vr="\033[0;32m"      #Verde
 br="\033[0;37m"      #Branco
 # Variável com a lista de máquinas
-hosts='(PDV)'
+hosts='100/254'
 IPSERV='192.168'
 b='\033[1m'
 u='\033[4m'
@@ -432,7 +432,7 @@ do
 logoCliPDVs
 echo -e " ${y} ========== MENU ========== ${end}
   ${y}〔1 〕${end} ${c}➤ Reiniciar PDVs${end}
-  ${y}〔3 〕${end} ${c}➤ Atualizar PDVs${end}
+  ${y}〔2 〕${end} ${c}➤ Atualizar PDVs${end}
   ${y}〔3 〕${end} ${c}➤ Reiniciar PDVs${end} ${r}(Todos)${end}
   ${y}〔4 〕${end} ${c}➤ Atualizar PDVs${end} ${r}(Todos)${end}
   ${y}〔5 〕${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
