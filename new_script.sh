@@ -98,7 +98,7 @@ cliupdate () {
   read input
   echo && echo -e " Atualizando ${b}CliPDVs${end}, Por favor aguarde..."
   wget https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/new_script.sh -O $spath/new_script.sh &>/dev/null
-  sleep 1 && echo -e " ${b}CliPDVs${end} Atualização aplicada com sucesso"
+  sleep 1 && echo -e " ${b}CliPDVs${end} Atualização aplicada com sucesso "
   sleep 1 && echo -e " Restartando ${b}CliPDVs${end}..."
   sleep 2
   clirestart
@@ -108,8 +108,8 @@ CLiCheck () {
   changelog=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/changelog.txt)
   uversion=$(curl --silent -q https://raw.githubusercontent.com/nilsonlinux/CliPDVs/master/version.txt)
   if [[ $uversion > $version ]]; then
-    echo -e " Checando atualização: ${r}Nova versão disponível"
-    echo && echo -e " Versão em uso: ${y}$version${endc} Nova versão: ${y}$uversion${endc}"
+    echo -e " Checando atualização: ${r}✉ Nova versão disponível ✉"
+    echo && echo -e " Versão em uso:☹ ${y}$version${endc} ${g}⎟ Nova versão ★ ${endc}${y}$uversion${endc}"
     echo -e " ${bu}Changelog:${endc}\n$changelog"
     echo && echo -en " ${y}Continuar com a atualização? {s/n}${endc} "
     read option
