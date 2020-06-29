@@ -123,70 +123,7 @@ CLiCheck () {
     aptgupd
   fi
 }
-# Retorno para o comando reboot que obteve sucesso...
-Comando_reboot_ok () {
-echo -e "$vr======================================== $end"
-echo -e "$vr         TERMINAL CONECTADO.  $end "
-echo -e "$vr======================================== $end"
-sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "reboot";
-echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
-echo -e "$a IP $end -$bu $IPSERV.$fx.$ip $end- $vr Conectado ✔$end"
-echo -e "$vr======================================== $end"
-echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
-echo -e "$vr======================================== $end"
-echo -e "${vr}Retornando para o menu principal.
-⌛Por favor aguarde ⌛${endc}"
-sleep 5
-}
-# Retorno para o comando reboot que obteve erro...
-Comando_reboot_erro () {
-echo -e "$v======================================= $end"
-echo -e "$v       TERMINAL DESCONECTADO.           $end"
-echo -e "$v======================================= $end"
-echo -e "$v      _____ ____  ____   ___    _       $end"
-echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
-echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
-echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
-echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
-echo && echo -e "$v======================================= $end"
-echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
-echo -e "$a IP $end-$bu $IPSERV.$fx.$ip $end- $v Sem conexão ✗$end" 
-echo -e "$v======================================= $end"
-echo -en "${y}Precione enter para retornar para o manu.${endc}"
-read input
-}
-# Retorno para o comando it-update-pdv.sh que obteve sucesso...
-Comando_updatepdv_ok () {
-echo -e "$vr======================================== $end"
-echo -e "$vr         TERMINAL CONECTADO.  $end "
-echo -e "$vr======================================== $end"
-sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "it-update-pdv.sh";
-echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
-echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $vr Conectado$end"
-echo -e "$vr======================================== $end"
-echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
-echo -e "$vr======================================== $end"
-echo -e "${vr}Retornando para o menu principal.
-Por favor aguarde...${endc}"
-sleep 5
-}
 # Retorno para o comando it-update-pdv.sh que obteve erro...
-Comando_updatepdv_erro () {
-echo -e "$v======================================= $end"
-echo -e "$v       TERMINAL DESCONECTADO.           $end"
-echo -e "$v======================================= $end"
-echo -e "$v      _____ ____  ____   ___    _       $end"
-echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
-echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
-echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
-echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
-echo && echo -e "$v======================================= $end"
-echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
-echo -e "$a IP $end-$bu $IPSERV.$fx.$ip $end- $v Sem conexão ✗$end" 
-echo -e "$v======================================= $end"
-echo -en "${y}Precione enter para retornar para o manu.${endc}"
-read input
-}
 # Ping Check ###########################################################
 pingtest_check_on () {
 echo -e "$vr======================================= $end"  
@@ -274,15 +211,37 @@ echo -e "DIGITE O ${y}FINAL DO IP${end} ${r}QUE DESEJA REINICIAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo -e "${r}===================================================${end}"
 echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛...${end}"
-sleep 2
-clear
-if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
-Comando_reboot_erro
+sleep 1
+if ! ping -c 1 $IPSERV.$fx.$ip >> /dev/null ; then
+echo -e "$v======================================= $end"
+echo -e "$v       TERMINAL DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo && echo -e "$v======================================= $end"
+echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
+echo -e "$a IP $end-$bu $IPSERV.$fx.$ip $end- $v Sem conexão ✗$end" 
+echo -e "$v======================================= $end"
+echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
 echo -e "$v=======================================$end" 
 else
 clear
-Comando_reboot_ok
-echo -e "$vr=======================================$end"  
+echo -e "$vr======================================== $end"
+echo -e "$vr         TERMINAL CONECTADO.  $end "
+echo -e "$vr======================================== $end"
+sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "reboot";
+echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
+echo -e "$a IP $end -$bu $IPSERV.$fx.$ip $end- $vr Conectado ✔$end"
+echo -e "$vr======================================== $end"
+echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$vr======================================== $end"
+echo -e "${vr}Retornando para o menu principal.
+⌛Por favor aguarde ⌛${endc}"
+sleep 5
 fi
 }
 # --------------
@@ -314,14 +273,37 @@ echo -e "DIGITE O ${c}FINAL DO IP${end} ${br}QUE DESEJA ATUALIZAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo -e "${bu}===================================================${end}"
 echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛...${end}"
-sleep 2
+sleep 1
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
-Comando_updatepdv_erro
+echo -e "$v======================================= $end"
+echo -e "$v       TERMINAL DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo && echo -e "$v======================================= $end"
+echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
+echo -e "$a IP $end-$bu $IPSERV.$fx.$ip $end- $v Sem conexão ✗$end" 
+echo -e "$v======================================= $end"
+echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
 echo -e "$v=======================================$end" 
 else
 clear
-Comando_updatepdv_ok
-echo -e "$v=======================================$end"  
+echo -e "$vr======================================== $end"
+echo -e "$vr         TERMINAL CONECTADO.  $end "
+echo -e "$vr======================================== $end"
+sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "it-update-pdv.sh";
+echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
+echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $vr Conectado$end"
+echo -e "$vr======================================== $end"
+echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$vr======================================== $end"
+echo -e "${vr}Retornando para o menu principal.
+Por favor aguarde...${endc}"
+sleep 5
 fi
 }
 # --------------
