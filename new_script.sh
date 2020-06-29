@@ -123,37 +123,6 @@ CLiCheck () {
     aptgupd
   fi
 }
-# Retorno para o comando it-update-pdv.sh que obteve erro...
-# Ping Check ###########################################################
-pingtest_check_on () {
-echo -e "$vr======================================= $end"  
-echo -e "$vr         TERMINAL CONECTADO.  $end "
-echo -e "$vr======================================= $end"  
-echo -e "$vr======[ $br Status da requisição $ec $vr]======     $end"
-echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $vr Conectado ✔$end"      
-echo -e "$vr======================================= $end"
-ping -c 5 $IPSERV.$fx.$ip
-echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
-read input
-}
-# RETORNO PARA COMANDO QUE OBTEVE SUCESSO EM SUA REQUISIÇÃO
-pingtest_check_off () {
-echo -e "$v======================================= $end"
-echo -e "$v       TERMINAL DESCONECTADO.           $end"
-echo -e "$v======================================= $end"
-echo -e "$v      _____ ____  ____   ___    _       $end"
-echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
-echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
-echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
-echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
-echo && echo -e "$v======================================= $end"
-echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
-echo -e "$a IP $end-$bu $IPSERV.$fx.$ip $end- $v Sem conexão ✗$end" 
-echo -e "$v======================================= $end"
-echo -en "${y}Precione enter para retornar para o manu.${endc}"
-read input
-}
-# Ping Check
 ##################
 # INICIALIZAÇÃO DO SCRIPT
 logoCliPDVs && echo -e " ${y}Inicializando CliPDVs . . .${endc}" && checkinternet
@@ -183,7 +152,6 @@ installfirefox () {
 
 # -------------------------------------------------------
 # Script Menus
-
 # (1) Reiniciar PDVs
 reiniciar_pdvs () {
   logoCliPDVs
@@ -210,9 +178,10 @@ ${r}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${y}FINAL DO IP${end} ${r}QUE DESEJA REINICIAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo -e "${r}===================================================${end}"
-echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛...${end}"
+echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛${end}"
 sleep 1
 if ! ping -c 1 $IPSERV.$fx.$ip >> /dev/null ; then
+clear
 echo -e "$v======================================= $end"
 echo -e "$v       TERMINAL DESCONECTADO.           $end"
 echo -e "$v======================================= $end"
@@ -239,7 +208,7 @@ echo -e "$a IP $end -$bu $IPSERV.$fx.$ip $end- $vr Conectado ✔$end"
 echo -e "$vr======================================== $end"
 echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
 echo -e "$vr======================================== $end"
-echo -e "${vr}Retornando para o menu principal.
+echo -e "${y}Retornando para o menu principal.
 ⌛Por favor aguarde ⌛${endc}"
 sleep 5
 fi
@@ -272,9 +241,10 @@ ${c}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${c}FINAL DO IP${end} ${br}QUE DESEJA ATUALIZAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo -e "${bu}===================================================${end}"
-echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛...${end}"
+echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛ ${end}"
 sleep 1
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
+clear
 echo -e "$v======================================= $end"
 echo -e "$v       TERMINAL DESCONECTADO.           $end"
 echo -e "$v======================================= $end"
@@ -301,8 +271,8 @@ echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $vr Conectado$end"
 echo -e "$vr======================================== $end"
 echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
 echo -e "$vr======================================== $end"
-echo -e "${vr}Retornando para o menu principal.
-Por favor aguarde...${endc}"
+echo -e "${y}Retornando para o menu principal.
+⌛Por favor aguarde ⌛${endc}"
 sleep 5
 fi
 }
@@ -319,7 +289,7 @@ echo -e "DIGITE A${y} FAIXA DA FILIAL${end} ${r}QUE DESEJA REINICIAR: ${end}"
 read -p "$IPSERV." $read faixa
 echo -e "${r}===================================================${end}"
 echo -e "${y}⌛Aguarde enquanto executamos a reinicialização de todos os
-terminais da loja solicitada ⌛...${end}"
+terminais da loja solicitada ⌛${end}"
 ##########
   IPSERVr=${1:-192.168.}
 for ip in `seq 100 105`
@@ -342,8 +312,8 @@ ${r}--------------------------------------------------- ${end}"
 echo -e "DIGITE A${y} FAIXA DA FILIAL${end} ${r}QUE DESEJA ATUALIZAR: ${end}"
 read -p "$IPSERV." $read faixa
 echo -e "${r}===================================================${end}"
-echo -e "${y}⌛Aguarde enquanto executamos a atualização de todos os
-terminais da loja solicitada ⌛...${end}"
+echo -e "${bu}⌛Aguarde enquanto executamos a atualização de todos os
+terminais da loja solicitada ⌛${end}"
 ##########
   IPSERVr=${1:-192.168.}
 for ip in `seq 100 105`
@@ -375,15 +345,36 @@ ${bu}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${a}FINAL DO IP${end} ${bu}QUE DESEJA FAZER O TESTE DE CONEXÃO: ${end}"
 read -p "$IPSERV.$fx." $read ip
 echo -e "${bu}===================================================${end}"
-echo -e "${y}Aguarde enquanto testamos conexão com o terminal...${end}"
+echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛${end}"
 sleep 2
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
 clear
-pingtest_check_off
+echo -e "$v======================================= $end"
+echo -e "$v       TERMINAL DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo && echo -e "$v======================================= $end"
+echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
+echo -e "$a IP $end-$bu $IPSERV.$fx.$ip $end- $v Sem conexão ✗$end" 
+echo -e "$v======================================= $end"
+echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
 echo -e "$v=======================================$end" 
 else
 clear
-pingtest_check_on
+echo -e "$vr======================================= $end"  
+echo -e "$vr         TERMINAL CONECTADO.  $end "
+echo -e "$vr======================================= $end"  
+echo -e "$vr======[ $br Status da requisição $ec $vr]======     $end"
+echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $vr Conectado ✔$end"      
+echo -e "$vr======================================= $end"
+ping -c 5 $IPSERV.$fx.$ip
+echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
 fi
 }
 # --------------
