@@ -540,9 +540,9 @@ logoCliPDVs
 echo -e " ${y} ========== MENU ========== ${end}
   ${y}〔1 〕${end} ${c}➤ Reiniciar PDVs${end}
   ${y}〔2 〕${end} ${c}➤ Atualizar PDVs${end}
-  ${y}〔3 〕${end} ${c}➤ Reiniciar PDVs${end} ${r}(Todos)${end}
-  ${y}〔4 〕${end} ${c}➤ Atualizar PDVs${end} ${r}(Todos)${end}
-  ${y}〔5 〕${end} ${c}➤ Desligar PDVs${end}
+  ${y}〔3 〕${end} ${c}➤ Desligar PDVs${end}
+  ${y}〔4 〕${end} ${c}➤ Reiniciar PDVs${end} ${r}(Todos)${end}
+  ${y}〔5 〕${end} ${c}➤ Atualizar PDVs${end} ${r}(Todos)${end}
   ${y}〔6 〕${end} ${c}➤ Desligar PDVs${end} ${r}(Todos)${end}
   ${y}〔7 〕${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
   ${y}------------------------${end}
@@ -554,10 +554,10 @@ read option
 case $option in
 1) reiniciar_pdvs ;;
 2) atualizar_pdvs ;;
-3) reiniciar_todos ;;
-4) atualizar_todos ;;
-5) desligar_pdvs ;;
-6) desligar_todos ;;
+3) desligar_pdvs ;;
+4) reiniciar_todos ;;
+5) atualizar_todos ;;
+6) desligar_pdvs ;;
 7) ping_test ;;
 s) sobre ;;
 0) CliExit ;;
