@@ -125,7 +125,7 @@ CLiCheck () {
 }
 ##################
 # INICIALIZAÇÃO DO SCRIPT
-logoCliPDVs && echo -e " ${y}Inicializando CliPDVs . . .${endc}" && checkinternet
+logoCliPDVs && echo -e " ${y}Inicializando CliPDVs...${endc}" && checkinternet
 # -------------------------------------------------------
 
 # (7-2) Install Mozilla Firefox
@@ -214,7 +214,6 @@ sleep 5
 fi
 }
 # --------------
-# --------------
 # (1) Atualizar PDVs
 atualizar_pdvs () {
   logoCliPDVs
@@ -276,7 +275,6 @@ echo -e "${y}Retornando para o menu principal.
 sleep 5
 fi
 }
-# --------------
 # (3) Reiniciar todos os PDVs
 wait
 reiniciar_todos () {
@@ -305,20 +303,25 @@ read input
 wait
 atualizar_todos () {
   logoCliPDVs
-echo -e "---------------------------------------------------${end}
+echo -e "${bu}---------------------------------------------------${end}
   ${br}Atualização dos terminais 
   por faixa de sua filial${end}
-${r}--------------------------------------------------- ${end}"
-echo -e "DIGITE A${y} FAIXA DA FILIAL${end} ${r}QUE DESEJA ATUALIZAR: ${end}"
+${bu}--------------------------------------------------- ${end}"
+echo -e "DIGITE A${y} FAIXA DA FILIAL${end} ${bu}QUE DESEJA ATUALIZAR: ${end}"
 read -p "$IPSERV." $read faixa
-echo -e "${r}===================================================${end}"
+echo -e "${bu}===================================================${end}"
 echo -e "${bu}⌛Aguarde enquanto executamos a atualização de todos os
 terminais da loja solicitada ⌛${end}"
+echo -e "${bu}---------------------------------------------------${end}"
+clear
 ##########
-  IPSERVr=${1:-192.168.}
-for ip in `seq 100 105`
+# Variável com a final dos ips de cada terminal
+pdvs_ips='25 138 110 111 112'
+for pdvs_ips in ${pdvs_ips}
 do
-  ( ping -c1 ${IPSERVr}${faixa}.${ip} )
+    echo -e "${bu}Atualizando terminal${end} ${g}IP${end} - ${vr}${IPSERV}.${faixa}.${pdvs_ips}${endc} ⌛"
+    ping -c 1 ${IPSERV}.${faixa}.${pdvs_ips}
+    echo -e '\n'
 done
 echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
 read input
