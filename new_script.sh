@@ -15,7 +15,6 @@ v="\033[0;31m"       #vermelho
 vr="\033[0;32m"      #Verde
 br="\033[0;37m"      #Branco
 # Variável com a lista de máquinas
-hosts='100/254'
 IPSERV='192.168'
 b='\033[1m'
 u='\033[4m'
@@ -279,27 +278,107 @@ fi
 wait
 reiniciar_todos () {
   logoCliPDVs
-echo -e "---------------------------------------------------${end}
+echo -e "${v}---------------------------------------------------${end}
   ${br}Reinicialização dos terminais 
-  por faixa de sua filial${end}
-${r}--------------------------------------------------- ${end}"
-echo -e "DIGITE A${y} FAIXA DA FILIAL${end} ${r}QUE DESEJA REINICIAR: ${end}"
-read -p "$IPSERV." $read faixa
-echo -e "${r}===================================================${end}"
-echo -e "${y}⌛Aguarde enquanto executamos a reinicialização de todos os
-terminais da loja solicitada ⌛${end}"
-##########
-  IPSERVr=${1:-192.168.}
-for ip in `seq 100 105`
+  por faixa.${end}
+${v}--------------------------------------------------- ${end}"
+echo -e " DIGITE A${y} FAIXA DA FILIAL${end} ${v}QUE DESEJA REINICIALIZAR OS TERMINAIS: ${end}"
+echo -e " Caso queira desistir${y}, apenas deixe o campo em branco e dê enter... ${end}"
+read -p " $IPSERV." $read faixa
+clear
+echo -e "${v}--------------------------------------------------- ${end}"
+echo -e "${y}⌛Aguarde enquanto executo o comando 
+${v}reboot${end} ${y}em todos os terminais ⌛ ${end}
+${v}--------------------------------------------------- ${end}"
+##############
+pdvs_ips='1 6'
+for pdvs_ips in ${pdvs_ips}
 do
-  ( sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@${IPSERVr}${faixa}.${ip} "reboot"; )
+    echo -e "${v}Reiniciando terminal${end} ${g}IP${end} - ${vr}${IPSERV}.${faixa}.${pdvs_ips}${endc} ⌛"
+    sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@${IPSERV}.${faixa}.${pdvs_ips} "reboot";
+    echo -e '\n'
 done
+#############
+clear
+echo -e "$v======================================== $end"
+echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$v======================================== $end"
+#############
 echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
 read input
 }
 ##########
-# (3) Reiniciar todos os PDVs
-# (4) Atualizar todos os PDVs
+
+
+
+
+
+
+
+
+# (1) Desligar PDVs
+desligar_pdvs () {
+  logoCliPDVs
+echo -e " ${r}DESLIGAMENTO DOS TERMINAIS (CliPDVs)
+---------------------------------------------------${end}
+  ${br}Desligamento dos terminais 
+  por faixa (IP). Digite a faixa de sua filial, 
+  depois dê enter para digitar o IP final 
+  do terminal${end}
+${r}--------------------------------------------------- ${end}"
+echo -e "DIGITE A ${y}FAIXA${end} ${r}REFERÊNTE A SUA FILIAL: ${end}"
+read -p "$IPSERV." $read fx
+clear
+##########
+  clear
+logoCliPDVs
+echo -e " ${r}DESLIGAMENTO DOS TERMINAIS (CliPDVs)
+---------------------------------------------------${end}
+  ${br}Desligamento dos terminais 
+  por faixa (IP). Digite a faixa de sua filial, 
+  depois dê enter para digitar o IP final 
+  do terminal${end}
+${r}--------------------------------------------------- ${end}"
+echo -e "DIGITE O ${y}FINAL DO IP${end} ${r}QUE DESEJA DESLIGAR: ${end}"
+read -p "$IPSERV.$fx." $read ip
+echo -e "${r}===================================================${end}"
+echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛${end}"
+sleep 1
+if ! ping -c 1 $IPSERV.$fx.$ip >> /dev/null ; then
+clear
+echo -e "$v======================================= $end"
+echo -e "$v       TERMINAL DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo && echo -e "$v======================================= $end"
+echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
+echo -e "$a IP $end-$bu $IPSERV.$fx.$ip $end- $v Sem conexão ✗$end" 
+echo -e "$v======================================= $end"
+echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+echo -e "$v=======================================$end" 
+else
+clear
+echo -e "$vr======================================== $end"
+echo -e "$vr         TERMINAL CONECTADO.  $end "
+echo -e "$vr======================================== $end"
+sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "halt";
+echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
+echo -e "$a IP $end -$bu $IPSERV.$fx.$ip $end- $vr Conectado ✔$end"
+echo -e "$vr======================================== $end"
+echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$vr======================================== $end"
+echo -e "${y}Retornando para o menu principal.
+⌛Por favor aguarde ⌛${endc}"
+sleep 5
+fi
+}
+# -------------
+################################### (4) Atualizar todos os PDVs ######################################
 wait
 atualizar_todos () {
   logoCliPDVs
@@ -307,26 +386,66 @@ echo -e "${bu}---------------------------------------------------${end}
   ${br}Atualização dos terminais 
   por faixa de sua filial${end}
 ${bu}--------------------------------------------------- ${end}"
-echo -e "DIGITE A${y} FAIXA DA FILIAL${end} ${bu}QUE DESEJA ATUALIZAR: ${end}"
-read -p "$IPSERV." $read faixa
-echo -e "${bu}===================================================${end}"
-echo -e "${bu}⌛Aguarde enquanto executamos a atualização de todos os
-terminais da loja solicitada ⌛${end}"
-echo -e "${bu}---------------------------------------------------${end}"
+echo -e " DIGITE A${y} FAIXA DA FILIAL${end} ${bu}QUE DESEJA ATUALIZAR: ${end}"
+echo -e " Caso queira desistir${y}, apenas deixe o campo em branco e dê enter... ${end}"
+read -p " $IPSERV." $read faixa
 clear
-##########
-# Variável com a final dos ips de cada terminal
-pdvs_ips='25 138 110 111 112'
+echo -e "${bu}--------------------------------------------------- ${end}"
+echo -e "${y}⌛Aguarde enquanto executo o comando 
+${bu}it-update-pdv.sh${end} ${y}em todos os terminais ⌛ ${end}
+${bu}--------------------------------------------------- ${end}"
+##############
+pdvs_ips='1 6'
 for pdvs_ips in ${pdvs_ips}
 do
     echo -e "${bu}Atualizando terminal${end} ${g}IP${end} - ${vr}${IPSERV}.${faixa}.${pdvs_ips}${endc} ⌛"
-    ping -c 1 ${IPSERV}.${faixa}.${pdvs_ips}
+    sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@${IPSERV}.${faixa}.${pdvs_ips} "it-update-pdv.sh";
     echo -e '\n'
 done
+#############
+clear
+echo -e "$vr======================================== $end"
+echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$vr======================================== $end"
+#############
 echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
 read input
 }
-# (4) Atualizar todos os PDVs
+################################### (4) Atualizar todos os PDVs ######################################
+################################### (4) Desligar todos os PDVs ######################################
+wait
+desligar_todos () {
+  logoCliPDVs
+echo -e "${v}---------------------------------------------------${end}
+  ${v}Desligamento dos terminais 
+  por faixa de sua filial${end}
+${v}--------------------------------------------------- ${end}"
+echo -e " DIGITE A${y} FAIXA DA FILIAL${end} ${v}QUE DESEJA DESLIGAR: ${end}"
+echo -e " Caso queira desistir${y}, apenas deixe o campo em branco e dê enter... ${end}"
+read -p " $IPSERV." $read faixa
+clear
+echo -e "${v}--------------------------------------------------- ${end}"
+echo -e "${y}⌛Aguarde enquanto executo o comando 
+${v}halt${end} ${y}em todos os terminais ⌛ ${end}
+${v}--------------------------------------------------- ${end}"
+##############
+pdvs_ips='1 6'
+for pdvs_ips in ${pdvs_ips}
+do
+    echo -e "${bu}Desligando terminal${end} ${g}IP${end} - ${vr}${IPSERV}.${faixa}.${pdvs_ips}${endc} ⌛"
+    sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@${IPSERV}.${faixa}.${pdvs_ips} "halt";
+    echo -e '\n'
+done
+#############
+clear
+echo -e "$v======================================== $end"
+echo -e "$v    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$v======================================== $end"
+#############
+echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+}
+################################### (4) Desligar todos os PDVs ######################################
 # (5) Teste de ping PDVs
 ping_test () {
   logoCliPDVs
@@ -423,7 +542,9 @@ echo -e " ${y} ========== MENU ========== ${end}
   ${y}〔2 〕${end} ${c}➤ Atualizar PDVs${end}
   ${y}〔3 〕${end} ${c}➤ Reiniciar PDVs${end} ${r}(Todos)${end}
   ${y}〔4 〕${end} ${c}➤ Atualizar PDVs${end} ${r}(Todos)${end}
-  ${y}〔5 〕${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
+  ${y}〔5 〕${end} ${c}➤ Desligar PDVs${end}
+  ${y}〔6 〕${end} ${c}➤ Desligar PDVs${end} ${r}(Todos)${end}
+  ${y}〔7 〕${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
   ${y}------------------------${end}
   ${y}〔s 〕${end} ${c}➤ Sobre${end}
   ${y}〔0 〕${end} ${c}➤ Sair${end}"
@@ -435,7 +556,9 @@ case $option in
 2) atualizar_pdvs ;;
 3) reiniciar_todos ;;
 4) atualizar_todos ;;
-5) ping_test ;;
+5) desligar_pdvs ;;
+6) desligar_todos ;;
+7) ping_test ;;
 s) sobre ;;
 0) CliExit ;;
 *) echo " \"$option\" Opção inválida"; sleep 1 ;;
