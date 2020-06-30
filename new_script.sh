@@ -15,6 +15,7 @@ v="\033[0;31m"       #vermelho
 vr="\033[0;32m"      #Verde
 br="\033[0;37m"      #Branco
 # Variável com a lista de máquinas
+gmcore='6.36'
 IPSERV='192.168'
 b='\033[1m'
 u='\033[4m'
@@ -534,6 +535,50 @@ echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
 read input
 fi
 }
+# (1) GMCORE
+gmcore () {
+  logoCliPDVs
+echo -e " ${vr}ACESSO GMCORE (CliPDVs)
+---------------------------------------------------${end}
+  ${br}Acesso ao gmcore por faixa.${end}
+${vr}--------------------------------------------------- ${end}"
+echo -e "${r}===================================================${end}"
+echo -e "${y}⌛Aguarde enquanto testamos conexão com o servidor ⌛${end}"
+sleep 1
+if ! ping -c 1 $IPSERV.$faixa.$gmcore >> /dev/null ; then
+clear
+echo -e "$v======================================= $end"
+echo -e "$v       SERVIDOR DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo && echo -e "$v======================================= $end"
+echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
+echo -e "$a IP $end-$bu $IPSERV.$gmcore $end- $v Sem conexão ✗$end" 
+echo -e "$v======================================= $end"
+echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+echo -e "$v=======================================$end" 
+else
+clear
+echo -e "$vr======================================== $end"
+echo -e "$vr         SERVIDOR CONECTADO.  $end "
+echo -e "$vr======================================== $end"
+xfreerdp /v:192.168.6.36 /size:1366x705
+echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
+echo -e "$a IP $end -$bu $IPSERV.$gmcore $end- $vr Conectado ✔$end"
+echo -e "$vr======================================== $end"
+echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$vr======================================== $end"
+echo -e "${y}Retornando para o menu principal.
+⌛Por favor aguarde ⌛${endc}"
+sleep 5
+fi
+}
+# --------------
 # --------------
 # Show About
 sobre () {
@@ -579,8 +624,9 @@ echo -e " ${y}❖============ MENU ============❖${end}
   ${y}[ 4 ]${end} ${c}➤ Reiniciar PDVs${end} ${r}(Todos)${end}
   ${y}[ 5 ]${end} ${c}➤ Atualizar PDVs${end} ${r}(Todos)${end}
   ${y}[ 6 ]${end} ${c}➤ Desligar PDVs${end} ${r}(Todos)${end}
-  ${y}[ 7 ]${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
-  ${y}[ 8 ]${end} ${c}➤ Teste de conexão${end} ${vr}(LINK-IP)${end}
+  ${y}[ 7 ]${end} ${c}➤ Gm core${end}
+  ${y}[ 8 ]${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
+  ${y}[ 9 ]${end} ${c}➤ Teste de conexão${end} ${vr}(LINK-IP)${end}
   ${y} ---------------------------- ${end}
   ${y}[ s ]${end} ${c}➤ Sobre${end}
   ${y}[ 0 ]${end} ${c}➤ Sair${end}"
@@ -594,8 +640,9 @@ case $option in
 4) reiniciar_todos ;;
 5) atualizar_todos ;;
 6) desligar_todos ;;
-7) ping_test ;;
-8) ping_test_ip_link ;;
+7) gmcore ;;
+8) ping_test ;;
+9) ping_test_ip_link ;;
 s) sobre ;;
 0) CliExit ;;
 *) echo " \"$option\" Opção inválida"; sleep 1 ;;
