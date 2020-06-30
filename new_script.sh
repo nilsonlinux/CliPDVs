@@ -308,18 +308,10 @@ echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
 read input
 }
 ##########
-
-
-
-
-
-
-
-
 # (1) Desligar PDVs
 desligar_pdvs () {
   logoCliPDVs
-echo -e " ${r}DESLIGAMENTO DOS TERMINAIS (CliPDVs)
+echo -e " ${r}🚨 DESLIGAMENTO DOS TERMINAIS (CliPDVs)🚨
 ---------------------------------------------------${end}
   ${br}Desligamento dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
@@ -332,7 +324,7 @@ clear
 ##########
   clear
 logoCliPDVs
-echo -e " ${r}DESLIGAMENTO DOS TERMINAIS (CliPDVs)
+echo -e " ${r}🚨 DESLIGAMENTO DOS TERMINAIS (CliPDVs)🚨
 ---------------------------------------------------${end}
   ${br}Desligamento dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
@@ -416,10 +408,9 @@ read input
 wait
 desligar_todos () {
   logoCliPDVs
-echo -e "${v}---------------------------------------------------${end}
-  ${v}Desligamento dos terminais 
-  por faixa de sua filial${end}
-${v}--------------------------------------------------- ${end}"
+echo -e "${v}---------------------------------------------------${end}"
+echo -e "${r}🚨 DESLIGAMENTO DOS TERMINAIS (CliPDVs)🚨"
+echo -e "${v}--------------------------------------------------- ${end}"
 echo -e " DIGITE A${y} FAIXA DA FILIAL${end} ${v}QUE DESEJA DESLIGAR: ${end}"
 echo -e " Caso queira desistir${y}, apenas deixe o campo em branco e dê enter... ${end}"
 read -p " $IPSERV." $read faixa
@@ -600,7 +591,7 @@ case $option in
 3) desligar_pdvs ;;
 4) reiniciar_todos ;;
 5) atualizar_todos ;;
-6) desligar_pdvs ;;
+6) desligar_todos ;;
 7) ping_test ;;
 8) ping_test_ip_link ;;
 s) sobre ;;
