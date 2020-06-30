@@ -206,7 +206,7 @@ sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "reboot";
 echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
 echo -e "$a IP $end -$bu $IPSERV.$fx.$ip $end- $vr Conectado ✔$end"
 echo -e "$vr======================================== $end"
-echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$vr    COMANDO EXECUTADO COM SUCESSO... $end"
 echo -e "$vr======================================== $end"
 echo -e "${y}Retornando para o menu principal.
 ⌛Por favor aguarde ⌛${endc}"
@@ -268,7 +268,7 @@ sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "it-update-p
 echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
 echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $vr Conectado$end"
 echo -e "$vr======================================== $end"
-echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$vr    COMANDO EXECUTADO COM SUCESSO... $end"
 echo -e "$vr======================================== $end"
 echo -e "${y}Retornando para o menu principal.
 ⌛Por favor aguarde ⌛${endc}"
@@ -293,7 +293,7 @@ echo -e "${y}⌛Aguarde enquanto executo o comando
 ${v}reboot${end} ${y}em todos os terminais ⌛ ${end}
 ${v}--------------------------------------------------- ${end}"
 ##############
-pdvs_ips='1 6'
+pdvs_ips='139 131 122 123 124 25 102 103 104 105 107 120 133 110 11 112 113 114 130 116 55 59 117 225 132 138 128'
 for pdvs_ips in ${pdvs_ips}
 do
     echo -e "${v}Reiniciando terminal${end} ${g}IP${end} - ${vr}${IPSERV}.${faixa}.${pdvs_ips}${endc} ⌛"
@@ -303,7 +303,7 @@ done
 #############
 clear
 echo -e "$v======================================== $end"
-echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$vr    COMANDO EXECUTADO COM SUCESSO... $end"
 echo -e "$v======================================== $end"
 #############
 echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
@@ -364,7 +364,7 @@ sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "halt";
 echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
 echo -e "$a IP $end -$bu $IPSERV.$fx.$ip $end- $vr Conectado ✔$end"
 echo -e "$vr======================================== $end"
-echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$vr    COMANDO EXECUTADO COM SUCESSO... $end"
 echo -e "$vr======================================== $end"
 echo -e "${y}Retornando para o menu principal.
 ⌛Por favor aguarde ⌛${endc}"
@@ -390,7 +390,7 @@ echo -e "${y}⌛Aguarde enquanto executo o comando
 ${bu}it-update-pdv.sh${end} ${y}em todos os terminais ⌛ ${end}
 ${bu}--------------------------------------------------- ${end}"
 ##############
-pdvs_ips='1 6'
+pdvs_ips='139 131 122 123 124 25 102 103 104 105 107 120 133 110 11 112 113 114 130 116 55 59 117 225 132 138 128'
 for pdvs_ips in ${pdvs_ips}
 do
     echo -e "${bu}Atualizando terminal${end} ${g}IP${end} - ${vr}${IPSERV}.${faixa}.${pdvs_ips}${endc} ⌛"
@@ -400,7 +400,7 @@ done
 #############
 clear
 echo -e "$vr======================================== $end"
-echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$vr    COMANDO EXECUTADO COM SUCESSO... $end"
 echo -e "$vr======================================== $end"
 #############
 echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
@@ -423,7 +423,7 @@ echo -e "${y}⌛Aguarde enquanto executo o comando
 ${v}halt${end} ${y}em todos os terminais ⌛ ${end}
 ${v}--------------------------------------------------- ${end}"
 ##############
-pdvs_ips='1 6'
+pdvs_ips='139 131 122 123 124 25 102 103 104 105 107 120 133 110 11 112 113 114 130 116 55 59 117 225 132 138 128'
 for pdvs_ips in ${pdvs_ips}
 do
     echo -e "${bu}Desligando terminal${end} ${g}IP${end} - ${vr}${IPSERV}.${faixa}.${pdvs_ips}${endc} ⌛"
@@ -433,13 +433,172 @@ done
 #############
 clear
 echo -e "$v======================================== $end"
-echo -e "$v    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$v    COMANDO EXECUTADO COM SUCESSO... $end"
 echo -e "$v======================================== $end"
 #############
 echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
 read input
 }
-################################### (4) Desligar todos os PDVs ######################################
+
+
+# (1) Atualizar PDVs
+atualizar_imagem () {
+  logoCliPDVs
+echo -e " ${c}ATUALIZAÇÃO DE IMAGEM DOS TERMINAIS (CliPDVs)
+---------------------------------------------------${end}
+  ${br}Atualização de imagem dos terminais 
+  por faixa (IP). Digite a faixa de sua filial, 
+  depois dê enter para digitar o IP final 
+  do terminal${end}
+${c}--------------------------------------------------- ${end}"
+echo -e "DIGITE A ${c}FAIXA${end} ${br}REFERÊNTE A SUA FILIAL: ${end}"
+read -p "$IPSERV." $read fx
+clear
+##########
+  clear
+  logoCliPDVs
+echo -e " ${c}ATUALIZAÇÃO DE IMAGEM DOS TERMINAIS (CliPDVs)
+---------------------------------------------------${end}
+  ${br}Atualização de imagem dos terminais 
+  por faixa (IP). Digite a faixa de sua filial, 
+  depois dê enter para digitar o IP final 
+  do terminal${end}
+${c}--------------------------------------------------- ${end}"
+echo -e "DIGITE O ${c}FINAL DO IP${end} ${br}QUE DESEJA ATUALIZAR IMAGEM: ${end}"
+read -p "$IPSERV.$fx." $read ip
+echo -e "${bu}===================================================${end}"
+echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛ ${end}"
+sleep 1
+if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
+clear
+echo -e "$v======================================= $end"
+echo -e "$v       TERMINAL DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo && echo -e "$v======================================= $end"
+echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
+echo -e "$a IP $end-$bu $IPSERV.$fx.$ip $end- $v Sem conexão ✗$end" 
+echo -e "$v======================================= $end"
+echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+echo -e "$v=======================================$end" 
+else
+clear
+echo -e "$vr======================================== $end"
+echo -e "$vr         TERMINAL CONECTADO.  $end "
+echo -e "$vr======================================== $end"
+sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "it-update-imagens.sh";
+echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
+echo -e "$a IP $end - $bu $IPSERV.$fx.$ip $end - $vr Conectado$end"
+echo -e "$vr======================================== $end"
+echo -e "$vr    COMANDO EXECUTADO COM SUCESSO... $end"
+echo -e "$vr======================================== $end"
+echo -e "${y}Retornando para o menu principal.
+⌛Por favor aguarde ⌛${endc}"
+sleep 5
+fi
+}
+################################### ATUALIZAR IMAGEM PDVs ######################################
+wait
+atualizar_imagem_todos () {
+  logoCliPDVs
+echo -e " ${bu}ATUALIZAÇÃO DE IMAGEM DOS TERMINAIS (CliPDVs)"
+echo -e "${bu}---------------------------------------------------${end}
+  ${br}Atualização dos terminais 
+  por faixa de sua filial${end}
+${bu}--------------------------------------------------- ${end}"
+echo -e " DIGITE A${y} FAIXA DA FILIAL${end} ${bu}QUE DESEJA ATUALIZAR: ${end}"
+echo -e " Caso queira desistir${y}, apenas deixe o campo em branco e dê enter... ${end}"
+read -p " $IPSERV." $read faixa
+clear
+echo -e "${bu}--------------------------------------------------- ${end}"
+echo -e "${y}⌛Aguarde enquanto executo o comando 
+${bu}it-update-imagens.sh${end} ${y}em todos os terminais ⌛ ${end}
+${bu}--------------------------------------------------- ${end}"
+##############
+pdvs_ips='139 131 122 123 124 25 102 103 104 105 107 120 133 110 11 112 113 114 130 116 55 59 117 225 132 138 128'
+for pdvs_ips in ${pdvs_ips}
+do
+    echo -e "${bu}Atualizando imagem do terminal${end} ${g}IP${end} - ${vr}${IPSERV}.${faixa}.${pdvs_ips}${endc} ⌛"
+    sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@${IPSERV}.${faixa}.${pdvs_ips} "it-update-imagens.sh";
+    echo -e '\n'
+done
+#############
+clear
+echo -e "$vr======================================== $end"
+echo -e "$vr    COMANDO EXECUTADO COM SUCESSO... $end"
+echo -e "$vr======================================== $end"
+#############
+echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+}
+################################### (6) Atualizar imagens MaxiPOS Todos #############################
+################################### (11) Reiniciar Maxipos PDVs ######################################
+reiniciar_maxipos () {
+  logoCliPDVs
+echo -e " ${r}REINICIALIZAÇÃO DO MAXIPOS (CliPDVs)
+---------------------------------------------------${end}
+  ${br}Reinicialização do MaxiPOS 
+  por faixa (IP). Digite a faixa de sua filial, 
+  depois dê enter para digitar o IP final 
+  do terminal${end}
+${r}--------------------------------------------------- ${end}"
+echo -e "DIGITE A ${y}FAIXA${end} ${r}REFERÊNTE A SUA FILIAL: ${end}"
+read -p "$IPSERV." $read fx
+clear
+##########
+  clear
+logoCliPDVs
+echo -e " ${r}REINICIALIZAÇÃO DO MAXIPOS (CliPDVs)
+---------------------------------------------------${end}
+  ${br}Reinicialização do MaxiPOS 
+  por faixa (IP). Digite a faixa de sua filial, 
+  depois dê enter para digitar o IP final 
+  do terminal${end}
+${r}--------------------------------------------------- ${end}"
+echo -e "DIGITE O ${y}FINAL DO IP${end} ${r}QUE DESEJA REINICIAR O MAXIPOS: ${end}"
+read -p "$IPSERV.$fx." $read ip
+echo -e "${r}===================================================${end}"
+echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛${end}"
+sleep 1
+if ! ping -c 1 $IPSERV.$fx.$ip >> /dev/null ; then
+clear
+echo -e "$v======================================= $end"
+echo -e "$v       TERMINAL DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo && echo -e "$v======================================= $end"
+echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
+echo -e "$a IP $end-$bu $IPSERV.$fx.$ip $end- $v Sem conexão ✗$end" 
+echo -e "$v======================================= $end"
+echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+echo -e "$v=======================================$end" 
+else
+clear
+echo -e "$vr======================================== $end"
+echo -e "$vr         TERMINAL CONECTADO.  $end "
+echo -e "$vr======================================== $end"
+sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "it-restart-application.sh";
+echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
+echo -e "$a IP $end -$bu $IPSERV.$fx.$ip $end- $vr Conectado ✔$end"
+echo -e "$vr======================================== $end"
+echo -e "$vr    COMANDO EXECUTADO COM SUCESSO... $end"
+echo -e "$vr======================================== $end"
+echo -e "${y}Retornando para o menu principal.
+⌛Por favor aguarde ⌛${endc}"
+sleep 5
+fi
+}
+# --------------
 # (5) Teste de ping PDVs
 ping_test () {
   logoCliPDVs
@@ -614,7 +773,7 @@ sobre () {
 }
 # links úteis
 links () {
-  clear
+  logoCliPDVs
   echo -e "
      ${v}Links úteis.${end}
     ${u}${blue}http://pdv.mateus/maxipos_backoffice/app${end}.
@@ -631,13 +790,16 @@ echo -e " ${y}❖============ MENU ============❖${end}
   ${y}[ 1 ]${end} ${c}➤ Reiniciar PDVs${end}
   ${y}[ 2 ]${end} ${c}➤ Atualizar PDVs${end}
   ${y}[ 3 ]${end} ${c}➤ Desligar PDVs${end}
-  ${y}[ 4 ]${end} ${c}➤ Reiniciar PDVs${end} ${r}(Todos)${end}
-  ${y}[ 5 ]${end} ${c}➤ Atualizar PDVs${end} ${r}(Todos)${end}
-  ${y}[ 6 ]${end} ${c}➤ Desligar PDVs${end} ${r}(Todos)${end}
-  ${y}[ 7 ]${end} ${c}➤ Gm core${end} ${y}(Desktop)${end}
-  ${y}[ 8 ]${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
-  ${y}[ 9 ]${end} ${c}➤ Teste de conexão${end} ${vr}(LINK-IP)${end}
-  ${y}[ 10 ]${end} ${c}➤ Links úteis${end}
+  ${y}[ 4 ]${end} ${c}➤ Atualizar imagem MaxiPOS${end}
+  ${y}[ 5 ]${end} ${c}➤ Reiniciar MaxiPOS${end}
+  ${y}[ 6 ]${end} ${c}➤ Reiniciar PDVs${end} ${r}(Todos)${end}
+  ${y}[ 7 ]${end} ${c}➤ Atualizar PDVs${end} ${r}(Todos)${end}
+  ${y}[ 8 ]${end} ${c}➤ Desligar PDVs${end} ${r}(Todos)${end}
+  ${y}[ 9 ]${end} ${c}➤ Atualizar imagem PDVs${end} ${r}(Todos)${end}
+  ${y}[ 10 ]${end} ${c}➤ Gm core${end} ${y}(Desktop)${end}
+  ${y}[ 11 ]${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
+  ${y}[ 12 ]${end} ${c}➤ Teste de conexão${end} ${vr}(LINK-IP)${end}
+  ${y}[ 13 ]${end} ${c}➤ Links úteis${end}
   ${y} ---------------------------- ${end}
   ${y}[ s ]${end} ${c}➤ Sobre${end}
   ${y}[ 0 ]${end} ${c}➤ Sair${end}"
@@ -648,13 +810,16 @@ case $option in
 1) reiniciar_pdvs ;;
 2) atualizar_pdvs ;;
 3) desligar_pdvs ;;
-4) reiniciar_todos ;;
-5) atualizar_todos ;;
-6) desligar_todos ;;
-7) gmcore ;;
-8) ping_test ;;
-9) ping_test_ip_link ;;
-10) links ;;
+4) atualizar_imagem ;;
+5) reiniciar_maxipos ;;
+6) reiniciar_todos ;;
+7) atualizar_todos ;;
+8) desligar_todos ;;
+9) atualizar_imagem_todos ;;
+10) gmcore ;;
+11) ping_test ;;
+12) ping_test_ip_link ;;
+13) links ;;
 s) sobre ;;
 0) CliExit ;;
 *) echo " \"$option\" Opção inválida"; sleep 1 ;;
