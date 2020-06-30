@@ -573,17 +573,17 @@ while :
 do
 logoCliPDVs
 echo -e " ${y}❖============ MENU ============❖${end}
-  ${y}〔1 〕${end} ${c}➤ Reiniciar PDVs${end}
-  ${y}〔2 〕${end} ${c}➤ Atualizar PDVs${end}
-  ${y}〔3 〕${end} ${c}➤ Desligar PDVs${end}
-  ${y}〔4 〕${end} ${c}➤ Reiniciar PDVs${end} ${r}(Todos)${end}
-  ${y}〔5 〕${end} ${c}➤ Atualizar PDVs${end} ${r}(Todos)${end}
-  ${y}〔6 〕${end} ${c}➤ Desligar PDVs${end} ${r}(Todos)${end}
-  ${y}〔7 〕${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
-  ${y}〔8 〕${end} ${c}➤ Teste de conexão${end} ${vr}(LINK-IP)${end}
+  ${y}[ 1 ]${end} ${c}➤ Reiniciar PDVs${end}
+  ${y}[ 2 ]${end} ${c}➤ Atualizar PDVs${end}
+  ${y}[ 3 ]${end} ${c}➤ Desligar PDVs${end}
+  ${y}[ 4 ]${end} ${c}➤ Reiniciar PDVs${end} ${r}(Todos)${end}
+  ${y}[ 5 ]${end} ${c}➤ Atualizar PDVs${end} ${r}(Todos)${end}
+  ${y}[ 6 ]${end} ${c}➤ Desligar PDVs${end} ${r}(Todos)${end}
+  ${y}[ 7 ]${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
+  ${y}[ 8 ]${end} ${c}➤ Teste de conexão${end} ${vr}(LINK-IP)${end}
   ${y} ---------------------------- ${end}
-  ${y}〔s 〕${end} ${c}➤ Sobre${end}
-  ${y}〔0 〕${end} ${c}➤ Sair${end}"
+  ${y}[ s ]${end} ${c}➤ Sobre${end}
+  ${y}[ 0 ]${end} ${c}➤ Sair${end}"
 echo -e " ${y}❖==============================❖${end}"
   echo -en "  Selecione uma opção: ➤ "
 read option
