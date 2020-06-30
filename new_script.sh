@@ -528,7 +528,6 @@ do
     echo -e '\n'
 done
 #############
-clear
 echo -e "$vr======================================== $end"
 echo -e "$vr    COMANDO EXECUTADO COM SUCESSO... $end"
 echo -e "$vr======================================== $end"
