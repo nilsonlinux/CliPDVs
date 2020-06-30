@@ -277,7 +277,8 @@ fi
 # (3) Reiniciar todos os PDVs
 wait
 reiniciar_todos () {
-  logoCliPDVs
+logoCliPDVs
+echo -e " ${v}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)"
 echo -e "${v}---------------------------------------------------${end}
   ${br}Reinicialização dos terminais 
   por faixa.${end}
@@ -311,7 +312,7 @@ read input
 # (1) Desligar PDVs
 desligar_pdvs () {
   logoCliPDVs
-echo -e " ${r}🚨 DESLIGAMENTO DOS TERMINAIS (CliPDVs)🚨
+echo -e " ${r}🚨 DESLIGAMENTO DOS TERMINAIS (CliPDVs) 🚨
 ---------------------------------------------------${end}
   ${br}Desligamento dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
@@ -324,7 +325,7 @@ clear
 ##########
   clear
 logoCliPDVs
-echo -e " ${r}🚨 DESLIGAMENTO DOS TERMINAIS (CliPDVs)🚨
+echo -e " ${r}🚨 DESLIGAMENTO DOS TERMINAIS (CliPDVs) 🚨
 ---------------------------------------------------${end}
   ${br}Desligamento dos terminais 
   por faixa (IP). Digite a faixa de sua filial, 
@@ -374,6 +375,7 @@ fi
 wait
 atualizar_todos () {
   logoCliPDVs
+echo -e " ${bu}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)"
 echo -e "${bu}---------------------------------------------------${end}
   ${br}Atualização dos terminais 
   por faixa de sua filial${end}
@@ -409,7 +411,7 @@ wait
 desligar_todos () {
   logoCliPDVs
 echo -e "${v}---------------------------------------------------${end}"
-echo -e "${r}🚨 DESLIGAMENTO DOS TERMINAIS (CliPDVs)🚨"
+echo -e "${r}🚨 DESLIGAMENTO DOS TERMINAIS (CliPDVs) 🚨"
 echo -e "${v}--------------------------------------------------- ${end}"
 echo -e " DIGITE A${y} FAIXA DA FILIAL${end} ${v}QUE DESEJA DESLIGAR: ${end}"
 echo -e " Caso queira desistir${y}, apenas deixe o campo em branco e dê enter... ${end}"
@@ -440,7 +442,7 @@ read input
 # (5) Teste de ping PDVs
 ping_test () {
   logoCliPDVs
-echo -e " ${bu}TESTE DE CONEXÕES (CliPDVs)
+echo -e " ${bu}🌐 TESTE DE CONEXÕES (CliPDVs) 🌐
 ---------------------------------------------------${end}
   ${br}Faça o teste de conexão de um determinado IP
   com faixa + final de seu endereçamento...${end}
@@ -450,7 +452,7 @@ read -p "$IPSERV." $read fx
 ##########
 clear
 logoCliPDVs
-echo -e " ${bu}TESTE DE CONEXÕES (CliPDVs)
+echo -e " ${bu}🌐 TESTE DE CONEXÕES (CliPDVs) 🌐
 ---------------------------------------------------${end}
   ${br}Faça o teste de conexão de um determinado IP
   com faixa + final de seu endereçamento...${end}
@@ -494,7 +496,7 @@ fi
 # (5) Teste de ping link ou IP
 ping_test_ip_link () {
   logoCliPDVs
-echo -e " ${bu}TESTE DE CONEXÕES (CliPDVs)
+echo -e " ${bu}🌐 TESTE DE CONEXÕES (CliPDVs) 🌐
 ---------------------------------------------------${end}
 ${br}Faça o teste de conexão de um determinado IP...${end}
 ${bu}--------------------------------------------------- ${end}"
