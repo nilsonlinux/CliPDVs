@@ -612,7 +612,17 @@ sobre () {
   echo && echo -en " ${yellow}Precione enter para retornar ao Menu.${endc}"
   read input
 }
-
+# links úteis
+links () {
+  clear
+  echo -e "
+     ${v}Links úteis.${end}
+    ${u}${blue}http://pdv.mateus/maxipos_backoffice/app${end}.
+    ${u}${blue}http://armateus.com.br${end}.
+    ${u}${blue}https://github.com/nilsonlinux/CliPDVs${end}."
+  echo && echo -en " ${yellow}Precione enter para retornar ao Menu.${endc}"
+  read input
+}
 # Infinite Loop To Show Menu Untill Exit
 while :
 do
@@ -624,9 +634,10 @@ echo -e " ${y}❖============ MENU ============❖${end}
   ${y}[ 4 ]${end} ${c}➤ Reiniciar PDVs${end} ${r}(Todos)${end}
   ${y}[ 5 ]${end} ${c}➤ Atualizar PDVs${end} ${r}(Todos)${end}
   ${y}[ 6 ]${end} ${c}➤ Desligar PDVs${end} ${r}(Todos)${end}
-  ${y}[ 7 ]${end} ${c}➤ Gm core${end}
+  ${y}[ 7 ]${end} ${c}➤ Gm core${end} ${y}(Desktop)${end}
   ${y}[ 8 ]${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
   ${y}[ 9 ]${end} ${c}➤ Teste de conexão${end} ${vr}(LINK-IP)${end}
+  ${y}[ 10 ]${end} ${c}➤ Links úteis${end}
   ${y} ---------------------------- ${end}
   ${y}[ s ]${end} ${c}➤ Sobre${end}
   ${y}[ 0 ]${end} ${c}➤ Sair${end}"
@@ -643,6 +654,7 @@ case $option in
 7) gmcore ;;
 8) ping_test ;;
 9) ping_test_ip_link ;;
+10) links ;;
 s) sobre ;;
 0) CliExit ;;
 *) echo " \"$option\" Opção inválida"; sleep 1 ;;
