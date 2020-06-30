@@ -74,10 +74,10 @@ CliExit () {
 # Internet Check
 checkinternet () {
   if ping -c 1 google.com &>/dev/null; then
-    echo -e " Checando conexão com a internet: ${g}CONECTADO${endc}"
+    echo -e " Checando conexão com a internet: ${g}CONECTADO ✅${endc}"
     CLiCheck
   else
-    echo -e " Checando conexão com a internet: ${r}DESCONECTADO${endc}
+    echo -e " Checando conexão com a internet: ${r}DESCONECTADO ❌${endc}
  ${y}Você precisa está conectado para a utilização do CliPDVs${endc}"
     echo -e " ${b}O Script está sendo${end} encerrado..."
     echo && sleep 5
@@ -500,6 +500,48 @@ read input
 fi
 }
 # --------------
+# (5) Teste de ping link ou IP
+ping_test_ip_link () {
+  logoCliPDVs
+echo -e " ${bu}TESTE DE CONEXÕES (CliPDVs)
+---------------------------------------------------${end}
+${br}Faça o teste de conexão de um determinado IP...${end}
+${bu}--------------------------------------------------- ${end}"
+echo -e "DIGITE O ${y}IP${end} ${bu}OU LINK QUE DESEJA FAZER O TESTE DE CONEXÃO: ${end}"
+read -p "http://"$read ip_link
+echo -e "${y}⌛Aguarde enquanto testamos conexão com o servidor ⌛${end}"
+##########
+if ! ping -c 2 $ip_link >> /dev/null ; then
+clear
+echo -e "$v======================================= $end"
+echo -e "$v       TERMINAL DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo && echo -e "$v======================================= $end"
+echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
+echo -e "$a IP $end-$bu $ip_link $end- $v Sem conexão ✗$end" 
+echo -e "$v======================================= $end"
+echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+echo -e "$v=======================================$end" 
+else
+clear
+echo -e "$vr======================================= $end"  
+echo -e "$vr         SERVIDOR CONECTADO.  $end "
+echo -e "$vr======================================= $end"  
+echo -e "$vr======[ $br Status da requisição $ec $vr]======     $end"
+echo -e "$a IP $end - $bu $ip_link $end - $vr Conectado ✔$end"      
+echo -e "$vr======================================= $end"
+ping -c 5 $ip_link
+echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+fi
+}
+# --------------
 # Show About
 sobre () {
   clear
@@ -537,7 +579,7 @@ sobre () {
 while :
 do
 logoCliPDVs
-echo -e " ${y} ========== MENU ========== ${end}
+echo -e " ${y}❖============ MENU ============❖${end}
   ${y}〔1 〕${end} ${c}➤ Reiniciar PDVs${end}
   ${y}〔2 〕${end} ${c}➤ Atualizar PDVs${end}
   ${y}〔3 〕${end} ${c}➤ Desligar PDVs${end}
@@ -545,11 +587,12 @@ echo -e " ${y} ========== MENU ========== ${end}
   ${y}〔5 〕${end} ${c}➤ Atualizar PDVs${end} ${r}(Todos)${end}
   ${y}〔6 〕${end} ${c}➤ Desligar PDVs${end} ${r}(Todos)${end}
   ${y}〔7 〕${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
-  ${y}------------------------${end}
+  ${y}〔8 〕${end} ${c}➤ Teste de conexão${end} ${vr}(LINK-IP)${end}
+  ${y} ---------------------------- ${end}
   ${y}〔s 〕${end} ${c}➤ Sobre${end}
   ${y}〔0 〕${end} ${c}➤ Sair${end}"
-echo -e " ${y} ========================== ${end}"
-  echo -en "  Selecione uma opção: "
+echo -e " ${y}❖==============================❖${end}"
+  echo -en "  Selecione uma opção: ➤ "
 read option
 case $option in
 1) reiniciar_pdvs ;;
@@ -559,6 +602,7 @@ case $option in
 5) atualizar_todos ;;
 6) desligar_pdvs ;;
 7) ping_test ;;
+8) ping_test_ip_link ;;
 s) sobre ;;
 0) CliExit ;;
 *) echo " \"$option\" Opção inválida"; sleep 1 ;;
