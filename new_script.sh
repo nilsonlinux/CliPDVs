@@ -9,15 +9,17 @@
 # b=bold u=underline bl=black r=red g=green
 # y=yellow bu=blue m=magenta c=cyan w=white
 # endc=end-color end=end-argument
-pdvs_ips='139 131 122 123 124 25 102 103 104 105 107 120 133 110 11 112 113 114 130 116 55 59 117 225 132 138 128'
+pdvs_ips='139 131 122 123 124 25 102 103 104 105 107 120 133 110 11 112 113 114 130 116 55 59 117 225 132 138 128' #FINAL dos IPS DOS PDVS...
+version="2.5"
+gmcore='6.36'
+IPSERV='192.168'
+spath="$( cd "$( dirname $0 )" && pwd )"
 a='\033[1;33m'       # Amarelo
 p='\033[0;35m'       # Purple
 v="\033[0;31m"       #vermelho
 vr="\033[0;32m"      #Verde
 br="\033[0;37m"      #Branco
 # Variável com a lista de máquinas
-gmcore='6.36'
-IPSERV='192.168'
 b='\033[1m'
 u='\033[4m'
 bl='\E[30m'
@@ -30,8 +32,6 @@ c='\E[36m'
 w='\E[37m'
 endc='\E[0m'
 end='\033[0m'
-version="2.5"
-spath="$( cd "$( dirname $0 )" && pwd )"
 # CliPDVs Logo
 logoCliPDVs () {
   clear
