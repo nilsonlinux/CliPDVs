@@ -9,6 +9,7 @@
 # b=bold u=underline bl=black r=red g=green
 # y=yellow bu=blue m=magenta c=cyan w=white
 # endc=end-color end=end-argument
+pdvs_ips='139 131 122 123 124 25 102 103 104 105 107 120 133 110 11 112 113 114 130 116 55 59 117 225 132 138 128'
 a='\033[1;33m'       # Amarelo
 p='\033[0;35m'       # Purple
 v="\033[0;31m"       #vermelho
@@ -293,7 +294,7 @@ echo -e "${y}⌛Aguarde enquanto executo o comando
 ${v}reboot${end} ${y}em todos os terminais ⌛ ${end}
 ${v}--------------------------------------------------- ${end}"
 ##############
-pdvs_ips='139 131 122 123 124 25 102 103 104 105 107 120 133 110 11 112 113 114 130 116 55 59 117 225 132 138 128'
+${pdv_ips}
 for pdvs_ips in ${pdvs_ips}
 do
     echo -e "${v}Reiniciando terminal${end} ${g}IP${end} - ${vr}${IPSERV}.${faixa}.${pdvs_ips}${endc} ⌛"
@@ -423,7 +424,7 @@ echo -e "${y}⌛Aguarde enquanto executo o comando
 ${v}halt${end} ${y}em todos os terminais ⌛ ${end}
 ${v}--------------------------------------------------- ${end}"
 ##############
-pdvs_ips='139 131 122 123 124 25 102 103 104 105 107 120 133 110 11 112 113 114 130 116 55 59 117 225 132 138 128'
+${pdv_ips}
 for pdvs_ips in ${pdvs_ips}
 do
     echo -e "${bu}Desligando terminal${end} ${g}IP${end} - ${vr}${IPSERV}.${faixa}.${pdvs_ips}${endc} ⌛"
@@ -520,7 +521,7 @@ echo -e "${y}⌛Aguarde enquanto executo o comando
 ${bu}it-update-imagens.sh${end} ${y}em todos os terminais ⌛ ${end}
 ${bu}--------------------------------------------------- ${end}"
 ##############
-pdvs_ips='139 131 122 123 124 25 102 103 104 105 107 120 133 110 11 112 113 114 130 116 55 59 117 225 132 138 128'
+${pdv_ips}
 for pdvs_ips in ${pdvs_ips}
 do
     echo -e "${bu}Atualizando imagem do terminal${end} ${g}IP${end} - ${vr}${IPSERV}.${faixa}.${pdvs_ips}${endc} ⌛"
