@@ -17,7 +17,7 @@ spath="$( cd "$( dirname $0 )" && pwd )"
 a='\033[1;33m'       # Amarelo
 p='\033[0;35m'       # Purple
 v="\033[0;31m"       #vermelho
-vr="\033[0;32m"      #Verde
+vr="\033[01;32m"      #Verde
 br="\033[0;37m"      #Branco
 # Variável com a lista de máquinas
 b='\033[1m'
@@ -787,24 +787,24 @@ links () {
 while :
 do
 logoCliPDVs
-echo -e " ${y}❖============ MENU ============❖${end}
-  ${y}[ 1 ]${end} ${c}➤ Reiniciar PDVs${end}
-  ${y}[ 2 ]${end} ${c}➤ Atualizar PDVs${end}
-  ${y}[ 3 ]${end} ${c}➤ Desligar PDVs${end}
-  ${y}[ 4 ]${end} ${c}➤ Atualizar imagem MaxiPOS${end}
-  ${y}[ 5 ]${end} ${c}➤ Reiniciar MaxiPOS${end}
-  ${y}[ 6 ]${end} ${c}➤ Reiniciar PDVs${end} ${r}(Todos)${end}
-  ${y}[ 7 ]${end} ${c}➤ Atualizar PDVs${end} ${r}(Todos)${end}
-  ${y}[ 8 ]${end} ${c}➤ Desligar PDVs${end} ${r}(Todos)${end}
-  ${y}[ 9 ]${end} ${c}➤ Atualizar imagem PDVs${end} ${r}(Todos)${end}
-  ${y}[ 10 ]${end} ${c}➤ Gm core${end} ${y}(Desktop)${end}
-  ${y}[ 11 ]${end} ${c}➤ Teste de conexão${end} ${vr}(PING)${end}
-  ${y}[ 12 ]${end} ${c}➤ Teste de conexão${end} ${vr}(LINK-IP)${end}
-  ${y}[ 13 ]${end} ${c}➤ Links úteis${end}
-  ${y} ---------------------------- ${end}
-  ${y}[ s ]${end} ${c}➤ Sobre${end}
-  ${y}[ 0 ]${end} ${c}➤ Sair${end}"
-echo -e " ${y}❖==============================❖${end}"
+echo -e " ${g}-------[ MENU PRINCIPAL (CLIPDVS)]-------${end}
+  ${g}[ ${y}1 ${end}${g}]${end} ${vr} Reiniciar PDVs${end}
+  ${g}[ ${y}2 ${end}${g}]${end} ${vr} Atualizar PDVs${end}
+  ${g}[ ${y}3 ${end}${g}]${end} ${vr} Desligar PDVs${end}
+  ${g}[ ${y}4 ${end}${g}]${end} ${vr} Atualizar imagem MaxiPOS${end}
+  ${g}[ ${y}5 ${end}${g}]${end} ${vr} Reiniciar MaxiPOS${end}
+  ${g}[ ${y}6 ${end}${g}]${end} ${vr} Reiniciar PDVs${end} ${r}(Todos)${end}
+  ${g}[ ${y}7 ${end}${g}]${end} ${vr} Atualizar PDVs${end} ${r}(Todos)${end}
+  ${g}[ ${y}8 ${end}${g}]${end} ${vr} Desligar PDVs${end} ${r}(Todos)${end}
+  ${g}[ ${y}9 ${end}${g}]${end} ${vr} Atualizar imagem PDVs${end} ${r}(Todos)${end}
+  ${g}[ ${y}10${end}${g}]${end} ${vr} Gm core${end} ${y}(Desktop)${end}
+  ${g}[ ${y}11${end}${g}]${end} ${vr} Teste de conexão${end} ${vr}(PING)${end}
+  ${g}[ ${y}12${end}${g}]${end} ${vr} Teste de conexão${end} ${vr}(LINK-IP)${end}
+  ${g}[ ${y}13${end}${g}]${end} ${vr} Links úteis${end}
+${g} ----------------------------------------- ${end}
+  ${g}[ ${y}s ${end}${g}]${end} ${vr} Sobre${end}
+  ${g}[ ${y}0 ${end}${g}]${end} ${vr} Sair${end}"
+echo -e " ${g}-----------------------------------------${end}"
   echo -en "  Selecione uma opção: ➤ "
 read option
 case $option in
