@@ -41,7 +41,7 @@ logoCliPDVs () {
    | |   | | | |_) | | | \ \ / / __|  
    | |___| | |  __/| |_| |\ V /\__ \    
     \____|_|_|_|   |____/  \_/ |___/ © 2020
-          ${v}Versão :${end} ${v}${version}  ${end}"
+          ${m}Versão :${end}${bu} ${version}${end}"
     echo
 }
 # CliPDVs
