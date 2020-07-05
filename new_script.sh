@@ -9,8 +9,8 @@
 # b=bold u=underline bl=black r=red g=green
 # y=yellow bu=blue m=magenta c=cyan w=white
 # endc=end-color end=end-argument
-pdvs_ips='139 131 122 123 124 25 102 103 104 105 107 120 133 110 11 112 113 114 130 116 55 59 117 225 132 138 128' #FINAL dos IPS DOS PDVS...
-version="2.5"
+pdvs_ips='139 131 123 124 25 102 103 104 105 107 120 133 110 11 112 113 114 130 116 55 59 117 225 132 138 128' #FINAL dos IPS DOS PDVS...
+version="2.6"
 gmcore='6.36'
 IPSERV='192.168'
 spath="$( cd "$( dirname $0 )" && pwd )"
@@ -391,7 +391,7 @@ echo -e "${y}⌛Aguarde enquanto executo o comando
 ${bu}it-update-pdv.sh${end} ${y}em todos os terminais ⌛ ${end}
 ${bu}--------------------------------------------------- ${end}"
 ##############
-pdvs_ips='139 131 122 123 124 25 102 103 104 105 107 120 133 110 11 112 113 114 130 116 55 59 117 225 132 138 128'
+${pdvs_ips}
 for pdvs_ips in ${pdvs_ips}
 do
     echo -e "${bu}Atualizando terminal${end} ${g}IP${end} - ${vr}${IPSERV}.${faixa}.${pdvs_ips}${endc} ⌛"
@@ -440,7 +440,6 @@ echo -e "$v======================================== $end"
 echo && echo -en "${y}Precione enter para retornar para o manu.${endc}"
 read input
 }
-
 
 # (1) Atualizar PDVs
 atualizar_imagem () {
@@ -775,10 +774,12 @@ sobre () {
 links () {
   logoCliPDVs
   echo -e "
-     ${v}Links úteis.${end}
-    ${u}${blue}http://pdv.mateus/maxipos_backoffice/app${end}.
-    ${u}${blue}http://armateus.com.br${end}.
-    ${u}${blue}https://github.com/nilsonlinux/CliPDVs${end}."
+     ${vr}Links úteis.${end}
+    ${bu}http://pdv.mateus/maxipos_backoffice/app
+    ${bu}http://armateus.com.br
+    ${bu}http://b2b.crednosso.com.br/garantia/loginGarantia.jsf
+    ${bu}https://telegram.org/dl/desktop/linux
+    ${bu}${blue}https://github.com/nilsonlinux/CliPDVs${end}."
   echo && echo -en " ${yellow}Precione enter para retornar ao Menu.${endc}"
   read input
 }
