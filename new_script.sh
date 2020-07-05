@@ -178,7 +178,7 @@ echo -e " ${r}REINICIALIZAÇÃO DOS TERMINAIS (CliPDVs)
 ${r}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${y}FINAL DO IP${end} ${r}QUE DESEJA REINICIAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
-echo -e "${r}===================================================${end}"
+echo -e "${r}---------------------------------------------------${end}"
 echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛${end}"
 sleep 1
 if ! ping -c 1 $IPSERV.$fx.$ip >> /dev/null ; then
@@ -240,7 +240,7 @@ echo -e " ${c}ATUALIZAÇÃO DOS TERMINAIS (CliPDVs)
 ${c}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${c}FINAL DO IP${end} ${br}QUE DESEJA ATUALIZAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
-echo -e "${bu}===================================================${end}"
+echo -e "${c}---------------------------------------------------${end}"
 echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛ ${end}"
 sleep 1
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
@@ -336,7 +336,7 @@ echo -e " ${r}🚨 DESLIGAMENTO DOS TERMINAIS (CliPDVs) 🚨
 ${r}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${y}FINAL DO IP${end} ${r}QUE DESEJA DESLIGAR: ${end}"
 read -p "$IPSERV.$fx." $read ip
-echo -e "${r}===================================================${end}"
+echo -e "${r}---------------------------------------------------${end}"
 echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛${end}"
 sleep 1
 if ! ping -c 1 $IPSERV.$fx.$ip >> /dev/null ; then
@@ -466,7 +466,7 @@ echo -e " ${c}ATUALIZAÇÃO DE IMAGEM DOS TERMINAIS (CliPDVs)
 ${c}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${c}FINAL DO IP${end} ${br}QUE DESEJA ATUALIZAR IMAGEM: ${end}"
 read -p "$IPSERV.$fx." $read ip
-echo -e "${bu}===================================================${end}"
+echo -e "${bu}---------------------------------------------------${end}"
 echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛ ${end}"
 sleep 1
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
@@ -561,7 +561,7 @@ echo -e " ${r}REINICIALIZAÇÃO DO MAXIPOS (CliPDVs)
 ${r}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${y}FINAL DO IP${end} ${r}QUE DESEJA REINICIAR O MAXIPOS: ${end}"
 read -p "$IPSERV.$fx." $read ip
-echo -e "${r}===================================================${end}"
+echo -e "${r}---------------------------------------------------${end}"
 echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛${end}"
 sleep 1
 if ! ping -c 1 $IPSERV.$fx.$ip >> /dev/null ; then
@@ -618,7 +618,7 @@ echo -e " ${bu}🌐 TESTE DE CONEXÕES (CliPDVs) 🌐
 ${bu}--------------------------------------------------- ${end}"
 echo -e "DIGITE O ${a}FINAL DO IP${end} ${bu}QUE DESEJA FAZER O TESTE DE CONEXÃO: ${end}"
 read -p "$IPSERV.$fx." $read ip
-echo -e "${bu}===================================================${end}"
+echo -e "${bu}---------------------------------------------------${end}"
 echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛${end}"
 sleep 2
 if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
@@ -700,7 +700,6 @@ echo -e " ${vr}ACESSO GMCORE (CliPDVs)
 ---------------------------------------------------${end}
   ${br}Acesso ao gmcore por faixa.${end}
 ${vr}--------------------------------------------------- ${end}"
-echo -e "${r}===================================================${end}"
 echo -e "${y}⌛Aguarde enquanto testamos conexão com o servidor ⌛${end}"
 sleep 1
 if ! ping -c 1 $IPSERV.$faixa.$gmcore >> /dev/null ; then
