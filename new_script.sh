@@ -773,12 +773,14 @@ sobre () {
 links () {
   logoCliPDVs
   echo -e "
-     ${vr}Links úteis.${end}
+     ${vr}Links úteis.${end}"
+  echo -e " ${g}  -----------------------------------------${end}
     ${bu}http://pdv.mateus/maxipos_backoffice/app
     ${bu}http://armateus.com.br
     ${bu}http://b2b.crednosso.com.br/garantia/loginGarantia.jsf
     ${bu}https://telegram.org/dl/desktop/linux
-    ${bu}${blue}https://github.com/nilsonlinux/CliPDVs${end}."
+    ${bu}${blue}https://github.com/nilsonlinux/CliPDVs${end}"
+  echo -e " ${g}  -----------------------------------------${end}"
   echo && echo -en " ${yellow}Precione enter para retornar ao Menu.${endc}"
   read input
 }
