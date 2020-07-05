@@ -786,24 +786,24 @@ links () {
 while :
 do
 logoCliPDVs
-echo -e " ${g}-------[ MENU PRINCIPAL (CLIPDVS)]-------${end}
-  ${g}[ ${y}1 ${end}${g}]${end} ${vr} Reiniciar PDVs${end}
-  ${g}[ ${y}2 ${end}${g}]${end} ${vr} Atualizar PDVs${end}
-  ${g}[ ${y}3 ${end}${g}]${end} ${vr} Desligar PDVs${end}
-  ${g}[ ${y}4 ${end}${g}]${end} ${vr} Atualizar imagem MaxiPOS${end}
-  ${g}[ ${y}5 ${end}${g}]${end} ${vr} Reiniciar MaxiPOS${end}
-  ${g}[ ${y}6 ${end}${g}]${end} ${vr} Reiniciar PDVs${end} ${r}(Todos)${end}
-  ${g}[ ${y}7 ${end}${g}]${end} ${vr} Atualizar PDVs${end} ${r}(Todos)${end}
-  ${g}[ ${y}8 ${end}${g}]${end} ${vr} Desligar PDVs${end} ${r}(Todos)${end}
-  ${g}[ ${y}9 ${end}${g}]${end} ${vr} Atualizar imagem PDVs${end} ${r}(Todos)${end}
-  ${g}[ ${y}10${end}${g}]${end} ${vr} Gm core${end} ${y}(Desktop)${end}
-  ${g}[ ${y}11${end}${g}]${end} ${vr} Teste de conexão${end} ${vr}(PING)${end}
-  ${g}[ ${y}12${end}${g}]${end} ${vr} Teste de conexão${end} ${vr}(LINK-IP)${end}
-  ${g}[ ${y}13${end}${g}]${end} ${vr} Links úteis${end}
-${g} ----------------------------------------- ${end}
-  ${g}[ ${y}s ${end}${g}]${end} ${vr} Sobre${end}
-  ${g}[ ${y}0 ${end}${g}]${end} ${vr} Sair${end}"
-echo -e " ${g}-----------------------------------------${end}"
+echo -e "${g}------[ MENU PRINCIPAL (CLIPDVS)]-------${end}
+${g}[ ${y}1 ${end}${g}]${end} ${vr} Reiniciar PDVs${end}
+${g}[ ${y}2 ${end}${g}]${end} ${vr} Atualizar PDVs${end}
+${g}[ ${y}3 ${end}${g}]${end} ${vr} Desligar PDVs${end}
+${g}[ ${y}4 ${end}${g}]${end} ${vr} Atualizar imagem MaxiPOS${end}
+${g}[ ${y}5 ${end}${g}]${end} ${vr} Reiniciar MaxiPOS${end}
+${g}[ ${y}6 ${end}${g}]${end} ${vr} Reiniciar PDVs${end} ${r}(Todos)${end}
+${g}[ ${y}7 ${end}${g}]${end} ${vr} Atualizar PDVs${end} ${r}(Todos)${end}
+${g}[ ${y}8 ${end}${g}]${end} ${vr} Desligar PDVs${end} ${r}(Todos)${end}
+${g}[ ${y}9 ${end}${g}]${end} ${vr} Atualizar imagem PDVs${end} ${r}(Todos)${end}
+${g}[ ${y}10${end}${g}]${end} ${vr} Gm core${end} ${y}(Desktop)${end}
+${g}[ ${y}11${end}${g}]${end} ${vr} Teste de conexão${end} ${vr}(PING)${end}
+${g}[ ${y}12${end}${g}]${end} ${vr} Teste de conexão${end} ${vr}(LINK-IP)${end}
+${g}[ ${y}13${end}${g}]${end} ${vr} Links úteis${end}
+${g}----------------------------------------- ${end}
+${g}[ ${y}s ${end}${g}]${end} ${vr} Sobre${end}
+${g}[ ${y}0 ${end}${g}]${end} ${vr} Sair${end}"
+echo -e "${g}-----------------------------------------${end}"
   echo -en "  Selecione uma opção: ➤ "
 read option
 case $option in
