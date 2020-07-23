@@ -1,3 +1,5 @@
+* Adicionado a opção para deletar a pasta temporária do maxipos
+para resolução de problemas com auxilio emergencial. .
 * Receba notificação de atualização na inicialização do script.
 Ao iniciar o script, ele faz a verificação da versão. (NOVO)
 * Faça diversos processos com um só comando.
