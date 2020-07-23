@@ -4,7 +4,7 @@
 
 
 ```sh
-pkg update && pkg install sshpass openssh git && git clone https://github.com/nilsonlinux/CliPDVs.git && chmod -R 777 ./CliPDVs && clear && ./CliPDVs/CliPDVs.sh
+pkg update && pkg install sshpass openssh git && git clone https://github.com/nilsonlinux/CliPDVs.git && chmod -R 777 ./CliPDVs && clear && ./CliPDVs/npdvs.sh
 ```
 
 
@@ -14,5 +14,5 @@ pkg update && pkg install sshpass openssh git && git clone https://github.com/ni
 
 # Atualização
 ```sh
-rm -rf CliPDVs && git clone https://github.com/nilsonlinux/CliPDVs.git && chmod -R 777 ./CliPDVs && clear && ./CliPDVs/CliPDVs.sh
+rm -rf CliPDVs && git clone https://github.com/nilsonlinux/CliPDVs.git && chmod -R 777 ./CliPDVs && clear && ./CliPDVs/npdvs.sh
 ```
