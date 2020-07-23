@@ -598,6 +598,70 @@ sleep 5
 fi
 }
 # --------------
+
+################################### (12) Deletar pasta temporária no maxipos ######################################
+dell_pasta_tmp () {
+  logoCliPDVs
+echo -e " ${r}DELETAR PASTA TEMPORÁRIA NO MAXIPOS (CliPDVs)
+---------------------------------------------------${end}
+  ${br}Deletar pasta temporária do MaxiPOS 
+  por faixa (IP). Digite a faixa de sua filial, 
+  depois dê enter para digitar o IP final 
+  do terminal${end}
+${r}--------------------------------------------------- ${end}"
+echo -e "DIGITE A ${y}FAIXA${end} ${r}REFERÊNTE A SUA FILIAL: ${end}"
+read -p "$IPSERV." $read fx
+clear
+##########
+  clear
+logoCliPDVs
+echo -e " ${r}DELETAR PASTA TEMPORÁRIA NO MAXIPOS (CliPDVs)
+---------------------------------------------------${end}
+  ${br}Deletar pasta temporária do MaxiPOS 
+  por faixa (IP). Digite a faixa de sua filial, 
+  depois dê enter para digitar o IP final 
+  do terminal${end}
+${r}--------------------------------------------------- ${end}"
+echo -e "DIGITE O ${y}FINAL DO IP${end} ${r}QUE DESEJA APAGAR A PASTA TMP: ${end}"
+read -p "$IPSERV.$fx." $read ip
+echo -e "${r}---------------------------------------------------${end}"
+echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛${end}"
+sleep 1
+if ! ping -c 1 $IPSERV.$fx.$ip >> /dev/null ; then
+clear
+echo -e "$v======================================= $end"
+echo -e "$v       TERMINAL DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo && echo -e "$v======================================= $end"
+echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
+echo -e "$a IP $end-$bu $IPSERV.$fx.$ip $end- $v Sem conexão ✗$end" 
+echo -e "$v======================================= $end"
+echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+echo -e "$v=======================================$end" 
+else
+clear
+echo -e "$vr======================================== $end"
+echo -e "$vr         TERMINAL CONECTADO.  $end "
+echo -e "$vr======================================== $end"
+sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "rm -rf /mpos/maxipos/tmp/*";
+echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
+echo -e "$a IP $end -$bu $IPSERV.$fx.$ip $end- $vr Conectado ✔$end"
+echo -e "$vr======================================== $end"
+echo -e "$vr    COMANDO EXECUTADO COM SUCESSO... $end"
+echo -e "$vr======================================== $end"
+echo -e "${y}Retornando para o menu principal.
+⌛Por favor aguarde ⌛${endc}"
+sleep 5
+fi
+}
+# --------------
+
 # (5) Teste de ping PDVs
 ping_test () {
   logoCliPDVs
@@ -798,10 +862,11 @@ ${g}[ ${y}6 ${end}${g}]${end} ${vr} Reiniciar PDVs${end} ${r}(Todos)${end}
 ${g}[ ${y}7 ${end}${g}]${end} ${vr} Atualizar PDVs${end} ${r}(Todos)${end}
 ${g}[ ${y}8 ${end}${g}]${end} ${vr} Desligar PDVs${end} ${r}(Todos)${end}
 ${g}[ ${y}9 ${end}${g}]${end} ${vr} Atualizar imagem PDVs${end} ${r}(Todos)${end}
-${g}[ ${y}10${end}${g}]${end} ${vr} Gm core${end} ${y}(Desktop)${end}
-${g}[ ${y}11${end}${g}]${end} ${vr} Teste de conexão${end} ${vr}(PING)${end}
-${g}[ ${y}12${end}${g}]${end} ${vr} Teste de conexão${end} ${vr}(LINK-IP)${end}
-${g}[ ${y}13${end}${g}]${end} ${vr} Links úteis${end}
+${g}[ ${y}10 ${end}${g}]${end} ${vr} Deletar arquivos da pasta tmp/S${end}
+${g}[ ${y}11${end}${g}]${end} ${vr} Gm core${end} ${y}(Desktop)${end}
+${g}[ ${y}12${end}${g}]${end} ${vr} Teste de conexão${end} ${vr}(PING)${end}
+${g}[ ${y}13${end}${g}]${end} ${vr} Teste de conexão${end} ${vr}(LINK-IP)${end}
+${g}[ ${y}14${end}${g}]${end} ${vr} Links úteis${end}
 ${g}----------------------------------------- ${end}
 ${g}[ ${y}s ${end}${g}]${end} ${vr} Sobre${end}
 ${g}[ ${y}0 ${end}${g}]${end} ${vr} Sair${end}"
@@ -818,10 +883,11 @@ case $option in
 7) atualizar_todos ;;
 8) desligar_todos ;;
 9) atualizar_imagem_todos ;;
-10) gmcore ;;
-11) ping_test ;;
-12) ping_test_ip_link ;;
-13) links ;;
+10) dell_pasta_tmp ;;
+11) gmcore ;;
+12) ping_test ;;
+13) ping_test_ip_link ;;
+14) links ;;
 s) sobre ;;
 0) CliExit ;;
 *) echo " \"$option\" Opção inválida"; sleep 1 ;;
