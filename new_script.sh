@@ -10,7 +10,7 @@
 # y=yellow bu=blue m=magenta c=cyan w=white
 # endc=end-color end=end-argument
 pdvs_ips='139 131 123 124 25 102 103 104 105 107 120 133 110 11 112 113 114 130 116 55 59 117 225 132 138 128' #FINAL dos IPS DOS PDVS...
-version="2.6"
+version="2.7"
 gmcore='6.36'
 IPSERV='192.168'
 spath="$( cd "$( dirname $0 )" && pwd )"
