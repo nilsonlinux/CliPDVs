@@ -1,4 +1,4 @@
-i#!/bin/bash
+#!/bin/bash
 #
 # CliPDVs.sh
 # Automatização sobre demanda
