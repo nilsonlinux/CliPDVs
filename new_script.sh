@@ -10,9 +10,13 @@
 # y=yellow bu=blue m=magenta c=cyan w=white
 # endc=end-color end=end-argument
 pdvs_ips='139 131 123 124 25 102 103 104 105 107 120 133 110 11 112 113 114 130 116 55 59 117 225 132 138 128' #FINAL dos IPS DOS PDVS...
-version="2.7"
-gmcore='6.36'
+gt="100"
+version="2.6"
+GMCORE='6.36'
 IPSERV='192.168'
+RES="1366x715"
+GUSER="maxpos_gw"
+GPASS="terminal"
 spath="$( cd "$( dirname $0 )" && pwd )"
 a='\033[1;33m'       # Amarelo
 p='\033[0;35m'       # Purple
@@ -76,7 +80,7 @@ CliExit () {
 # Internet Check
 checkinternet () {
   if ping -c 1 google.com &>/dev/null; then
-    echo -e " Checando conexão com a internet: ${g}CONECTADO ✅${endc}"
+    echo -e " Checando conexão com a internet: ${vr}CONECTADO ✅${endc}"
     CLiCheck
   else
     echo -e " Checando conexão com a internet: ${r}DESCONECTADO ❌${endc}
@@ -598,70 +602,6 @@ sleep 5
 fi
 }
 # --------------
-
-################################### (12) Deletar pasta temporária no maxipos ######################################
-dell_pasta_tmp () {
-  logoCliPDVs
-echo -e " ${r}DELETAR PASTA TEMPORÁRIA NO MAXIPOS (CliPDVs)
----------------------------------------------------${end}
-  ${br}Deletar pasta temporária do MaxiPOS 
-  por faixa (IP). Digite a faixa de sua filial, 
-  depois dê enter para digitar o IP final 
-  do terminal${end}
-${r}--------------------------------------------------- ${end}"
-echo -e "DIGITE A ${y}FAIXA${end} ${r}REFERÊNTE A SUA FILIAL: ${end}"
-read -p "$IPSERV." $read fx
-clear
-##########
-  clear
-logoCliPDVs
-echo -e " ${r}DELETAR PASTA TEMPORÁRIA NO MAXIPOS (CliPDVs)
----------------------------------------------------${end}
-  ${br}Deletar pasta temporária do MaxiPOS 
-  por faixa (IP). Digite a faixa de sua filial, 
-  depois dê enter para digitar o IP final 
-  do terminal${end}
-${r}--------------------------------------------------- ${end}"
-echo -e "DIGITE O ${y}FINAL DO IP${end} ${r}QUE DESEJA APAGAR A PASTA TMP: ${end}"
-read -p "$IPSERV.$fx." $read ip
-echo -e "${r}---------------------------------------------------${end}"
-echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛${end}"
-sleep 1
-if ! ping -c 1 $IPSERV.$fx.$ip >> /dev/null ; then
-clear
-echo -e "$v======================================= $end"
-echo -e "$v       TERMINAL DESCONECTADO.           $end"
-echo -e "$v======================================= $end"
-echo -e "$v      _____ ____  ____   ___    _       $end"
-echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
-echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
-echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
-echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
-echo && echo -e "$v======================================= $end"
-echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
-echo -e "$a IP $end-$bu $IPSERV.$fx.$ip $end- $v Sem conexão ✗$end" 
-echo -e "$v======================================= $end"
-echo -en "${y}Precione enter para retornar para o manu.${endc}"
-read input
-echo -e "$v=======================================$end" 
-else
-clear
-echo -e "$vr======================================== $end"
-echo -e "$vr         TERMINAL CONECTADO.  $end "
-echo -e "$vr======================================== $end"
-sshpass -p 1 ssh -o "StrictHostKeyChecking no" root@192.168.$fx.$ip "rm -rf /mpos/maxipos/tmp/*";
-echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
-echo -e "$a IP $end -$bu $IPSERV.$fx.$ip $end- $vr Conectado ✔$end"
-echo -e "$vr======================================== $end"
-echo -e "$vr    COMANDO EXECUTADO COM SUCESSO... $end"
-echo -e "$vr======================================== $end"
-echo -e "${y}Retornando para o menu principal.
-⌛Por favor aguarde ⌛${endc}"
-sleep 5
-fi
-}
-# --------------
-
 # (5) Teste de ping PDVs
 ping_test () {
   logoCliPDVs
@@ -685,7 +625,7 @@ read -p "$IPSERV.$fx." $read ip
 echo -e "${bu}---------------------------------------------------${end}"
 echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛${end}"
 sleep 2
-if ! ping -c 2 $IPSERV.$fx.$ip >> /dev/null ; then
+if ! ping -c 1 $IPSERV.$fx.$ip >> /dev/null ; then
 clear
 echo -e "$v======================================= $end"
 echo -e "$v       TERMINAL DESCONECTADO.           $end"
@@ -727,7 +667,7 @@ echo -e "DIGITE O ${y}IP${end} ${bu}OU LINK QUE DESEJA FAZER O TESTE DE CONEXÃO
 read -p "http://"$read ip_link
 echo -e "${y}⌛Aguarde enquanto testamos conexão com o servidor ⌛${end}"
 ##########
-if ! ping -c 2 $ip_link >> /dev/null ; then
+if ! ping -c 1 $ip_link >> /dev/null ; then
 clear
 echo -e "$v======================================= $end"
 echo -e "$v       TERMINAL DESCONECTADO.           $end"
@@ -766,7 +706,7 @@ echo -e " ${vr}ACESSO GMCORE (CliPDVs)
 ${vr}--------------------------------------------------- ${end}"
 echo -e "${y}⌛Aguarde enquanto testamos conexão com o servidor ⌛${end}"
 sleep 1
-if ! ping -c 1 $IPSERV.$faixa.$gmcore >> /dev/null ; then
+if ! ping -c 1 ${IPSERV}.${GMCORE} >> /dev/null ; then
 clear
 echo -e "$v======================================= $end"
 echo -e "$v       SERVIDOR DESCONECTADO.           $end"
@@ -778,7 +718,7 @@ echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
 echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
 echo && echo -e "$v======================================= $end"
 echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
-echo -e "$a IP $end-$bu $IPSERV.$gmcore $end- $v Sem conexão ✗$end" 
+echo -e "$a IP $end-$bu ${IPSERV}.${GMCORE} $end- $v Sem conexão ✗$end" 
 echo -e "$v======================================= $end"
 echo -en "${y}Precione enter para retornar para o manu.${endc}"
 read input
@@ -788,9 +728,9 @@ clear
 echo -e "$vr======================================== $end"
 echo -e "$vr         SERVIDOR CONECTADO.  $end "
 echo -e "$vr======================================== $end"
-xfreerdp /v:192.168.6.36 /size:1366x705
+rdesktop -g ${RES} ${IPSERV}.${GMCORE}
 echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
-echo -e "$a IP $end -$bu $IPSERV.$gmcore $end- $vr Conectado ✔$end"
+echo -e "$a IP $end -$bu ${IPSERV}.${GMCORE} $end- $vr Conectado ✔$end"
 echo -e "$vr======================================== $end"
 echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
 echo -e "$vr======================================== $end"
@@ -800,6 +740,168 @@ sleep 5
 fi
 }
 # --------------
+# (14) MGV-SERVER
+mgv_server () {
+  logoCliPDVs
+echo -e " ${vr}ACESSO GMCORE (CliPDVs)
+---------------------------------------------------${end}
+  ${br}Acesso ao gmcore por faixa.${end}
+${vr}--------------------------------------------------- ${end}"
+echo -e "${y}⌛Aguarde enquanto testamos conexão com o servidor ⌛${end}"
+sleep 1
+if ! ping -c 1 ${IPSERV}.${MGVSERV} >> /dev/null ; then
+clear
+echo -e "$v======================================= $end"
+echo -e "$v       SERVIDOR DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo && echo -e "$v======================================= $end"
+echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
+echo -e "$a IP $end-$bu ${IPSERV}.${MGVSERV} $end- $v Sem conexão ✗$end" 
+echo -e "$v======================================= $end"
+echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+echo -e "$v=======================================$end" 
+else
+clear
+echo -e "$vr======================================== $end"
+echo -e "$vr         SERVIDOR CONECTADO.  $end "
+echo -e "$vr======================================== $end"
+rdesktop -g ${RES} -u ${MGVUSER} -p ${MGVPASS} ${IPSERV}.${MGVSERV}
+echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
+echo -e "$a IP $end -$bu ${IPSERV}.${MGVSERV} $end- $vr Conectado ✔$end"
+echo -e "$vr======================================== $end"
+echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$vr======================================== $end"
+echo -e "${y}Retornando para o menu principal.
+⌛Por favor aguarde ⌛${endc}"
+sleep 3
+fi
+}
+# --------------
+# (15) MGV-SERVER
+gateway_filiais () {
+  logoCliPDVs
+echo -e " ${c}ACESSO AO SERVIDOR ECD FILIAIS (CliPDVs)
+---------------------------------------------------${end}
+=${y}LOJA${end}======${bu}CIDADE${endc}============${vr}FAIXA${endc}===
+  3 - SUPER SANTA INES        3
+  32 - MIX TIMON              46
+  39 - MIX CHAPADINHA         114
+  41 - MIX CAXIAS             11
+  47 - MIX BACABAL            115
+  48 - MIX PEDREIRAS          93
+  91 - MIX SANTA INES         91
+  99 - MIX PINHEIRO           117
+  55 - PRESIDENTE DULTRA      55
+  65 - ELETRO SANTA INES      65
+  68 - ELETRO SANTA LUZIA     68
+  69 - ELETRO PEDREIRAS       69
+  79 - ELETRO LAGO DA PEDRA   79
+  131 - ELETRO BACABAL        131
+  163 - ELETRO COROATÁ        37
+  164 - ELETRO TIMON          166
+  165 - ELETRO VIANA          167
+  170 - ELETRO SÃO MATEUS     168
+  173 - ELETRO COROTA 2       191
+  176 - ELETRO CODÓ 2         185
+  202 - SUPER CODÓ		
+  251 - MIX PARNAIBA          118
+  252 - MIX TERESINA          161
+  431 - CAMINO LAGO DA PEDRA  144
+  433 - CAMINO VIANA          136
+  434 - CAMINO BARREIRINHAS		
+  435 - CAMINO COROATÁ        41
+  436 - CAMINO SANTA INES     169
+  439 - CAMINO MIRANDA        170
+
+${c}--------------------------------------------------- ${end}"
+echo -e "DIGITE A ${c}FAIXA DA FILIAL${end} ${br}QUE DESEJA O ACESSO AO GATEWAY: ${end}"
+read -p "$IPSERV." $read FAIXA
+echo -e "${bu}---------------------------------------------------${end}"
+echo -e "${y}⌛Aguarde enquanto testamos conexão com o terminal ⌛ ${end}"
+sleep 1
+if ! ping -c 2 ${IPSERV}.${FAIXA}.${gt} >> /dev/null ; then
+clear
+echo -e "$v======================================= $end"
+echo -e "$v       TERMINAL DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo && echo -e "$v======================================= $end"
+echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
+echo -e "$a IP $end-$bu ${IPSERV}.${FAIXA}.$gt $end- $v Sem conexão ✗$end" 
+echo -e "$v======================================= $end"
+echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+echo -e "$v=======================================$end" 
+else
+clear
+echo -e "$vr======================================== $end"
+echo -e "$vr         SERVIDOR CONECTADO.  $end "
+echo -e "$vr======================================== $end"
+rdesktop -g ${RES} -u ${GUSER} -p ${GPASS} ${IPSERV}.${FAIXA}.${gt}         
+echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
+echo -e "$a IP $end - $bu ${IPSERV}.${FAIXA}.$gt $end - $vr Conectado$end"
+echo -e "$vr======================================== $end"
+echo -e "$vr    COMANDO EXECUTADO COM SUCESSO... $end"
+echo -e "$vr======================================== $end"
+echo -e "${y}Retornando para o menu principal.
+⌛Por favor aguarde ⌛${endc}"
+sleep 3
+fi
+}
+###TEST
+# (16) IMPORTA
+importa_pdvs () {
+  logoCliPDVs
+echo -e " ${vr}ACESSO SERVIDOR IMPORTA (CliPDVs)
+---------------------------------------------------${end}
+  ${br}Script externa.${end}
+${vr}--------------------------------------------------- ${end}"
+echo -e "${y}⌛Aguarde enquanto testamos conexão com o servidor ⌛${end}"
+sleep 1
+if ! ping -c 1 ${IMPORTA} >> /dev/null ; then
+clear
+echo -e "$v======================================= $end"
+echo -e "$v       SERVIDOR DESCONECTADO.           $end"
+echo -e "$v======================================= $end"
+echo -e "$v      _____ ____  ____   ___    _       $end"
+echo -e "$v     | ____|  _ \|  _ \ / _ \  | |      $end"
+echo -e "$v     |  _| | |_) | |_) | | | | | |      $end"
+echo -e "$v     | |___|  _ <|  _ <| |_| | |_|      $end"
+echo -e "$v     |_____|_| \_\_| \_\\____/  (_)     $end"
+echo && echo -e "$v======================================= $end"
+echo -e "$v======[ $br Status da requisição $ec $v]======= $end"
+echo -e "$a IP $end-$bu ${IMPORTA} $end- $v Sem conexão ✗$end" 
+echo -e "$v======================================= $end"
+echo -en "${y}Precione enter para retornar para o manu.${endc}"
+read input
+echo -e "$v=======================================$end" 
+else
+clear
+echo -e "$vr======================================== $end"
+echo -e "$vr         IMPORTA CONECTADO.  $end "
+echo -e "$vr         ${IMPORTA}  $end "
+echo -e "$vr======================================== $end"
+sshpass -p importa ssh -o "StrictHostKeyChecking no" importa@pdvmaxipos.mateus "";
+echo -e "$vr=======[ $br Status da requisição $ec $vr]=======$end"
+echo -e "$a IP $end -$bu ${IMPORTA} $end- $vr Conectado ✔$end"
+echo -e "$vr======================================== $end"
+echo -e "$vr    COMANDO EFETUADO COM SUCESSO... $end"
+echo -e "$vr======================================== $end"
+echo -e "${y}Retornando para o menu principal.
+⌛Por favor aguarde ⌛${endc}"
+sleep 3
+fi
+}
 # --------------
 # Show About
 sobre () {
@@ -842,6 +944,7 @@ links () {
     ${bu}http://pdv.mateus/maxipos_backoffice/app
     ${bu}http://armateus.com.br
     ${bu}http://b2b.crednosso.com.br/garantia/loginGarantia.jsf
+    ${bu}https://sitefconciliacao.softwareexpress.com.br/sitefweb/pages/inicial.zeus
     ${bu}https://telegram.org/dl/desktop/linux
     ${bu}${blue}https://github.com/nilsonlinux/CliPDVs${end}"
   echo -e " ${g}  -----------------------------------------${end}"
@@ -862,11 +965,12 @@ ${g}[ ${y}6 ${end}${g}]${end} ${vr} Reiniciar PDVs${end} ${r}(Todos)${end}
 ${g}[ ${y}7 ${end}${g}]${end} ${vr} Atualizar PDVs${end} ${r}(Todos)${end}
 ${g}[ ${y}8 ${end}${g}]${end} ${vr} Desligar PDVs${end} ${r}(Todos)${end}
 ${g}[ ${y}9 ${end}${g}]${end} ${vr} Atualizar imagem PDVs${end} ${r}(Todos)${end}
-${g}[ ${y}10${end}${g}]${end} ${vr} Deletar arquivos da pasta tmp/${end}
-${g}[ ${y}11${end}${g}]${end} ${vr} Gm core${end} ${y}(Desktop)${end}
-${g}[ ${y}12${end}${g}]${end} ${vr} Teste de conexão${end} ${vr}(PING)${end}
-${g}[ ${y}13${end}${g}]${end} ${vr} Teste de conexão${end} ${vr}(LINK-IP)${end}
-${g}[ ${y}14${end}${g}]${end} ${vr} Links úteis${end}
+${g}----------------------------------------- ${end}
+${g}[ ${y}10${end}${g}]${end} ${vr} Gm core${end} ${y}(Desktop)${end}
+${g}----------------------------------------- ${end}
+${g}[ ${y}11${end}${g}]${end} ${vr} Teste de conexão${end} ${vr}(PING)${end}
+${g}[ ${y}12${end}${g}]${end} ${vr} Teste de conexão${end} ${vr}(LINK-IP)${end}
+${g}[ ${y}13${end}${g}]${end} ${vr} Links úteis${end}
 ${g}----------------------------------------- ${end}
 ${g}[ ${y}s ${end}${g}]${end} ${vr} Sobre${end}
 ${g}[ ${y}0 ${end}${g}]${end} ${vr} Sair${end}"
@@ -883,11 +987,10 @@ case $option in
 7) atualizar_todos ;;
 8) desligar_todos ;;
 9) atualizar_imagem_todos ;;
-10) dell_pasta_tmp ;;
-11) gmcore ;;
-12) ping_test ;;
-13) ping_test_ip_link ;;
-14) links ;;
+10) gmcore ;;
+11) ping_test ;;
+12) ping_test_ip_link ;;
+13) links ;;
 s) sobre ;;
 0) CliExit ;;
 *) echo " \"$option\" Opção inválida"; sleep 1 ;;
