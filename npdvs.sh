@@ -34,38 +34,65 @@ c='\E[36m'
 w='\E[37m'
 endc='\E[0m'
 end='\033[0m'
-#LOJA =========
+#VARIÁVEIS TERMINAIS LOJA =========
+TERMINAL_01="123"		IP_CAIXA_01="59"
+TERMINAL_02="103"		IP_CAIXA_02="122"
+TERMINAL_03="104"		IP_CAIXA_03="123"
+TERMINAL_04="105"		IP_CAIXA_04="124"
+TERMINAL_05="106"		IP_CAIXA_05="25"
+TERMINAL_06="107"		IP_CAIXA_06="102"
+TERMINAL_07="108"		IP_CAIXA_07="103"
+TERMINAL_08="109"		IP_CAIXA_08="104"
+TERMINAL_09="110"		IP_CAIXA_09="139"
+TERMINAL_10="111"		IP_CAIXA_10="105"
+TERMINAL_11="112"		IP_CAIXA_11="107"
+TERMINAL_12="113"		IP_CAIXA_12="120"
+TERMINAL_13="114"		IP_CAIXA_13="140"
+TERMINAL_14="115"		IP_CAIXA_14="110"
+TERMINAL_15="116"		IP_CAIXA_15="11"
+TERMINAL_16="117"		IP_CAIXA_16="112"
+TERMINAL_17="118"		IP_CAIXA_17="113"
+TERMINAL_18="119"		IP_CAIXA_18="114"
+TERMINAL_19="128"		IP_CAIXA_19="128"
+TERMINAL_20="121"		IP_CAIXA_20="116"
+TERMINAL_21="126"		IP_CAIXA_21="132"
+TERMINAL_22="122"		IP_CAIXA_22="55"
+TERMINAL_LANCHONETE="127"		IP_CAIXA_LANCHONETE=""
+TERMINAL_ELETRO_01="124"		IP_CAIXA_ELETRO_01="117"
+TERMINAL_ELETRO_02="125"		IP_CAIXA_ELETRO_02="225"
+TERMINAL_ATACADOS="120"		IP_CAIXA_ATACADOS="138"
+TERMINAL_BUTECO="126"		IP_CAIXA_BUTECO="132"
+#LVARIÁVEIS TERMINAIS LOJA =========
+#LISTA DOS TERMINAIS LOJA =========
 loja () {
-echo -e "${vr}
-          PAINEL TERMINAL SM03
-   TERMINAL      CAIXA             IP      
-     123          01          192.168.3.59
-     103          02          192.168.3.122
-     104          03          192.168.3.123
-     105          04          192.168.3.124
-     106          05          192.168.3.25
-     107          06          192.168.3.102
-     108          07          192.168.3.103
-     109          08          192.168.3.104
-     110          09          192.168.3.139
-     111          10          192.168.3.105
-     112          11          192.168.3.107    
-     113          12          192.168.3.120
-     114          13          192.168.3.106
-     115          14          192.168.3.110
-     116          15          192.168.3.11
-     117          16          192.168.3.112
-     118          17          192.168.3.113
-     119          18          192.168.3.114
-     128          19          192.168.3.128
-     121          20          192.168.3.116
-     126          21          192.168.3.132
-     122          22          192.168.3.55
-     124      ELETRO 01       192.168.3.117
-     125      ELETRO 02       192.168.3.225
-     127       PADARIA        192.168.3.138 
-     120       BALCÃO         192.168.3.130
-     126       BOTECO         192.168.3.132  ${end}"
+echo -e "${b} TERMINAL ${endc}  ${b} CAIXA  ${endc}     ${b}   IP  ${endc}
+${vr}   $TERMINAL_01        01      $IPSERV.$FX.$IP_CAIXA_01       ${endc}
+ ${g}   $TERMINAL_02        02      $IPSERV.$FX.$IP_CAIXA_02       ${endc}
+${vr}   $TERMINAL_03        03      $IPSERV.$FX.$IP_CAIXA_03       ${endc}
+ ${g}   $TERMINAL_04        04      $IPSERV.$FX.$IP_CAIXA_04       ${endc}
+${vr}   $TERMINAL_05        05      $IPSERV.$FX.$IP_CAIXA_05       ${endc}
+ ${g}   $TERMINAL_06        06      $IPSERV.$FX.$IP_CAIXA_06       ${endc}
+${vr}   $TERMINAL_07        07      $IPSERV.$FX.$IP_CAIXA_07       ${endc}
+ ${g}   $TERMINAL_08        08      $IPSERV.$FX.$IP_CAIXA_08       ${endc}
+${vr}   $TERMINAL_09        09      $IPSERV.$FX.$IP_CAIXA_09       ${endc}
+ ${g}   $TERMINAL_10        10      $IPSERV.$FX.$IP_CAIXA_10       ${endc}
+${vr}   $TERMINAL_11        11      $IPSERV.$FX.$IP_CAIXA_11       ${endc}
+ ${g}   $TERMINAL_12        12      $IPSERV.$FX.$IP_CAIXA_12       ${endc}
+${vr}   $TERMINAL_13        13      $IPSERV.$FX.$IP_CAIXA_13       ${endc}
+ ${g}   $TERMINAL_14        14      $IPSERV.$FX.$IP_CAIXA_14       ${endc}
+${vr}   $TERMINAL_15        15      $IPSERV.$FX.$IP_CAIXA_15       ${endc}
+ ${g}   $TERMINAL_16        16      $IPSERV.$FX.$IP_CAIXA_16       ${endc}
+${vr}   $TERMINAL_17        17      $IPSERV.$FX.$IP_CAIXA_17       ${endc}
+ ${g}   $TERMINAL_18        18      $IPSERV.$FX.$IP_CAIXA_18       ${endc}
+${vr}   $TERMINAL_19        19      $IPSERV.$FX.$IP_CAIXA_19       ${endc}
+ ${g}   $TERMINAL_20        20      $IPSERV.$FX.$IP_CAIXA_20       ${endc}
+${vr}   $TERMINAL_21        21      $IPSERV.$FX.$IP_CAIXA_21       ${endc}
+ ${g}   $TERMINAL_22        22      $IPSERV.$FX.$IP_CAIXA_22       ${endc}
+${vr}   $TERMINAL_ELETRO_01    ELETRO 01   $IPSERV.$FX.$IP_CAIXA_ELETRO_01    ${endc}
+ ${g}   $TERMINAL_ELETRO_02    ELETRO 02   $IPSERV.$FX.$IP_CAIXA_ELETRO_02    ${endc}
+${vr}   $TERMINAL_LANCHONETE    LANCHONETE  $IPSERV.$FX.$IP_CAIXA_LANCHONETE  ${endc}
+ ${g}   $TERMINAL_ATACADOS     ATACADO    $IPSERV.$FX.$IP_CAIXA_ATACADOS      ${endc}
+${vr}   $TERMINAL_BUTECO     BUTECO     $IPSERV.$FX.132  ${end}"
     echo
 }
 #LOJA =========
