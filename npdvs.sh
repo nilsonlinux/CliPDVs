@@ -96,19 +96,20 @@ ${vr}   $TERMINAL_BUTECO     BUTECO     $IPSERV.$FX.132  ${end}"
     echo
 }
 #LOJA =========
-# CliPDVs Logo
-logoCliPDVs () {
+# NPDVs Logo
+logoNPDVs () {
   clear
   echo -e "${vr} 
-     ____ _ _ ____  ______     __
-    / ___| (_)  _ \|  _ \ \   / /__
-   | |   | | | |_) | | | \ \ / / __|  
-   | |___| | |  __/| |_| |\ V /\__ \    
-    \____|_|_|_|   |____/  \_/ |___/ © 2020
-          ${m}Versão :${end}${bu} ${version}${end}"
+   _   _ ____  ______     __   
+  | \ | |  _ \|  _ \ \   / /__ 
+  |  \| | |_) | | | \ \ / / __|
+  | |\  |  __/| |_| |\ V /\__ \ 
+  |_| \_|_|   |____/  \_/ |___/
+             © 2020
+          ${y}Versão :${end}${bu} ${version}${end}"
     echo
 }
-# CliPDVs
+# NPDVs
 # Exit CliPDVs
 CliExit () {
   logoCliPDVs 
